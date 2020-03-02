@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pages/advertise/search"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="no-padding">
+      <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
+      <span class="tab-title">Advertisement</span>
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="main-container full-height">
+    <div class="row no-margin search-container">
+      
+      <div class="col-12 container-padding">
+        <app-loading-spinner [loadingType]="'bar'" *ngIf="loading">
+        </app-loading-spinner>
+        <ng-container *ngIf="Ads">
+         <div class="card" *ngFor="let ads of Ads | orderBy:'-postdate'">
+          <div class="card-body no-padding" [routerLink]="['/pages/advertise/advertisementDetails', ads.id]">
+           
+            <ion-slides pager="true" [options]="slideOpts">
+              <ion-slide>
+                <img src="../../../../assets/images/image1.jpg">
+              </ion-slide>
+              <ion-slide>
+                <img src="../../../../assets/images/image2.jpg">
+              </ion-slide>
+              <ion-slide>
+                <img src="../../../../assets/images/image3.jpg">
+              </ion-slide>
+            </ion-slides>
+            <div class="adsDetails">
+              <div class="adsOwner"><span>{{ads.username}},</span><span class="age"> {{ads.dob | age:ads.dob}} | </span><span class="gender">
+                <i class="fa" aria-hidden="true" [ngClass]="{ 'fa-male': ads.userGender === 'Male', 'fa-female':  ads.userGender === 'Female'}"></i></span></div>
+              <div class="profilePicOwner">
+                <!-- <img src="../../../../assets/images/image3.jpg"> -->
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+              </div>
+              <div class="rentDetails"><span class="rupees_icon"><i class="fa fa-inr" aria-hidden="true"></i>
+                </span><span class="amount"> {{ads.rentAmount}} </span><span class="month">/Month</span></div>
+              <div class="adsAddressDetails">
+                <div class="adsTitle">{{ads.roomType}} for {{ads.gender}} in {{ads.city}}</div>
+                <div class="adsAddress">{{ads.shortaddress}}</div>
+              </div>
+              <span class="postedOn">Posted on: - {{ads.postdate | date: 'dd-MMM-yyyy'}}</span>
+            </div>
+          </div>
+          <div class="card-footer contact-container">
+            <div class="row">
+                <div class="col-4"><img src="../../../../assets/images/telephone.svg"/></div>
+                <div class="col-4"><img src="../../../../assets/images/message.svg"/></div>
+                <div class="col-4"><img src="../../../../assets/images/whatsapp.svg"/></div>
+            </div>
+          </div>
+        </div>
+        </ng-container>
+      </div>
+      <div *ngIf="Ads == ''" class="col-12 container-padding">
+        <span>No Ads Found !.. Keep in touch..</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

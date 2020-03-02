@@ -1,0 +1,452 @@
+.border-red{
+    border:1px solid red;
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    width: 260px;
+    color: #fff;
+    box-shadow: 0 16px 38px -12px rgba(0,0,0,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+.main-panel {
+    position: relative;
+    float: right;
+    width: calc(100% - 260px);
+    transition: .33s,cubic-bezier(.685,.0473,.346,1);
+
+}
+.main-content {
+    height: calc(100vh - 70px);
+    overflow-y: scroll;
+    margin-top: 74px;
+}
+
+body {
+    font-family: "Mukta", sans-serif;
+    height: 100vh;
+    min-height: 550px;
+    /* background-image: url(http://www.planwallpaper.com/static/images/Free-Wallpaper-Nature-Scenes.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow-y: hidden;
+  }
+  a {
+    text-decoration: none;
+    color: #444444;
+  }
+  .logo {
+    width: 70px;
+    box-shadow: 0px 0px 11px #fff;
+  }
+  .login-reg-panel {
+    z-index: 3;
+    width: 100%;
+    // background-color: #00bfff;
+    height: 100%;
+  }
+  .white-panel {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    transition: 0.3s ease-in-out;
+    z-index: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 6rem 3rem;
+    border-radius: 21px;
+    overflow: hidden;
+    // background-image: linear-gradient(90deg, #049ad2, #053e54);
+  }
+  .login-pannel {
+    height: 100%;
+    width: 50%;
+    float: left;
+  }
+  .org-details {
+    height: 100%;
+    width: 50%;
+    float: left;
+    position: relative;
+    background-image: linear-gradient(90deg, #087198, #2c4d8e);
+  }
+  .login-reg-panel input[type="radio"] {
+    position: relative;
+    display: none;
+  }
+  .login-reg-panel {
+    color: #fff;
+  }
+  .login-reg-panel #label-login,
+  .login-reg-panel #label-register {
+    border: 1px solid #9e9e9e;
+    padding: 5px 5px;
+    width: 150px;
+    display: block;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .login-info-box {
+    width: 30%;
+    padding: 0 50px;
+    top: 20%;
+    left: 0;
+    position: absolute;
+    text-align: left;
+  }
+  .register-info-box {
+    width: auto;
+    padding: 0 50px;
+    top: 3%;
+    position: absolute;
+    text-align: left;
+    right: 0%;
+  }
+  .right-log {
+    right: 50px !important;
+  }
+  
+  .login-show,
+  .org-details-container {
+    z-index: 1;
+    -webkit-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+    color: #242424;
+    text-align: left;
+    padding: 3rem 9rem;
+    position: relative;
+    height: 100%;
+    overflow: auto;
+  }
+  .org-details-container{
+    align-items: center;
+      display: flex;
+  }
+  
+  .org-details-back{
+    // background-image: url(../../../../assets/images/login_back.jpg);
+    background-size: cover;
+    height: 100%;
+    opacity: .2;
+    float: left;
+    position: absolute;
+    width: 100%;
+    background-position: center;
+  }
+  
+  .show-log-panel {
+    display: block;
+    opacity: 0.9;
+  }
+  // .login-show input[type="text"], .login-show input[type="password"]{
+  //     width: 100%;
+  //     display: block;
+  //     margin: 20px 0;
+  //     padding: 15px;
+  //     border: 1px solid #b5b5b5;
+  //     outline: none;
+  //     border-radius: 0;
+  //     height: auto;
+  // }
+  .login-show input[type="button"],
+  .login-show input[type="submit"] {
+    width: 100%;
+    background-color: #0d7ba4;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: 5px 0;
+    outline: none;
+    border-radius: 51px;
+    display: inline-block;
+    -webkit-box-align: center;
+    height: 49px;
+    border: none;
+  }
+  .login-show input[type="submit"]:disabled {
+    color: rgb(84, 84, 84);
+    cursor: default;
+    background-color: rgb(235, 235, 228);
+  }
+  .login-show a {
+    display: inline-block;
+    padding: 10px 0;
+  }
+  
+  .register-show input[type="text"],
+  .register-show input[type="password"] {
+    width: 100%;
+    display: block;
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #b5b5b5;
+    outline: none;
+  }
+  .register-show input[type="button"] {
+    max-width: 150px;
+    width: 100%;
+    background: #444444;
+    color: #f9f9f9;
+    border: none;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    float: right;
+    cursor: pointer;
+  }
+  .credit {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: #3b3b25;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    z-index: 99;
+  }
+  a {
+    text-decoration: none;
+    color: #2c7715;
+  }
+  
+  .sidebar-background {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50%;
+    // background-image: url(../../../../assets/images/everest_content_1.jpg);
+  }
+  .sidebar-background:after {
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    content: "";
+    display: block;
+    background: #fff;
+    opacity: 0.93;
+  }
+  
+  #myVideo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    /* min-width: 100%; */
+    /* min-height: 100%; */
+    /* position: absolute; */
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+  }
+  .org-logo {
+    text-align: center;
+    padding-bottom: 29px;
+    margin: 0 auto;
+    img {
+      width: 300px;
+    }
+  }
+  .login-title {
+    text-align: center;
+    padding-bottom: 29px;
+    margin: 0 auto;
+  
+    span {
+      display: flow-root;
+      color: #053463;
+      font-size: 1rem;
+      padding: 3px;
+    }
+    img {
+      width: 65px;
+    }
+  }
+  .login-sec {
+    width: 100%;
+    margin: 5px 0;
+    padding: 1px 11px 0px 2px;
+    outline: none;
+    border-radius: 51px;
+    background: #fff;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    i {
+      padding: 7px;
+    font-size: 1.5rem;
+    color: #053463;
+    padding-right: 8px;
+    }
+    input[type="text"] {
+      background: transparent;
+      border: 0;
+      // color: #fff;
+    }
+  }
+  .password-sec {
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px 11px 4px 7px;
+    outline: none;
+    border-radius: 51px;
+    background: #fff;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    i {
+      padding: 1px;
+      font-size: 2rem;
+      color: #053463;
+      padding-right: 8px;
+    }
+    input[type="password"] {
+      background: transparent;
+      border: 0;
+      color: #053463;
+    }
+  }
+  .org-back,.org-mini-logo{
+    display: none;
+  }
+
+  
+  /* Css end for the media query *********************/
+  
+
+/* Css for media query *************************/
+/* Resolution  */
+@media only screen and (max-width: 600px){
+    .sidebar{
+        width: 0;
+        /* display: none; */
+    }
+    .main-panel{
+        width: 100%;
+    }
+    .main-content{
+        height: calc(100vh - 70px);
+        overflow-y: scroll;
+        margin-top: 65px;
+    }
+    .org-mini-logo{
+        display: block;padding-bottom:2rem;
+      }
+      .org-back{
+        // background-image: url(../../../../assets/images/login_back.jpg);
+        background-size: cover;
+        height: 61%;
+        opacity: 0.2;
+        float: left;
+        position: absolute;
+        width: 200%;
+        background-position: center;
+        /* z-index: 0; */
+        display: block;
+        top: 57%;
+        left: 0;
+        transform: rotate(-18deg);
+      }
+      .white-panel {
+        margin: 1rem;
+      }
+      .org-details{
+        display: none;
+      }
+      .back2{
+        background: #1176a6;
+      }
+      .login-pannel {
+        height: 100%;
+        width: 100%;
+        float: left;
+        background-position: center;
+        background-size: cover;
+        // background-image: linear-gradient(90deg, rgba(8, 139, 152, 0.6392156862745098), rgba(44, 77, 142, 0.48)),url('../../assets/imgs/background.jpg');
+    }
+    .login-show{
+      padding: 1rem;
+      padding-top: 3rem;
+    }
+    .reg-panel{
+      color: #fff;
+      font-size: 14px;
+      // margin-top: 99px !important;
+      // text-align: center !important;
+      //  position: absolute; 
+       bottom: 4rem;
+       left: 0; 
+       right: 0; 
+    }
+    .ConnectBtn{
+      width: 60% !important;
+  }
+  .AdminBtn{
+      width:40% !important;    background-color: #00455e !important;
+  }
+    .reg-btn{
+      line-height: 15px;
+      text-align: center;
+      position: relative;
+      margin-top: 10rem;
+    }
+    .login-title{
+      span{
+        color: #fff;
+    
+      }
+     
+    }
+    .reg-title{
+      text-align: center;
+      padding-bottom: 10px;
+      margin: 0 auto;
+      color: #fff;
+
+      ion-avatar{margin: 0 auto;
+        margin-top: 10px;
+      position: relative;
+      .camera-icon{
+        font-size: 1.2rem;
+        position: absolute;
+        bottom: 2px;
+        right: 6px;
+        color: #0a70a7;
+      }
+    }
+    }
+    .connect-btn{
+      width: calc(60% - 5px) !important;
+      margin-right: 5px !important;
+    }
+    .back-btn{
+      width: 40% !important;
+      background-color: #052a3e !important;
+    }
+  
+    .margin-top{
+      margin-top: 10px;
+    }
+}
+/* Css end for the media query *********************/

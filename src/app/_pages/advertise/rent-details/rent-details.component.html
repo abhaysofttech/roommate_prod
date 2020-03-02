@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pages"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="no-padding">{{adsId ? 'Update' : 'Add'}} Rent Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="main-container">
+    <div class="row no-margin search-container">
+      <div class="col-12 container-padding">
+        <form [formGroup]="adrent" (ngSubmit)="onSubmit()">
+          <div class="card">
+            <h5 class="card-header no-margin">Address 
+              <i class="fa fa-edit edit-address" [routerLink]="['/address', adsId]" style="float: right;" aria-hidden="true"></i>
+            </h5>
+            <div class="card-body address-card">
+              <div class="input-container">
+                <label class="input-label">City: -</label>
+                <label class="">&nbsp;{{city}}</label>
+              
+              </div>
+              
+              <div class="input-container">
+                <label class="input-label">Location</label>
+                <div class="input-group mb-3 address">
+                  {{address}}
+                </div>
+              </div>
+              
+              </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <!-- <div class="input-container">
+                <label class="input-label">City</label>
+                <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                  <select class="form-control" formControlName="city">
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Banglore">Banglore</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="input-container">
+                <label class="input-label">Location</label>
+                <div class="input-sec"><i class="fa fa-crosshairs" aria-hidden="true"></i>
+                  <input type="text" class="form-control" formControlName="location" placeholder="" />
+                </div>
+              </div>
+              <div class="input-container">
+                <label class="input-label">Landmark</label>
+                  <textarea  class="form-control" formControlName="landmark" placeholder="Enter Rental Place Landmark" ></textarea>
+              </div>
+              <div class="input-container">
+                <label class="input-label">PinCode</label>
+                <div class="input-sec"><i class="fa fa-inr" aria-hidden="true"></i>
+                  <input type="number" class="form-control" formControlName="pincode" placeholder="Pin Code" />
+                </div>
+              </div> -->
+              <div class="input-container">
+                <label class="input-label">Expected Rent / Monthly</label>
+                <div class="input-sec-semi"><i class="fa fa-inr" aria-hidden="true"></i>
+                  <input type="number" class="form-control" formControlName="rentAmount" placeholder="Enter Amount" />
+                  <div><span>/month</span></div>
+                </div>
+              </div>
+              <div class="input-container">
+                <label class="input-label">Expected Deposit</label>
+                <div class="input-sec-semi"><i class="fa fa-inr" aria-hidden="true"></i>
+                  <input type="number" class="form-control" formControlName="depositAmount"
+                    placeholder="Enter Amount" />
+                  <div><span>Deposit</span></div>
+
+                </div>
+              </div>
+              <div class="input-container toggle-container">
+                <label class="input-label">Rent Negotiable</label>
+                <span style="margin-left: 75px;">No</span>
+                <ion-toggle formControlName="rentNegotiable" mode="ios"></ion-toggle>
+                <span>Yes</span>
+              </div>
+              <input type="submit" class="full-submit" value="{{adsId ? 'Update' : 'Save'}} & Continue" />
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>

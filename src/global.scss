@@ -1,0 +1,292 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+$base-color: #eaa90a;
+$base-color-dark: #c58f05;
+.no-margin {
+  margin: 0px !important;
+}
+.no-padding {
+  padding: 0px !important;
+}
+.option-select {
+  text-align: center;
+  vertical-align: middle;
+  align-content: center;
+  display: grid;
+  height: 100%;
+  img {
+    width: 150px;
+    margin: auto;
+  }
+}
+.main-container {
+  background: #f7f5f5;
+  height: auto;
+  min-height: 100%;
+}
+hr{
+  background: #d39e00;
+}
+.card-header {
+  background-color: #ffc107;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+  color: #856404;
+}
+.container-box {
+  -webkit-box-flex: 1;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+.full-height {
+  height: 100%;
+}
+.container-padding {
+  padding: 10px !important;
+}
+.input-container {
+  margin-bottom: 1.2rem;
+  ion-checkbox {
+    --background-checked: rgb(66, 5, 146);
+    --border-color: rgb(66, 5, 146);
+    --border-color-checked: rgb(27, 3, 59);
+  }
+  ion-toolbar {
+    background: linear-gradient(to right, #dc3545, #a11783) !important;
+  }
+
+  .form-control:focus {
+    color: inherit;
+    background-color: #fff;
+    border-color: #fff;
+    outline: 0;
+    box-shadow: none;
+  }
+  .input-sec{
+    i {
+      padding: 7px;
+      font-size: 1.5rem;
+      color: $base-color;
+      padding-right: 8px;
+      width: 40px;
+      text-align: center;
+      align-items: center;
+    }
+  }
+  .input-sec-semi {
+    width: 100%;
+    padding: 0px 0px 0px 2px;
+    outline: none;
+    border-radius: 51px;
+    background: $base-color;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 1px solid $base-color;
+    i {
+      //   padding: 7px;
+      // font-size: 1.5rem;
+      // color: #053463;
+      // padding-right: 8px;
+      padding: 7px;
+      font-size: 1.5rem;
+      color: $base-color-dark;
+      padding-right: 8px;
+      width: 40px;
+      text-align: center;
+      align-items: center;
+    }
+    input[type="text"] {
+      background: transparent;
+      border: 0;
+      // color: #fff;
+    }
+    input[type="number"] {
+      border-radius: 0px 0px 0px 19px;
+      width: 50%;
+      padding: 6px;
+      margin-right: 0;
+      padding-left: 18px;
+      border-color: #fff
+    }
+    div {
+      width: 37%;
+      background: #ffc107;
+      padding: 7px;
+      margin: 0;
+      display: block;
+      border-radius: 0 32px 32px 0;
+      border: 0;
+      text-align: center;
+      letter-spacing: 3px;
+    }
+  }
+  .input-sec {
+    width: 100%;
+    padding: 0px 0px 0px 2px;
+    outline: none;
+    border-radius: 51px;
+    background: $base-color;
+    display: -webkit-inline-box;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid $base-color;
+    // box-shadow: 1px 3px 6px rgba(255, 193, 7, 0.30;
+    i {
+      padding: 7px;
+      font-size: 1.5rem;
+      color: #f8f9fa;
+      padding-right: 8px;
+    }
+  
+    input[type="number"] {
+      border-radius: 0px 50px 50px;
+      width: 100%;
+      padding: 6px;
+      margin-right: 0;
+      padding-left: 18px;
+      border: 1px solid #fff;
+    }
+   input[type="text"] {
+      border-radius: 0px 50px 50px;
+      width: 100%;
+      padding: 6px;
+      margin-right: 0;
+      padding-left: 18px;
+      border: 1px solid #fff;
+  }
+  }
+  select {
+    background: url('./assets/icon/br_down.png') no-repeat #fff 95%;
+    -webkit-appearance: none;
+    border-radius: 0px 50px 50px;
+    width: 100%;
+    padding: 6px;
+    margin-right: 0;
+    padding-left: 20px;
+    border-color: #fff;
+  }
+  label.input-label {
+    margin: 0;
+    padding-left: 3px;
+    color: #055678;
+  }
+}
+.swiper-container-horizontal > .swiper-pagination-bullets {
+  top: 30px !important;
+  right: 15px !important;
+  width: 20px !important;
+  bottom: auto;
+  left: auto;
+}
+.swiper-pagination-bullet-active {
+  background: #ffc107 !important;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border-radius: 100%;
+  background: transparent;
+  opacity: 1;
+  border: 1.2px solid #fff;
+}
+.invalid-feedback-error {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+ion-chip {
+  --background: #fff0c2;
+}
+input.full-submit {
+  background: #0aa7ea;
+  border: 0;
+  width: 100%;
+  height: 43px;
+  border-radius: 52px;
+  color: #fff;
+  box-shadow: 1px 2px 7px #7bc7e8;
+  
+}
+ion-button{
+    background: #0aa7ea;
+    border: 0;
+    border-radius: 52px;
+    color: #fff;
+    box-shadow: 1px 2px 7px #7bc7e8;
+    --background-activated: #0aa7ea;
+    --background: #0aa7ea;
+    --background-focused: #0aa7ea-dark;
+    --background-hover: #0aa7ea;
+}
+input.full-submit:hover {
+    background: $base-color;
+}
+:focus{
+    outline: none;
+}
+
+ion-toggle{
+    --background-checked: $base-color;
+}
+textarea{
+  border: 1px solid $base-color !important;
+}
+
+.card{
+  border: 1px solid $base-color;
+  border-radius: .25rem;
+  border-top: 5px solid $base-color;
+}
+.toolbar-background{
+  background-image: linear-gradient(90deg, $base-color, $base-color-dark);
+}
+.toolbar-container{
+  color: #fff;
+}
+.rm_header_logo{
+  width: 150px;
+}
+
+.tab-title{
+  padding: 3px 14px;
+  color: #fff;
+  background: #0aa7ea;
+  border-radius: 52px 0 0 50px;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  vertical-align: middle;
+  align-items: center;
+}
+.my-custom-modal-css {
+  --background: rgba(15, 167, 231, 0.47) !important;
+  padding: 15px !important;
+}

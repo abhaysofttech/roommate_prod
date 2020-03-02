@@ -1,0 +1,64 @@
+
+
+<div class="wrapper">
+  <div class="main-panel">
+    <div class="main-content">
+      <div class="container-fluid">
+
+        <div class="login-reg-panel back2">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="white-panel">
+              <div class="login-pannel">
+                <div class="login-show">
+                  <!-- <div class="org-mini-logo">
+                    <img src="" class="login_symbol" />
+                  </div> -->
+                  <div class="login-title">
+                    <!-- <img src="" class="login_symbol" /> -->
+                    <span>Login</span>
+                  </div>
+                  <div class="login-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    <input type="number" formControlName="phonenumber" class="form-control" placeholder="Enter Your Mobile Number"
+                      [ngClass]="{ 'is-invalid': submitted && f.phonenumber.errors }" />
+                  </div>
+                  <div *ngIf="submitted && f.phonenumber.errors" class="invalid-feedback-error">
+                    <div *ngIf="f.phonenumber.errors.required">Please Enter Your Register Mobile Number</div>
+                  </div>
+                  <div class="login-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    <input type="password" formControlName="password" class="form-control"  placeholder="Enter Your Password"
+                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                  </div>
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback-error">
+                    <div *ngIf="f.password.errors.required">Please Enter Your Password</div>
+                  </div>
+
+                  <div class="signin-sec">
+                    <input type="submit"  class="form-control" name="Connect" value="Connect">
+                  </div>
+                  <!-- <div class="col-12">
+                    <div class="option-select">
+                        <img src="../../assets/images/user.png" routerLink="/map" routerDirection="root"/>
+                        <div class="check"></div>
+                    </div>
+                  </div> -->
+
+                  <div class="signin-sec reg-btn">
+                      <span class="reg-panel"  style="color: #fff;">If new user then click on register button</span>
+                     
+                      <input type="button" [disabled]="loading" class="form-control" routerLink="/pages" name="Connect" value="Home">
+                      <input type="button" [disabled]="loading" class="form-control" routerLink="/register" name="Register" value="Register">
+                      <input type="button" [disabled]="loading" class="form-control" routerLink="/rent-details/5ded439e2f83ae795472004d" name="Connect" value="check">
+                      <input type="button" [disabled]="loading" class="form-control" routerLink="/home" name="Connect" value="Map">
+                    </div>
+
+                  
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

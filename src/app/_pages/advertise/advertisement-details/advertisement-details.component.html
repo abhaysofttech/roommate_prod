@@ -1,0 +1,150 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pages/advertise/search"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title *ngIf="Ads">{{Ads.roomType}} for {{Ads.gender}} </ion-title> -->
+    <ion-title class="no-padding">
+      <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="main-container full-height">
+    <div class="row no-margin search-container">
+      <div class="col-12 container-padding">
+        <div class="card" *ngIf="Ads">
+          <div class="card-body no-padding">
+
+            <ion-slides pager="true" [options]="slideOpts">
+              <ion-slide>
+                <img src="../../../../assets/images/image1.jpg">
+              </ion-slide>
+              <ion-slide>
+                <img src="../../../../assets/images/image2.jpg">
+              </ion-slide>
+              <ion-slide>
+                <img src="../../../../assets/images/image3.jpg">
+              </ion-slide>
+            </ion-slides>
+            <div class="adsDetails">
+              <div class="adsOwner"><span>{{Ads.username}},</span><span class="age"> {{Ads.dob | age:Ads.dob}} | </span><span class="gender">
+                <i class="fa" aria-hidden="true" [ngClass]="{ 'fa-male': Ads.userGender === 'Male', 'fa-female':  Ads.userGender === 'Female'}"></i></span></div>
+              <div class="profilePicOwner">
+                <!-- <img src="../../../../assets/images/image3.jpg"> -->
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+              </div>
+              <div class="adsAddressDetails">
+                <div class="adsTitle">{{Ads.roomType}} for {{Ads.gender}} in {{Ads.city}}</div>
+                <div class="adsAddress">{{Ads.shortaddress}}</div>
+              </div>
+              <span class="postedOn">Posted on: - {{Ads.postdate | date: 'dd-MMM-yyyy'}}</span>
+            </div>
+          </div>
+          <div class="rentDetails">
+            <div class="rentPane">
+              <span class="rentTitle">Rent</span>
+              <span class="rentAmount">
+                <span class="rupees_icon"><i class="fa fa-inr" aria-hidden="true"></i>
+                </span><span class="amount"> {{Ads.rentAmount}} </span><span class="month">/Month</span>
+              </span>
+            </div>
+
+            <div class="rentPane" style="float: right;">
+              <span class="rentTitle">Deposit</span>
+              <span class="rentAmount">
+                <span class="rupees_icon"><i class="fa fa-inr" aria-hidden="true"></i>
+                </span><span class="amount"> {{Ads.depositAmount}} </span>
+              </span>
+              <span class="negotiable">Negotiable: - {{Ads.rentNegotiable ? 'Yes':'No'}}</span>
+
+            </div>
+          </div>
+          <div class="contact-container">
+              <div class="row">
+                <div class="col-4"><img src="../../../../assets/images/telephone.svg" /></div>
+                <div class="col-4"><img src="../../../../assets/images/message.svg" /></div>
+                <div class="col-4"><img src="../../../../assets/images/whatsapp.svg" /></div>
+              </div>
+            </div>
+          <div class="adsOverview">
+            <div class="row no-margin">
+              <div class="col-12"><span>Amenities</span></div>
+              <div class="col-12">
+                <div class="row no-margin">
+                  <div class="col-4 amenities-list" *ngIf="Ads.powerBackup">
+                    <span><img src="../../../../assets/icon/battery.svg"/></span>
+                    <span>Power Backup</span>
+                  </div>
+
+                  <div class="col-4 amenities-list">
+                    <span><img src="../../../../assets/icon/club.svg"></span>
+                    <span>Club</span>
+                  </div>
+                  <div class="col-4 amenities-list"  *ngIf="Ads.gatedSecurity">
+                    <span><img src="../../../../assets/icon/gated.svg"></span>
+                    <span>Gated Socity</span>
+                  </div>
+                  <div class="col-4 amenities-list">
+                    <span><img src="../../../../assets/icon/intercom.svg"></span>
+                    <span>Intercom</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.liftService">
+                    <span><img src="../../../../assets/icon/lift.svg"></span>
+                    <span>Lift</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.sewage">
+                    <span><img src="../../../../assets/icon/Sewage.svg"></span>
+                    <span>Sewage</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.swimmingPool">
+                    <span><img src="../../../../assets/icon/swimming.svg"></span>
+                    <span>Swimming pool</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.carParking">
+                    <span><img src="../../../../assets/icon/parking.svg"></span>
+                    <span>Yes</span>
+                  </div>
+                  <div class="col-4 amenities-list">
+                    <span><img src="../../../../assets/icon/battery.svg"></span>
+                    <span>Yes</span>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-12">
+
+                <ul style="padding: 10px; list-style: none;">
+                  
+                  <li>{{Ads.marital}}</li>
+                  <li>{{Ads.roomType}}</li>
+                  <li>{{Ads.apparttype}}</li>
+                  <li>{{Ads.bhkType}}</li>
+                  <li>Gated Security: -{{Ads.gatedSecurity}}</li>
+                  <li>Food: -{{Ads.vegNonveg}}</li>
+                  <li>No. of Bathroom: -{{Ads.bathroom}}</li>
+                  <li>No. of Balcony{{Ads.balcony}}</li>
+                  <li>No. of Cupboards{{Ads.cupboard}}</li>
+                  <li>Air Conditioner: -{{Ads.airConditioner}}</li>
+                  <li>Club: -{{Ads.club}}</li>
+                  <li>Playground: -{{Ads.playground}}</li>
+                  <li>Gas Connection: -{{Ads.gas}}</li>
+                  <li>Sewage: -{{Ads.sewage}}</li>
+                  <li>Power Backup: -{{Ads.powerBackup}}</li>
+                  <li>Lift Service: -{{Ads.liftService}}</li>
+                  <li>House Keeper: -{{Ads.houseKeeper}}</li>
+                  <li>Security: -{{Ads.security}}</li>
+                  <li>Car Parking: -{{Ads.carParking}}</li>
+                  <li>Two Wheeler Parking: -{{Ads.twoWheelerParking}}</li>
+                  <li>Swimming Pool: -{{Ads.swimmingPool}}</li>
+                  <li>Internet: -{{Ads.internetConnectivity}}</li>
+                  <li>Ads PostDate: -{{Ads.postdate}}</li>
+                </ul>
+              </div> -->
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

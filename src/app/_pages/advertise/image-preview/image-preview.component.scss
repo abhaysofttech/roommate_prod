@@ -1,0 +1,8 @@
+.imagePreview-container{
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 50px);
+}
+ion-content{
+    --background:rgba(15, 167, 231, 0.47)
+}

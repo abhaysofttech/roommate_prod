@@ -1,0 +1,17 @@
+.image-padding{
+    padding: 5px !important;
+    img {
+        border-radius: 5px;
+    }
+}
+.newImageAction {
+    position: relative;
+    bottom: 50px;
+    width: 100%;
+    background: rgba(10, 167, 234, 0.44);
+    text-align: right;
+    margin-bottom: 10px;
+}
+.uploadImage{
+    margin-bottom: 20px;;
+}

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pages"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="no-padding">
+      <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
+    </ion-title>
+    <!-- <ion-title>{{adsId ? 'Update' : 'Add'}} Amenities</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+  
+  <ion-content>
+    <div class="main-container">
+      <div class="row no-margin search-container">
+        <div class="col-12 container-padding">
+            <form (ngSubmit)="onSubmit()">
+
+          <div class="card">
+            <div class="card-body">
+              <div class="input-container">
+                <label class="input-label">Other Amenities</label>
+                <ion-item class="amenities-item" *ngFor="let entry of form">
+                  <i class="fa fa-user-circle-o" aria-hidden="true"></i><ion-label>{{entry.val}}</ion-label>
+                  <ion-checkbox slot="end" mode="ios" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+                </ion-item>
+              </div>
+              <input type="submit" class="full-submit" value="{{adsId ? 'Update' : 'Save'}} & Continue" />
+            </div>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </ion-content>

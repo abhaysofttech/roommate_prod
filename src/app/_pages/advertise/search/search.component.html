@@ -1,0 +1,148 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pages"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="no-padding">
+      <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
+      <span class="tab-title">Search</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <app-loading-spinner *ngIf="loading" >  </app-loading-spinner>
+  <div class="row no-margin search-container">
+    <div class="col-12 no-padding">
+      <!-- <div class="card"> -->
+        <div class="search-cnt">
+          <div class="input-container">
+            <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+              <select class="form-control" [(ngModel)]="selectedCities" (ngModelChange)="findAreas(selectedCities)">
+                <option [ngValue]="citi"  [selected]="citi" *ngFor="let citi of city">{{citi}}</option>
+               
+              </select>
+            </div>
+          </div>
+          <div class="input-container">
+            <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+              <select class="form-control" [(ngModel)]="selectedArea">
+                <option [ngValue]="area.area" [selected]="area" *ngFor="let area of areas">{{area.area}}</option>
+               
+              </select>
+            </div>
+          </div>
+          <!-- <div class="search-box">
+            <div class="search-icon"><img src="../../../assets/images/search-icon.svg" /></div>
+            <div class="search-text"> -->
+              <!-- <input type="text" class="search-area" [(ngModel)]="searchArea" /> -->
+              <!-- <select-selectable item-content [(ngModel)]="location" itemValueField="id" itemTextField="name" [items]="location"
+                [canSearch]="true"  (onChange)="portChange($event)"> 
+               
+                <ng-template selectSelectablePlaceholderTemplate>
+                  Port <span style="color: black;">(Dry)</span>
+                </ng-template> 
+              </select-selectable>-->
+              <!-- <select-searchable item-content [(ngModel)]="location" [items]="location" itemValueField="id" itemTextField="name"
+                [canSearch]="true" (onChange)="portChange($event)">
+              </select-searchable> -->
+              <!-- <input type="search" class="form-control" (keydown.enter)="$event.preventDefault()"
+                  placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off"
+                  type="text" #search >
+            </div> 
+            <div class="location"><i class="fa fa-crosshairs" aria-hidden="true"></i></div>
+          </div>-->
+          <h6 class="card-title">Looking For</h6>
+          <div class="roomDetails">
+            <ion-chip *ngFor="let Btype of buildingType" [ngClass]="{ 'activIonChip': Btype.isChecked === true}" (click)="selectBuildingType(Btype)">
+                <ion-label>{{Btype.val}}</ion-label>
+                <ion-icon name="close" *ngIf="Btype.isChecked"></ion-icon>
+              </ion-chip>
+          </div>
+          <div class="search-type" *ngIf="selectedBuildingType !== 'Flat/House'"  >
+            <h6 class="card-title">Room Type</h6>
+            <div class="roomType">
+              <ion-chip *ngFor="let room of RoomType" [ngClass]="{ 'activIonChip': room.isChecked === true}" (click)="selectRoomType(room)">
+                <ion-label>{{room.val}}</ion-label>
+                <ion-icon name="close" *ngIf="room.isChecked"></ion-icon>
+              </ion-chip>
+            </div>
+            <h6 class="card-title">Gender</h6>
+            <div class="roomDetails">
+              <ion-chip 
+               *ngFor="let gender of genderType" [ngClass]="{ 'activIonChip': gender.isChecked === true}"  (click)="selectGenderType(gender)">
+                <ion-label>{{gender.val}}</ion-label>
+                <ion-icon name="close" *ngIf="gender.isChecked"></ion-icon>
+              </ion-chip>
+            </div>
+          </div>
+          <div class="search-type" *ngIf="selectedBuildingType === 'Flat/House'"  >
+            <h6 class="card-title">Number of Bedrooms</h6>
+            <div class="flatType">
+              <ion-chip *ngFor="let flat of flatType" [ngClass]="{ 'activIonChip': flat.isChecked === true}" (click)="selectFlatType(flat)">
+                <ion-label>{{flat.val}}</ion-label>
+                <ion-icon name="close" *ngIf="flat.isChecked"></ion-icon>
+              </ion-chip>
+            </div>
+            <h6 class="card-title">Gender</h6>
+            <div class="roomDetails">
+              <ion-chip 
+               *ngFor="let gender of genderType" [ngClass]="{ 'activIonChip': gender.isChecked === true}"  (click)="selectGenderType(gender)">
+                <ion-label>{{gender.val}}</ion-label>
+                <ion-icon name="close" *ngIf="gender.isChecked"></ion-icon>
+              </ion-chip>
+            </div>
+          </div>
+
+          <!--  Code for PG/Hostel ********************* -->
+          <div class="search-type" *ngIf="selectedBuildingType === 'PG/Hostel/'"  >
+            <h6 class="card-title">Room Type</h6>
+            <div class="roomDetails">
+              <ion-chip *ngFor="let room of RoomType" (click)="selectRoomType(room)">
+                <ion-label>{{room.val}}</ion-label>
+                <ion-icon name="close" *ngIf="room.isChecked"></ion-icon>
+              </ion-chip>
+            </div>
+            <h6 class="card-title">Gender</h6>
+            <div class="roomDetails">
+              <ion-chip *ngFor="let gender of genderType" (click)="selectGenderType(gender)">
+                <ion-label>{{gender.val}}</ion-label>
+                <ion-icon name="close" *ngIf="gender.isChecked"></ion-icon>
+              </ion-chip>
+            </div>
+          </div>
+          
+          <h6 class="card-title">Price Range : 
+          <div class="filter-title"><span >
+            <i class="fa fa-inr" aria-hidden="true"></i> {{priceRange.lower | number:'2.'}} to
+            <i class="fa fa-inr" aria-hidden="true"></i> {{priceRange.upper | number:'2.'}}</span></div>
+          </h6>
+          <div class="range-box">
+            <span><i class="fa fa-inr" aria-hidden="true"></i> 800</span>
+            <div class="range-text">
+              <ion-range mode="md" dualKnobs="true"  pin="true" min="800" max="50000"  [(ngModel)]="priceRange" color="secondary"
+                style="padding-top:0px;">
+              </ion-range>
+            </div>
+            <span><i class="fa fa-inr" aria-hidden="true"></i>50K</span>
+          </div>
+          <!-- <div class="filter-title"><span>No.of Bedroom</span></div>
+          <div class="roomDetails">
+            <span class="room">1H</span>
+            <ion-chip *ngFor="let entry of bedRoom" (click)="selectBedroom(entry)">
+                <ion-icon name="pin" color="primary"></ion-icon>
+                <ion-label>Icon Chip</ion-label>
+                <ion-icon name="close" *ngIf="entry.isChecked"></ion-icon>
+              </ion-chip>
+          </div> -->
+         
+        <!-- </div> -->
+      </div>
+      <div class="bottom-btn">
+        <ion-button expand="full" type="submit"  style="margin:0px;" (click)="findAds()">
+          <ion-icon slot="start" name="search"></ion-icon>Search
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

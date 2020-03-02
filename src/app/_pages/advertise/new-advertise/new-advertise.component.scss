@@ -1,0 +1,17 @@
+.radio-option {
+    ion-radio-group {
+      vertical-align: sub;
+      position: absolute;
+      right: 0;
+      padding-right: 25px;
+      ion-label {
+        padding-left: 5px;
+        vertical-align: text-bottom;
+      }
+      ion-radio {
+        margin-left: 20px;
+        --color-checked: #00b4ff;
+      }
+    }
+  }
+  

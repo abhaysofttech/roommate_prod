@@ -1,0 +1,7 @@
+{
+  "name": "RoomMate",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

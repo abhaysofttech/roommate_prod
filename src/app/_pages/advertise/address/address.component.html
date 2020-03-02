@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pages"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="no-padding">
+      <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="row no-margin main-container">
+    <div class="col-12 container-padding">
+      <form  #f="ngForm" (ngSubmit)="onSubmit()">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-group">
+              <label>Search address</label>
+              <div class="input-group mb-3">
+                <input type="search" class="form-control" (keydown.enter)="$event.preventDefault()"
+                  placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off"
+                  type="text" #search >
+                <div class="input-group-append currentLocation">
+                  <span class="input-group-text" (click)="currentLocation()">
+                    <i _ngcontent-bwu-c1="" aria-hidden="true" class="fa fa-crosshairs"></i>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [mapDraggable]="true"
+              (dragEnd)="mapDragEnd($event)">
+              <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                (dragEnd)="markerDragEnd($event)"></agm-marker>
+            </agm-map>
+            <span class="map-note">Drag a marker to set the location in Map</span>
+            <hr>
+            <div class="form-group">
+            
+            <h6>Address <span class="pincode">PinCode: {{pincode}}</span> </h6>
+              <div class="input-group mb-3 address">
+                {{address}}
+              </div>
+            </div>
+            <div class="form-group">
+              <h6>Enter Landmark *</h6>
+              <div class="input-group mb-3">
+                <textarea [(ngModel)]="landmark" name="landmark" class="form-control" placeholder="Enter Place Landmark"></textarea>
+              </div>
+            </div>
+
+            <input type="submit" class="full-submit" value="{{adsId ? 'Update' : 'Save'}} & Continue" />
+
+          </div>
+        </div>
+     </form>
+    </div>
+  </div>
+
+
+
+</ion-content>

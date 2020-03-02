@@ -1,0 +1,33 @@
+.toggle-container{
+    display: flex;
+    align-items: center;
+}
+.address {
+    padding-left: 3px;
+}
+.edit-address{
+    float: right;
+    /* margin-top: 4px; */
+    cursor: pointer;
+    font-size: 25px;
+}
+.address-card{
+    display: block;
+    position: relative;
+    z-index: 9
+}
+.address-card::after{
+    background-image: url('../../../../assets/images/cityback.jpg');
+        background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: contain;
+    content: "";
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}

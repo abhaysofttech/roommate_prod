@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pages"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="no-padding">
+      <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
+      <span class="tab-title">Gallery</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+
+  <div class="main-container full-height">
+    <div class="row no-margin search-container">
+      <div class="col-12 container-padding uploadImage" *ngIf="image">
+        <h4>New Image</h4>
+        <img src="{{image}}" >
+        <div class="newImageAction">
+          <ion-button (click)="uploadImage()">Save</ion-button>
+          <ion-button (click)="cancelUpload()">Cancel</ion-button>
+        </div>
+      </div>
+       <div class="col-12 container-padding">
+        <h4> Image Gallery</h4>
+        <!-- <ion-button (click)="openCam()">Open Camera</ion-button>
+        <ion-button (click)="openModal()">Open Camera</ion-button> -->
+
+      </div>
+      <div class="col-12 container-padding">
+        <!-- <img src="{{image}}">
+
+        <img [src]="croppedImagepath" (click)="selectImage()"> -->
+        <div class="row no-margin ">
+        
+          <div class="col-6 image-padding" (click)="openModal('image1.jpg')">
+            <img src="../../../../assets/images/image1.jpg">
+          </div>
+          <div class="col-6 image-padding" (click)="openModal('image2.jpg')">
+            <img src="../../../../assets/images/image2.jpg">
+          </div>
+          <div class="col-6 image-padding" (click)="openModal('image3.jpg')">
+            <img src="../../../../assets/images/image3.jpg">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="openCam()">
+    <ion-fab-button  style="--background: #eaa90a;">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+</ion-content>
