@@ -4,7 +4,7 @@ import { SharedModule } from 'src/app/_shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ProfileDetailsComponent } from './profile-details/profile-details.component';
+import { ProfileDetailsComponent } from '.';
 
 @NgModule({
     declarations: [

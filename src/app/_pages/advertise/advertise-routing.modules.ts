@@ -1,9 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { NewAdvertiseComponent, RentDetailsComponent, AmenitiesDetailsComponent, AddressComponent, SearchComponent, AdvertisementComponent, AdvertisementDetailsComponent, ImageGalleryComponent, ImagePreviewComponent } from '.';
-import { MyAdvertisementComponent } from './my-advertisement/my-advertisement.component';
-import { MyAdvertisementDetailsComponent } from './my-advertisement-details/my-advertisement-details.component';
-
+import { NewAdvertiseComponent, RentDetailsComponent, AmenitiesDetailsComponent, AddressComponent, SearchComponent, AdvertisementComponent, AdvertisementDetailsComponent, ImageGalleryComponent, ImagePreviewComponent, MyAdvertisementComponent, MyAdvertisementDetailsComponent } from '.';
 
 const routes: Routes = [
     {

@@ -1,0 +1,80 @@
+
+.profile-container{
+    position: relative;
+    height: 154px;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    background-image: url('../../../../assets/images/back.png');
+    background-position: top;
+    background-size: contain;
+    .row{
+        display: flex;
+    align-items: center;
+    vertical-align: middle;
+    }
+}
+.editProfileBtn{
+    width: auto;
+    padding: 6px 26px;
+    border-radius: 50px;
+    text-align: center;
+    background: #ffc107;
+    color: #fff;
+    font-size: 1rem;
+    display: inline-block;
+}
+
+.profileContainer {
+    position: relative;
+    border: 1.3px dotted;
+    border-radius: 50%;
+    padding: 4px;
+    width: 100px;
+    height: 100px;
+  
+    .profileImages{
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-size: contain;
+        border-radius: 50%;
+        padding: 6px;
+    }
+}
+
+.profileDetails-container{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    .details{
+        color: #6f6d6d;
+        i{
+            margin-right: 10px;
+            font-size:1.4rem;
+            color: #108ec3;
+        }
+    }
+}
+.referal-container .row{
+    display: flex;
+    align-items: center;
+}
+.referIcon{
+    font-size: 2rem;
+    color: #01b3ff;
+    text-shadow: 0px 2px 5px #01b3ff;
+}
+.referBtn{
+    width: auto;
+    padding: 6px 15px;
+    border-radius: 50px;
+    text-align: center;
+    background: #01b3ff;
+    color: #fff;
+    font-size: 1rem;
+    box-shadow: 0px 0px 10px #0aa7ea;
+    display: inline-block;
+}
+.userName{
+
+}

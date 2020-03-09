@@ -19,6 +19,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { SharedModule } from './_shared/shared.module';
 import { Crop } from '@ionic-native/crop/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @NgModule({
   declarations: [
@@ -30,8 +31,8 @@ import { Crop } from '@ionic-native/crop/ngx';
     SharedModule,
     BrowserModule,
     CommonModule, 
-    FormsModule, 
-    ReactiveFormsModule, 
+    FormsModule,
+        ReactiveFormsModule, 
     IonicModule.forRoot(),
     IonicStorageModule.forRoot({
       name: '__roommatedb',
@@ -45,6 +46,7 @@ import { Crop } from '@ionic-native/crop/ngx';
     SplashScreen,
     Geolocation,
     NativeGeocoder,
+    ScreenOrientation,
     Camera,
     Crop,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

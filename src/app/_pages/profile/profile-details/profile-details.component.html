@@ -1,3 +1,68 @@
-<p>
-  profile-details works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pages"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title class="no-padding">{{adsId ? 'Update' : 'Add'}} Rent Details</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="container">
+    <div class="row no-margin">
+      <div class="col-12 container-padding profile-container">
+        <div class="row no-margin">
+          <div class="col-8 no-padding">
+            <div class="userName">Advik Narnaware</div>
+            <div class="userContact">+9960732614</div>
+            <div class="userEmail">abhaysofttech@gmail.com</div>
+          </div>
+          <div class="col-4">
+            <div class="profileContainer">
+              <div class="profileImages" [ngStyle]="{'background-image': 'url(../../../../assets/images/user.jpg)'}">
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="editProfileBtn" routerLink="/pages/advertise/myadvertisement" routerDirection="root">
+              <span>edit</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 container-padding profileDetails-container">
+        <h6>Personal Details</h6>
+        <div class="row no-margin details">
+          <div class="col-12 no-padding">
+            <i class="fa fa-home"></i><span>Shubhash Ward Bhandara Road Wathi</span>
+          </div>
+          <div class="col-12 no-padding">
+            <i class="fa fa-phone"></i><span>abhaysofttech@gmail.com</span>
+          </div>
+          <div class="col-12 no-padding">
+            <i class="fa fa-phone"></i><span>9960732614</span>
+          </div>
+          <div class="col-12 no-padding">
+            <i class="fa fa-phone"></i><span>07-12-1988</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-12 container-padding referal-container">
+        <div class="row no-margin details">
+          <div class="col-2 no-padding">
+            <i class="fa fa-gift referIcon"></i>
+          </div>
+          <div class="col-7 no-padding">
+            <span>Invite and earn<br /> Share this code</span>
+            <span> 45376 <i class="fa fa-copy"></i></span>
+          </div>
+          <div class="col-3 no-padding" style="text-align:center">
+            <div class="referBtn" routerLink="/pages/advertise/myadvertisement" routerDirection="root">
+              <span>Invite</span></div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

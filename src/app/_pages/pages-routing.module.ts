@@ -8,6 +8,7 @@ const routes: Routes = [
         component: HomeComponent
     },
     { path: 'advertise', loadChildren: () => import('./advertise/advertise.modules').then(m => m.AdvertiseModule) },
+    { path: 'profile', loadChildren: () => import('./profile/profile.modules').then(m => m.ProfileModule) }
 
 ]
 @NgModule({
