@@ -55,14 +55,42 @@
         }
     }
 }
-.referal-container .row{
+.referal-container .row, .account-container .row{
     display: flex;
     align-items: center;
 }
 .referIcon{
-    font-size: 2rem;
+    font-size: 1.4rem;
     color: #01b3ff;
-    text-shadow: 0px 2px 5px #01b3ff;
+    // text-shadow: 0px 2px 5px #01b3ff;
+}
+.user-profile{
+    background: rgba(255, 255, 255, 0.64);
+    box-shadow: 3px 5px 17px #dedbdb;
+    padding: 3px 5px !important;
+}
+.referal-container {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0 !important;
+}
+.userName {
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+}
+.userContact {
+    font-size: 1.3rem;
+    letter-spacing: 5px;
+}
+.account-container{
+    padding: 10px 0px !important;
+    .details{
+        padding: 10px 0px !important;
+        .edit{
+            font-size: 1.5rem;
+            color: #ccc;
+        }
+    }
 }
 .referBtn{
     width: auto;

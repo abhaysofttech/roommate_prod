@@ -50,9 +50,18 @@
           </div>
           <div class="card-footer contact-container">
             <div class="row">
-                <div class="col-4"><img src="../../../../assets/images/telephone.svg"/></div>
-                <div class="col-4"><img src="../../../../assets/images/message.svg"/></div>
-                <div class="col-4"><img src="../../../../assets/images/whatsapp.svg"/></div>
+                <div class="col-2"><img src="../../../../assets/images/telephone.svg"/></div>
+                <div class="col-8 adsContact" [ngClass]="{'blur': ads.visitedContact == false}">
+                  <!-- <img src="../../../../assets/images/message.svg"/> -->
+                  <span>9960732614</span>
+                </div>
+                <div class="col-2" *ngIf="!ads.visitedContact">
+                  <span class="viewContact" (click)="viewContact(ads)">
+                    View
+                  </span>
+                  <!-- <img src="../../../../assets/images/whatsapp.svg"/> -->
+                </div>
+               
             </div>
           </div>
         </div>

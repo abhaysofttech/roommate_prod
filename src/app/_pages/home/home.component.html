@@ -8,10 +8,22 @@
                 <img class="rm_logo" src="../../../assets/images/roommate_logo.svg" />
             </div>
         </div>
-      
+        <div class="row no-margin slider-container">
+            <ion-slides pager="true" [options]="slideOpts">
+                <ion-slide>
+                  <img src="../../../../assets/images/image1.jpg">
+                </ion-slide>
+                <ion-slide>
+                  <img src="../../../../assets/images/image2.jpg">
+                </ion-slide>
+                <ion-slide>
+                  <img src="../../../../assets/images/image3.jpg">
+                </ion-slide>
+              </ion-slides>
+        </div>
 
         <div class="row no-margin choice-container  ">
-            <div class="col-12 postVisited">
+            <!-- <div class="col-12 postVisited">
                 <h6>People Visited Your Post</h6>
                 <div class="row">
                     <div class="visitorContainer col-3">
@@ -30,82 +42,70 @@
                         <div class="visitorUsers"><span>A</span></div>
                         <div class="visitorUsersName"><span>Abhay</span></div>
                     </div>
-                    <div class="visitorContainer col-3">
-                        <div class="visitorUsers"><span>K</span></div>
-                        <div class="visitorUsersName"><span>Kanchan</span></div>
+                   
+                </div>
+            </div> -->
+         
+            <div class="col-12 postVisited">
+                <h6>Recent Visited Ads</h6>
+                <div class="row">
+                    <ng-container *ngIf="myRecentAdsVisit">
+                     <div class="visitorContainer col-3" *ngFor="let ads of myRecentAdsVisit | slice:0:7 | orderBy:'-recentVisitDate'" [routerLink]="['/pages/advertise/myadvertisementDetails', ads.adsid]">
+                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
+                        </div>
+                        <div class="postDate"><span>{{ads.recentVisitDate | date: 'dd-MMM-yyyy'}}</span></div>
                     </div>
-                    <div class="visitorContainer col-3">
-                        <div class="visitorUsers"><span>A</span></div>
-                        <div class="visitorUsersName"><span>Advik</span></div>
+                    <div class="visitorContainer col-3" *ngIf="myRecentAdsVisit.length > 7">
+                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
+                        </div>
+                        <div class="moreActivity"><span>More...</span></div>
+
                     </div>
-                    <div class="visitorContainer col-3">
-                        <div class="visitorUsers"><span>A</span></div>
-                        <div class="visitorUsersName"><span>Abhay</span></div>
-                    </div>
-                    <div class="visitorContainer col-3">
-                        <div class="visitorUsers"><span>K</span></div>
-                        <div class="visitorUsersName"><span>Kanchan</span></div>
-                    </div>
-                    <div class="visitorContainer col-3">
-                        <div class="visitorUsers"><span>A</span></div>
-                        <div class="visitorUsersName"><span>Advik</span></div>
-                    </div>
+                    </ng-container>
+                   
                 </div>
             </div>
             <div class="col-12 postVisited">
                 <h6>Your Recent Posts</h6>
                 <div class="row">
-                    <div class="col-12 noPost">
+                    <div class="col-12 noPost" *ngIf="!myAds">
                         <span>Not yet post any advertise</span>
                     </div>
-                     <div class="visitorContainer col-3">
+                    <ng-container *ngIf="myAds">
+                     <div class="visitorContainer col-3" *ngFor="let ads of myAds | slice:0:7 | orderBy:'-postdate'" [routerLink]="['/pages/advertise/myadvertisementDetails', ads.id]">
                         <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
                         </div>
-                        <div class="postDate"><span>16/12/2020</span></div>
+                        <div class="postDate"><span>{{ads.postdate | date: 'dd-MMM-yyyy'}}</span></div>
+                        <span class="adsVisits">{{ads.adsvisits.length}}</span>
                     </div>
-                    <div class="visitorContainer col-3">
-                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image2.jpg)'}"><span>2</span></div>
-                        <div class="postDate"><span>16/12/2020</span></div>
-                    </div>
-                    <div class="visitorContainer col-3">
+                    <div class="visitorContainer col-3" *ngIf="myAds.length > 7">
                         <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
                         </div>
-                        <div class="postDate"><span>16/12/2020</span></div>
+                        <div class="moreActivity"><span>More...</span></div>
+
                     </div>
-                    <div class="visitorContainer col-3">
-                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image2.jpg)'}"><span>2</span></div>
-                        <div class="postDate"><span>16/12/2020</span></div>
-                    </div>
-                    <div class="visitorContainer col-3">
-                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
-                        </div>
-                        <div class="postDate"><span>16/12/2020</span></div>
-                    </div>
-                    <div class="visitorContainer col-3">
-                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image2.jpg)'}"><span>2</span></div>
-                        <div class="postDate"><span>16/12/2020</span></div>
-                    </div>
-                    <div class="visitorContainer col-3">
-                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
-                        </div>
-                        <div class="postDate"><span>16/12/2020</span></div>
-                    </div>
-                    <div class="visitorContainer col-3">
-                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image2.jpg)'}"><span>2</span></div>
-                        <div class="postDate"><span>16/12/2020</span></div>
-                    </div>
-                    <div class="visitorContainer col-3">
-                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
-                        </div>
-                        <div class="postDate"><span>16/12/2020</span></div>
-                    </div>
-                    <div class="visitorContainer col-3">
-                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image2.jpg)'}"><span>2</span></div>
-                        <div class="postDate"><span>16/12/2020</span></div>
-                    </div> 
+                    </ng-container>
+                   
                 </div>
             </div>
-    
+            <div class="col-12 container-padding referal-container">
+                <div class="row no-margin details">
+                  <div class="col-2 no-padding">
+                    <i class="fa fa-gift referIcon"></i>
+                  </div>
+                  <div class="col-7 no-padding">
+                    <span>Invite and earn<br /> Share this code</span>
+                    <span> 45376 <i class="fa fa-copy"></i></span>
+                  </div>
+                  <div class="col-3 no-padding" style="text-align:center">
+                    <div class="referBtn" (click)="inviteFriend()">
+                      <span>Invite</span>
+                    </div>
+        
+                  </div>
+        
+                </div>
+              </div>
             <!-- <div class="col-12">
                 <div class="option-select">
                     <img src="../../../assets/images/mypost.svg" routerLink="/pages/advertise/imageGallery" routerDirection="root" />

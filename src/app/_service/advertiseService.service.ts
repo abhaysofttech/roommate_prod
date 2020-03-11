@@ -47,4 +47,17 @@ export class advertiseService {
         return this.http.put(`${SERVER_URL}/postads/updateamenities/${id}`, amenities);
 
   }
+
+  adsVisits(adsDetails:any, phonenumber:Number) {
+    // return this.http.post(`${SERVER_URL}/adsvisits/${phonenumber}`, {adsID:adsDetails});
+    return this.http.post(`${SERVER_URL}/postads/${phonenumber}/adsvisits`, {adsID:adsDetails});
+
+  }
+
+  getRecentAdsVisit(phonenumber:Number) {
+    return this.http.get(`${SERVER_URL}/postads/${phonenumber}/adsvisits`);
+
+  }
+
+  
 }

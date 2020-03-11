@@ -2,6 +2,7 @@
     background-image: url('../../../assets/images/back.png');
     background-position: top;
     background-size: contain;
+    background-repeat: no-repeat;
 }
 .logo-container{
     height: 50px;
@@ -17,6 +18,28 @@
     width: 185px;
     margin: 0 auto;
 }
+.slider-container {
+    height: calc(100% - 160px);
+    position: absolute;
+    width: 100%;
+    top: 160px;
+    z-index: 9
+}
+.adsVisits{
+    position: absolute;
+    top: 6px;
+    background: #0aa7ea;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    font-size: 10px;
+    display: inline-grid;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    color: #fff;
+    right: 15px;
+}
 .choice-container {
     border-radius: 15px 15px 0 0;
     box-shadow: 0px -6px 8px #929292;
@@ -26,15 +49,18 @@
     width: 100%;
     bottom: 0;
     overflow: scroll;
-    max-height: calc(100% - 150px);
+    max-height: calc(100% - 160px);
+    z-index: 99;
+    padding-bottom: 90px;
 }
+
 
 .action-button {
     position: absolute;
     width: 100%;
     text-align: center;
     bottom: 22px;
-    z-index: 9;
+    z-index: 9999;
 
 }
 
@@ -125,4 +151,35 @@
 }
 .postDate{
  font-size: 10px;
+}
+
+.moreActivity{
+    font-size: 13px;
+    color: #eaa90a;
+}
+
+.referal-container {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 10px !important;
+    .referIcon{
+        font-size: 2rem;
+        color: #01b3ff;
+        // text-shadow: 0px 2px 5px #01b3ff;
+    }
+    .referBtn{
+        width: auto;
+        padding: 6px 15px;
+        border-radius: 50px;
+        text-align: center;
+        background: #01b3ff;
+        color: #fff;
+        font-size: 1rem;
+        box-shadow: 0px 0px 10px #0aa7ea;
+        display: inline-block;
+    }
+    .row{
+        display: flex;
+        align-items: center;
+    }
 }

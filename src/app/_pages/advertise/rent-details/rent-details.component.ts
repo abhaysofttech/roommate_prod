@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { advertiseService } from 'src/app/_service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-rent-details',
@@ -20,17 +21,19 @@ export class RentDetailsComponent implements OnInit {
   latitude: number;
   longitude: number;
   landmark: string;
+  adsDetails: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private _advertiseService: advertiseService,
     private route: ActivatedRoute,
     private router: Router,
+    public alertController: AlertController
   ) { }
 
   ngOnInit() {
     this.adrent = this.formBuilder.group({
-  
+
       // address: ['', Validators.required],
       // state: ['', Validators.required],
       // city: ['', Validators.required],
@@ -51,9 +54,9 @@ export class RentDetailsComponent implements OnInit {
       this._advertiseService.getAdsDetails(this.adsId)
         .subscribe(
           (res: any) => {
-            debugger
-            if(res.city === ''){
-              this.router.navigate(['/address', this.adsId]);
+            this.adsDetails = res;
+            if (res.city === '') {
+              // this.router.navigate(['/pages/advertise/address', this.adsId]);
 
             }
             this.setFormControlValues(res);
@@ -66,36 +69,46 @@ export class RentDetailsComponent implements OnInit {
     return this.adrent.controls;
   }
 
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      message: 'Please add your property address !..',
+      buttons: [
+        {
+          text: 'Add Address',
+          handler: () => {
+            this.router.navigate(['/pages/advertise/address', this.adsId]);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   onSubmit() {
     this.submitted = true;
     debugger
-    // if (this.amenitiesDetail.invalid) {
-    //   return;
-    // }
-    //  console.log(this.amenitiesDetail.value);
-    this._advertiseService.updateRent(this.adsId, this.adrent.value)
-      //  .pipe(first())
-      .subscribe(
-        data => {
-          // this.registerVillageForm.value.id = this.localUserData.length ? Math.max(...this.localUserData.map(x => x.id)) + 1 : 1;
-          // this.localUserData.push(this.registerVillageForm.value);
-          // this.localUserData.userState= this.registerVillageForm.value.userState
-          // this.localUserData.userDivision= this.registerVillageForm.value.userDivision
-          // this.localUserData.userDistrict= this.registerVillageForm.value.userDistrict;
-          // this.localUserData.userZone= this.registerVillageForm.value.userZone;
-          // this.localUserData.userGrampanchayat= this.registerVillageForm.value.userGrampanchayat;
-          // localStorage.setItem('smartvillageusers', JSON.stringify(this.localUserData));
-          // this.alertService.success('State Registration successful', true);
-          // this.router.navigate(['/home']);
-          this.router.navigate(['/address', this.adsId]);
-          // this.router.navigate(['/amenities', this.adsId]);
-          console.log(data);
-        },
-        error => {
-          //  this.alertService.error(error);
-          //  this.loading = false;
-        });
+    if (!this.address) {
+      this.presentAlert()
+    }
 
+
+    else {
+      this._advertiseService.updateRent(this.adsId, this.adrent.value)
+        //  .pipe(first())
+        .subscribe(
+          data => {
+
+            this.router.navigate(['/pages/advertise/amenities', this.adsId]);
+            // this.router.navigate(['/amenities', this.adsId]);
+            console.log(data);
+          },
+          error => {
+            //  this.alertService.error(error);
+            //  this.loading = false;
+          });
+    }
 
   }
 
@@ -103,20 +116,20 @@ export class RentDetailsComponent implements OnInit {
     this.adrent.get('rentAmount').setValue(adsData.rentAmount);
     this.adrent.get('depositAmount').setValue(adsData.depositAmount);
 
-      // address: ['', Validators.required],
-      // state: ['', Validators.required],
-      // city: ['', Validators.required],
-      // pincode: ['', Validators.required],
-      // landmark: ['', Validators.required],
-      // latitude: ['', Validators.required],
-      // longitude: ['', Validators.required],
+    // address: ['', Validators.required],
+    // state: ['', Validators.required],
+    // city: ['', Validators.required],
+    // pincode: ['', Validators.required],
+    // landmark: ['', Validators.required],
+    // latitude: ['', Validators.required],
+    // longitude: ['', Validators.required],
 
-      this.address = adsData.address;
-      this.state = adsData.state;
-      this.city = adsData.city;
-      this.pincode = adsData.pincode;
-      this.landmark = adsData.landmark;
-   
+    this.address = adsData.address;
+    this.state = adsData.state;
+    this.city = adsData.city;
+    this.pincode = adsData.pincode;
+    this.landmark = adsData.landmark;
+
 
   }
 

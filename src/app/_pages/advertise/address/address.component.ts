@@ -70,19 +70,18 @@ export class AddressComponent implements OnInit {
       shortaddress: this.shortaddress,
       state: this.state,
       city: this.city,
-      area:this.area,
+      area: this.area,
       pincode: this.pincode,
       landmark: this.landmark,
       latitude: this.latitude,
       longitude: this.longitude
     }
-    console.log(postValue);
     this._advertiseService.updateRent(this.adsId, postValue)
       //  .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['/amenities', this.adsId]);
-          console.log(data);
+          this.router.navigate(['/pages/advertise/rent-details', this.adsId]);
+          // console.log(data);
         },
         error => {
           //  this.alertService.error(error);
@@ -90,7 +89,6 @@ export class AddressComponent implements OnInit {
         });
   }
   ionViewDidEnter() {
-    debugger;
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
@@ -152,7 +150,6 @@ export class AddressComponent implements OnInit {
       if (status === 'OK') {
         if (results[0]) {
           this.zoom = 18;
-          debugger
           this.address = results[0].formatted_address;
           let shortaddress1 = results[0].address_components.filter(function (item) { return item.types[2] === 'sublocality_level_2' });
           let shortaddress2 = results[0].address_components.filter(function (item) { return item.types[2] === 'sublocality_level_1' });
@@ -161,23 +158,23 @@ export class AddressComponent implements OnInit {
           let state = results[0].address_components.filter(function (item) { return item.types[0] === 'administrative_area_level_1' })
           let city = results[0].address_components.filter(function (item) { return item.types[0] === 'locality' })
           this.pincode = pincode[0].short_name;
-          if (state.length !==0 && state[0].long_name !== undefined) {
+          if (state.length !== 0 && state[0].long_name !== undefined) {
             this.state = state[0].long_name;
           } else {
             this.state = '';
           }
-          if (city.length !==0 && city[0].long_name !== undefined) {
+          if (city.length !== 0 && city[0].long_name !== undefined) {
             this.city = city[0].long_name;
           } else {
             this.city = '';
           }
-          if (shortaddress1.length !==0 && shortaddress1[0].long_name !== undefined) {
+          if (shortaddress1.length !== 0 && shortaddress1[0].long_name !== undefined) {
             this.shortaddress1 = shortaddress1[0].long_name;
           } else {
             this.shortaddress1 = '';
           }
 
-          if (shortaddress2.length !==0 &&shortaddress2[0].long_name !== undefined) {
+          if (shortaddress2.length !== 0 && shortaddress2[0].long_name !== undefined) {
             this.shortaddress2 = shortaddress2[0].long_name;
           } else {
             this.shortaddress2 = '';

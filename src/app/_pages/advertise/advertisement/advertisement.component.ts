@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { advertiseService } from 'src/app/_service';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-advertisement',
   templateUrl: './advertisement.component.html',
@@ -28,7 +28,8 @@ export class AdvertisementComponent implements OnInit {
   constructor(
     private _advertiseService: advertiseService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private storage: Storage,
 
   ) {
     debugger
@@ -36,6 +37,19 @@ export class AdvertisementComponent implements OnInit {
       if (this.router.getCurrentNavigation().extras.state) {
         this.Ads = this.router.getCurrentNavigation().extras.state.id;
         console.log(this.Ads);
+        this.Ads.forEach(col => {
+          col.visitedContact = false;
+        });
+        this.storage.get('phonenumber').then((phonenumber) => {
+          this.Ads.map(adsData => {
+            adsData.adsvisits.filter(visitData => {
+              if(visitData.phonenumber == phonenumber) return adsData.visitedContact = true 
+            })
+          })
+        })
+       
+     
+
         this.loading = false;
 
       }
@@ -50,5 +64,17 @@ export class AdvertisementComponent implements OnInit {
     //     this.Ads=res;
     //     console.log(res);
     //   })
+  }
+  viewContact(adsDetails){
+    this.storage.get('phonenumber').then((phonenumber) => {
+      this._advertiseService.adsVisits(adsDetails.id,phonenumber)
+      .subscribe(
+       (res:any) =>{
+        this.Ads.filter(x => { return x.id == res.adsId; }).map(data => { 
+          return data.visitedContact = true 
+        });
+       })
+    })
+  
   }
 }

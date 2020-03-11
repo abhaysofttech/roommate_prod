@@ -16,7 +16,7 @@ const routes: Routes = [
         component: RentDetailsComponent
     },
     {
-        path: 'amenities',
+        path: 'amenities/:id',
         component: AmenitiesDetailsComponent
     },
     {

@@ -20,6 +20,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { SharedModule } from './_shared/shared.module';
 import { Crop } from '@ionic-native/crop/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
     Geolocation,
     NativeGeocoder,
     ScreenOrientation,
+    SocialSharing,
     Camera,
     Crop,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

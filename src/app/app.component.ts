@@ -22,7 +22,6 @@ export class AppComponent {
   }
 
   initializeApp() {
-    debugger
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.statusBar.overlaysWebView(false);

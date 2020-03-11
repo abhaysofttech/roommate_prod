@@ -1,9 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/pages"></ion-back-button>
+      <ion-back-button defaultHref="/pages/advertise/search"></ion-back-button>
     </ion-buttons>
-    <ion-title class="no-padding">{{adsId ? 'Update' : 'Add'}} Rent Details</ion-title>
+    <ion-title class="no-padding">
+      <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
+      <span class="tab-title">Rent Details</span>
+    </ion-title>
+    
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -12,23 +16,28 @@
       <div class="col-12 container-padding">
         <form [formGroup]="adrent" (ngSubmit)="onSubmit()">
           <div class="card">
-            <h5 class="card-header no-margin">Address 
-              <i class="fa fa-edit edit-address" [routerLink]="['/address', adsId]" style="float: right;" aria-hidden="true"></i>
+            <h5 class="card-header no-margin">Address
+              <div class="addAddress" [routerLink]="['/pages/advertise/address', adsId]">
+                <span>{{address ? 'Update Address' : 'Add Address'}}</span>
+              </div>
+              <!-- <i class="fa fa-edit edit-address" [routerLink]="['/pages/advertise/address', adsId]" style="float: right;" aria-hidden="true"></i> -->
             </h5>
-            <div class="card-body address-card">
+            <div class="card-body address-card" *ngIf="address">
               <div class="input-container">
                 <label class="input-label">City: -</label>
                 <label class="">&nbsp;{{city}}</label>
-              
               </div>
-              
+
               <div class="input-container">
                 <label class="input-label">Location</label>
                 <div class="input-group mb-3 address">
-                  {{address}}
+                  {{adsDetails.landmark}}<br/>{{address}}
                 </div>
               </div>
-              
+
+            </div>
+            <div class="card-body address-card" *ngIf="!address">
+              <span class="noAddress">Please Add Aroperty Address<i class="fa fa-map-marker" aria-hidden="true"></i></span>
               </div>
           </div>
           <div class="card">
@@ -82,7 +91,8 @@
                 <ion-toggle formControlName="rentNegotiable" mode="ios"></ion-toggle>
                 <span>Yes</span>
               </div>
-              <input type="submit" class="full-submit" value="{{adsId ? 'Update' : 'Save'}} & Continue" />
+              <input *ngIf="adsDetails" type="submit" class="save-submit" value="{{adsDetails.rentAmount ? 'Update' : 'Save'}} & Continue" />
+              <input *ngIf="adsDetails" type="button" class="skip" value="Skip" [routerLink]="['/pages/advertise/amenities', adsId]"/>
 
             </div>
           </div>

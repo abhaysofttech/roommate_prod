@@ -1,20 +1,24 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/pages"></ion-back-button>
+      <ion-back-button defaultHref="/pages/advertise/search"></ion-back-button>
     </ion-buttons>
-    <!-- <ion-title class="no-padding">{{adsId ? 'Update' : 'Add'}} Rent Details</ion-title> -->
+    <ion-title class="no-padding">
+      <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
+      <span class="tab-title">Personal Details</span>
+    </ion-title>
+    
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <div class="container">
     <div class="row no-margin">
-      <div class="col-12 container-padding profile-container">
+      <div class="col-12 no-padding profile-container">
         <div class="row no-margin">
-          <div class="col-8 no-padding">
+          <div class="col-8 no-padding user-profile">
             <div class="userName">Advik Narnaware</div>
             <div class="userContact">+9960732614</div>
-            <div class="userEmail">abhaysofttech@gmail.com</div>
+            <!-- <div class="userEmail">abhaysofttech@gmail.com</div> -->
           </div>
           <div class="col-4">
             <div class="profileContainer">
@@ -22,14 +26,11 @@
               </div>
             </div>
           </div>
-          <div class="col-12">
-            <div class="editProfileBtn" routerLink="/pages/advertise/myadvertisement" routerDirection="root">
-              <span>edit</span></div>
-          </div>
+
         </div>
       </div>
-      <div class="col-12 container-padding profileDetails-container">
-        <h6>Personal Details</h6>
+      <!-- <div class="col-12 container-padding profileDetails-container">
+        <h6 class="no-margin">ACCOUNT</h6>
         <div class="row no-margin details">
           <div class="col-12 no-padding">
             <i class="fa fa-home"></i><span>Shubhash Ward Bhandara Road Wathi</span>
@@ -45,7 +46,9 @@
           </div>
         </div>
 
-      </div>
+       
+
+      </div> -->
       <div class="col-12 container-padding referal-container">
         <div class="row no-margin details">
           <div class="col-2 no-padding">
@@ -56,13 +59,63 @@
             <span> 45376 <i class="fa fa-copy"></i></span>
           </div>
           <div class="col-3 no-padding" style="text-align:center">
-            <div class="referBtn" routerLink="/pages/advertise/myadvertisement" routerDirection="root">
-              <span>Invite</span></div>
+            <div class="referBtn" (click)="inviteFriend()">
+              <span>Invite</span>
+            </div>
 
           </div>
 
         </div>
       </div>
+      <div class="col-12 container-padding account-container">
+        <div class="row no-margin details">
+          <div class="col-2 no-padding">
+            <i class="fa fa-gift referIcon"></i>
+          </div>
+          <div class="col-9 no-padding">
+            <span><b>Mobile number</b><br /> +91 9960732614</span>
+          </div>
+          <div class="col-1 no-padding edit">
+            <i class="fa fa-edit"></i>
+          </div>
+        </div>
+        <div class="row no-margin details">
+          <div class="col-2 no-padding">
+            <i class="fa fa-send referIcon"></i>
+          </div>
+          <div class="col-9 no-padding">
+            <span><b>Email ID</b><br />abhaysofttech@gmail.com</span>
+          </div>
+          <div class="col-1 no-padding edit">
+            <i class="fa fa-edit"></i>
+          </div>
+        </div>
+        <div class="row no-margin details">
+          <div class="col-2 no-padding">
+            <i class="fa fa-share-alt referIcon"></i>
+          </div>
+          <div class="col-10 no-padding">
+            <span><b>Privacy</b><br /> Sharing and visibility</span>
+          </div>
+        </div>
+        <div class="row no-margin details">
+          <div class="col-2 no-padding">
+            <i class="fa fa-power-off referIcon"></i>
+          </div>
+          <div class="col-10 no-padding">
+            <span><b>Log out</b><br /> Log out account</span>
+          </div>
+        </div>
+        <div class="row no-margin details">
+          <div class="col-2 no-padding">
+            <i class="fa fa-info-circle referIcon"></i>
+          </div>
+          <div class="col-10 no-padding">
+            <span>Help & feedback</span>
+          </div>
+        </div>
+      </div>
+     
     </div>
   </div>
 </ion-content>

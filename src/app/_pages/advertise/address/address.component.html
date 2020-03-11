@@ -1,11 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/pages"></ion-back-button>
+      <ion-back-button defaultHref="/pages/advertise/search"></ion-back-button>
     </ion-buttons>
     <ion-title class="no-padding">
       <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
+      <span class="tab-title">Property Address</span>
     </ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
@@ -35,7 +37,7 @@
               <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
                 (dragEnd)="markerDragEnd($event)"></agm-marker>
             </agm-map>
-            <span class="map-note">Drag a marker to set the location in Map</span>
+            <span class="map-note"><span style="color: rgb(175, 17, 17);">Note: -</span>Drag a marker to set the location in Map</span>
             <hr>
             <div class="form-group">
             
@@ -51,7 +53,7 @@
               </div>
             </div>
 
-            <input type="submit" class="full-submit" value="{{adsId ? 'Update' : 'Save'}} & Continue" />
+            <input type="submit" class="full-submit" value="Save Property Address" />
 
           </div>
         </div>

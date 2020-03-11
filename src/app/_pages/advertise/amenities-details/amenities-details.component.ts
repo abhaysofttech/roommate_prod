@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { advertiseService } from 'src/app/_service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-amenities-details',
@@ -35,6 +36,7 @@ export class AmenitiesDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private _advertiseService: advertiseService,
+    public alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -60,7 +62,22 @@ export class AmenitiesDetailsComponent implements OnInit {
 
     }
   }
+  async successAds() {
+    const alert = await this.alertController.create({
+      header: 'Success !',
+      message: 'Your Advertise post successfully',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.router.navigate(['/pages']);
+          }
+        }
+      ]
+    });
 
+    await alert.present();
+  }
   onSubmit() {
     this.submitted = true;
 
@@ -72,17 +89,7 @@ export class AmenitiesDetailsComponent implements OnInit {
       //  .pipe(first())
       .subscribe(
         data => {
-          // this.registerVillageForm.value.id = this.localUserData.length ? Math.max(...this.localUserData.map(x => x.id)) + 1 : 1;
-          // this.localUserData.push(this.registerVillageForm.value);
-          // this.localUserData.userState= this.registerVillageForm.value.userState
-          // this.localUserData.userDivision= this.registerVillageForm.value.userDivision
-          // this.localUserData.userDistrict= this.registerVillageForm.value.userDistrict;
-          // this.localUserData.userZone= this.registerVillageForm.value.userZone;
-          // this.localUserData.userGrampanchayat= this.registerVillageForm.value.userGrampanchayat;
-          // localStorage.setItem('smartvillageusers', JSON.stringify(this.localUserData));
-          // this.alertService.success('State Registration successful', true);
-          this.router.navigate(['/pages']);
-          console.log(data);
+          this.successAds()
         },
         error => {
           debugger
