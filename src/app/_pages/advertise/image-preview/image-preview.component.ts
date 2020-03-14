@@ -8,12 +8,13 @@ import { ModalController } from '@ionic/angular';
 })
 export class ImagePreviewComponent implements OnInit {
   @Input("imageID") imageID;
-
+  previewImages:any;
   constructor(
     private modalController:ModalController
   ) { }
   ngOnInit() {
     console.log(this.imageID);
+    this.previewImages = this.imageID
   }
 
   closeModal(){

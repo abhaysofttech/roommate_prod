@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { advertiseService } from 'src/app/_service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 @Component({
   selector: 'app-advertisement',
   templateUrl: './advertisement.component.html',
@@ -25,18 +26,21 @@ export class AdvertisementComponent implements OnInit {
   reqGender = '';
   foo: any;
   public loading:boolean=true;
+  profileImage:string;
   constructor(
     private _advertiseService: advertiseService,
     private route: ActivatedRoute,
     private router: Router,
     private storage: Storage,
+    private callNumber: CallNumber
 
   ) {
-    debugger
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.Ads = this.router.getCurrentNavigation().extras.state.id;
         console.log(this.Ads);
+      // this.profileImage = 'https://aklogical.com/api/profileImage/'+this.Ads.profileimages[0].profileId+ this.Ads.profileimages[0].mimeType;
+
         this.Ads.forEach(col => {
           col.visitedContact = false;
         });
@@ -77,4 +81,9 @@ export class AdvertisementComponent implements OnInit {
     })
   
   }
+  callJoint(telephoneNumber) {
+    this.callNumber.callNumber(telephoneNumber, true)
+    .then(res => console.log('Launched dialer!', res))
+  .catch(err => console.log('Error launching dialer', err));
+}
 }

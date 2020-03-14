@@ -6,7 +6,7 @@ import { SERVER_URL } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class advertiseService {
-  // SERVER_URL = 'http://localhost:4000';
+  // SERVER_URL = 'https://aklogical.com/api';
 
   constructor(
     private http: HttpClient
@@ -56,6 +56,17 @@ export class advertiseService {
 
   getRecentAdsVisit(phonenumber:Number) {
     return this.http.get(`${SERVER_URL}/postads/${phonenumber}/adsvisits`);
+
+  }
+
+  uploadImage(ImageData:any) {
+    // return this.http.post(`${SERVER_URL}/adsvisits/${phonenumber}`, {adsID:adsDetails});
+    return this.http.post(`${SERVER_URL}/postads/${ImageData.adsId}/images`, {ImageData});
+
+  }
+  getImage(adsId:any) {
+    // return this.http.post(`${SERVER_URL}/adsvisits/${phonenumber}`, {adsID:adsDetails});
+    return this.http.get(`${SERVER_URL}/postads/${adsId}`);
 
   }
 

@@ -15,3 +15,36 @@
 .uploadImage{
     margin-bottom: 20px;;
 }
+
+.titleGalary{
+    margin-top: 12px;
+    padding: 0;
+    span{
+        background: #0aa7ea;
+    color: #fff;
+    padding: 7px 10px;
+    }
+}
+.imageName {
+    display: block;
+    text-align: center;
+    background: #0aa7ea;
+    color: #fff;
+    padding: 3px 5px;
+}
+.addImageTitle {
+    position: fixed;
+    right: 21px;
+    bottom: 17px;
+    font-size: 7px;
+    z-index: 999999;
+}
+.noImages{
+    text-align: center;
+    margin-top: 60PX;
+    background: red;
+    padding: 11px;
+    border-bottom: 10px solid #ac0a1a;
+    color: #fff;
+    font-size: 18px;
+}

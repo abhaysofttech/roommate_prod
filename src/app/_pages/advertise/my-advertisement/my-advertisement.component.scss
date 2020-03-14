@@ -46,7 +46,12 @@
       background-position: center;
       background-size: cover;
     }
-  
+    .knowMore {
+      font-size: 11px;
+      color: #dc3545;
+      float: left;
+      margin-top: 10px;
+    }
     .activeAds {
       border: 2px solid #28a745;
       box-shadow: 1px -1px 10px #28a745;
@@ -57,3 +62,13 @@
     }
   }
   
+  .photosCount {
+    position: absolute;
+    z-index: 999;
+    color: #515151;
+    right: 7px;
+    bottom: 0;
+    i{
+      margin-right: 5px;
+    }
+  }

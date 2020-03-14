@@ -7,7 +7,6 @@ import { NewAdvertiseComponent, RentDetailsComponent, AmenitiesDetailsComponent,
 import { AgmCoreModule } from '@agm/core';
 import { SharedModule } from 'src/app/_shared/shared.module';
 
-
 @NgModule({
     declarations: [
         NewAdvertiseComponent,
@@ -20,7 +19,7 @@ import { SharedModule } from 'src/app/_shared/shared.module';
         MyAdvertisementComponent,
         MyAdvertisementDetailsComponent,
         ImageGalleryComponent,
-        ImagePreviewComponent
+        ImagePreviewComponent,
 
     ],
 

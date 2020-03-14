@@ -4,5 +4,14 @@
     min-height: calc(100% - 50px);
 }
 ion-content{
-    --background:rgba(15, 167, 231, 0.47)
+    --background:rgba(222, 226, 230, 0.8705882352941177)
+}
+.closeModal {
+    position: absolute;
+    padding: 0px 10px;
+    background: #0aa7ea;
+    color: #fff;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
 }

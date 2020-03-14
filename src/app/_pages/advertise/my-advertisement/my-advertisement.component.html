@@ -14,16 +14,17 @@
       <div class="col-12 container-padding" *ngIf="myAds?.length > 0">
         <div class="card" *ngFor="let ads of myAds | orderBy:'-postdate'">
           <div class="card-body no-padding" [routerLink]="['/pages/advertise/myadvertisementDetails', ads.id]">
-
+            <div class="adsStatus" [style.background]="ads.adsStatus ? '#28a745' : '#dc3545'">
+              <span>{{ads.adsStatus?'Acive':'Close'}}</span>
+            </div>
             <ion-slides pager="true" [options]="slideOpts">
-              <ion-slide>
-                <img src="../../../../assets/images/image1.jpg">
+              <div class="photosCount" *ngIf="ads.images.length == 0"><span><i
+                    class="fa fa-camera"></i>{{ads.images.length}}</span></div>
+              <ion-slide *ngIf="ads.images.length == 0">
+                <img src="../../../../assets/images/image-not-available.jpg">
               </ion-slide>
-              <ion-slide>
-                <img src="../../../../assets/images/image2.jpg">
-              </ion-slide>
-              <ion-slide>
-                <img src="../../../../assets/images/image3.jpg">
+              <ion-slide *ngIf="ads.images.length > 0">
+                <img src='https://aklogical.com/api{{ads.images[0].path}}'>
               </ion-slide>
             </ion-slides>
             <div class="adsDetails">
@@ -43,21 +44,17 @@
               </div> -->
               <div class="adsAddressDetails">
                 <div class="adsTitle">{{ads.roomType}} for {{ads.gender}} in {{ads.city}}</div>
-                <div class="adsAddress">{{ads.shortaddress}}</div>
+                <div class="adsAddress">{{ads.address}}</div>
               </div>
-              <!-- <span class="postedOn">Posted on: - {{ads.postdate | date: 'dd-MMM-yyyy'}}</span> -->
-              <div class="adsStatus">
-                <ion-button *ngIf="ads.adsStatus" shape="round" size="small" [routerLink]="['/pages/advertise/newAds', ads.id]">
-                  <ion-icon slot="start" name="power"></ion-icon>close</ion-button>
-              </div>
+              <span class="knowMore">Click on ads to Know More</span>
             </div>
           </div>
           <div class="card-footer contact-container" style="text-align: center; ">
               <ion-button shape="round" [routerLink]="['/pages/advertise/myadvertisementDetails', ads.id]"  style="float: left; ">
-                <ion-icon slot="start" name="book"></ion-icon>Detail
+                Detail
               </ion-button>
               <ion-button shape="round" [routerLink]="['/pages/advertise/newAds', ads.id]"  style="float: right; ">
-                <ion-icon slot="start" name="create"></ion-icon>Edit</ion-button>
+                Edit</ion-button>
           </div>
         </div>
        

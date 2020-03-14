@@ -15,14 +15,15 @@
     <div class="row no-margin search-container">
       <div class="col-12 container-padding uploadImage" *ngIf="image">
         <h4>New Image</h4>
-        <img src="{{image}}" >
+        <!-- <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null"> -->
+        <img src="{{image}}" style="width: 100%" [hidden]="lastImage === null">
         <div class="newImageAction">
-          <ion-button (click)="uploadImage()">Save</ion-button>
+          <ion-button (click)="uploadImage()">Upload</ion-button>
           <ion-button (click)="cancelUpload()">Cancel</ion-button>
         </div>
       </div>
-       <div class="col-12 container-padding">
-        <h4> Image Gallery</h4>
+       <div class="col-12 titleGalary">
+        <span> Image Gallery</span>
         <!-- <ion-button (click)="openCam()">Open Camera</ion-button>
         <ion-button (click)="openModal()">Open Camera</ion-button> -->
 
@@ -32,22 +33,27 @@
 
         <img [src]="croppedImagepath" (click)="selectImage()"> -->
         <div class="row no-margin ">
-        
-          <div class="col-6 image-padding" (click)="openModal('image1.jpg')">
-            <img src="../../../../assets/images/image1.jpg">
+        <div class="col-12 noImages" *ngIf="!gallaryImages?.length">
+          <span>No Images for this Advertise <br> Please Add Images</span>
+       
+        </div>
+          <div class="col-6 image-padding" *ngFor="let images of gallaryImages" (click)="openModal(gallaryImages)">
+            <img src='https://aklogical.com/api{{images.path}}'>
+            <span class="imageName">{{images.label}}</span>
           </div>
-          <div class="col-6 image-padding" (click)="openModal('image2.jpg')">
+          <!-- <div class="col-6 image-padding" (click)="openModal('image2.jpg')">
             <img src="../../../../assets/images/image2.jpg">
           </div>
           <div class="col-6 image-padding" (click)="openModal('image3.jpg')">
             <img src="../../../../assets/images/image3.jpg">
-          </div>
+          </div> -->
         </div>
       </div>
 
     </div>
   </div>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="openCam()">
+<div class="addImageTitle"><span>Add Image</span></div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="selectImage()">
     <ion-fab-button  style="--background: #eaa90a;">
       <ion-icon name="camera"></ion-icon>
     </ion-fab-button>

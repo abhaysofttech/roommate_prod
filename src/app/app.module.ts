@@ -21,6 +21,11 @@ import { SharedModule } from './_shared/shared.module';
 import { Crop } from '@ionic-native/crop/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+
+import { File } from '@ionic-native/file/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 @NgModule({
   declarations: [
@@ -49,8 +54,12 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     NativeGeocoder,
     ScreenOrientation,
     SocialSharing,
+    File,
+    FilePath,
+    FileTransfer,
     Camera,
     Crop,
+    CallNumber,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

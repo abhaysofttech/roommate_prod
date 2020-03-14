@@ -10,7 +10,7 @@ import { User } from '../_models';
 export class LoginServiceService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-    // SERVER_URL = 'http://localhost:4000';
+    // SERVER_URL = 'https://aklogical.com/api';
 
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('roommate')));

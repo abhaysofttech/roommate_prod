@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { advertiseService } from 'src/app/_service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-advertisement-details',
@@ -26,7 +26,8 @@ export class MyAdvertisementDetailsComponent implements OnInit {
 
   constructor(
     private _advertiseService: advertiseService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -38,6 +39,10 @@ export class MyAdvertisementDetailsComponent implements OnInit {
         this.Ads=res;
         console.log(res);
       })
+  }
+
+  viewGallary(){
+    this.router.navigate(['/pages/advertise/imageGallery', this.adsId]);
   }
 
 }

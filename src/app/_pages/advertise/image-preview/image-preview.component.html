@@ -1,20 +1,15 @@
 <ion-content>
- 
+ <div class="closeModal" (click)="closeModal()">
+   <span>close</span>
+ </div>
   <div class="row no-margin imagePreview-container">
     <div class="col-12 no-padding">
-      <ion-item>
+      <!-- <ion-item>
         <ion-label>Modal Popup</ion-label>
-        <ion-button (click)="closeModal()" size="small" slot="end">close</ion-button>
-      </ion-item>
+      </ion-item> -->
       <ion-slides pager="true" [options]="slideOpts">
-        <ion-slide>
-          <img src="../../../../assets/images/image1.jpg">
-        </ion-slide>
-        <ion-slide>
-          <img src="../../../../assets/images/image2.jpg">
-        </ion-slide>
-        <ion-slide>
-          <img src="../../../../assets/images/image3.jpg">
+        <ion-slide *ngFor="let images of previewImages">
+          <img src='https://aklogical.com/api{{images.path}}'>
         </ion-slide>
       </ion-slides>
     </div>

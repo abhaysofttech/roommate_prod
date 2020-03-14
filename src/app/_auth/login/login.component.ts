@@ -29,17 +29,20 @@ export class LoginComponent implements OnInit {
     public navCtrl: NavController, public modalCtrl: ModalController
   ) { }
   ngOnInit() {
-    debugger;
     this.loginForm = this.formBuilder.group({
       phonenumber: ['', Validators.required],
       password: ['', Validators.required]
     });
-    this.storage.get('phonenumber').then((phonenumber) => {
-      //  this.route.params.subscribe(params => this.adsId = params.id);
-      if (phonenumber) {
-        this.route.navigate(['/pages']);
-      }
-    });
+    if(localStorage.getItem('roommate') != null){
+    //  let userData:any = localStorage.getItem('roommate');
+    this.route.navigate(['/pages']);
+    }
+    // this.storage.get('phonenumber').then((phonenumber) => {
+    //   //  this.route.params.subscribe(params => this.adsId = params.id);
+    //   if (phonenumber) {
+    //     this.route.navigate(['/pages']);
+    //   }
+    // });
 
   }
   // convenience getter for easy access to form fields

@@ -1,8 +1,9 @@
 <div class="row no-margin land full-height">
     <div class="col-12 no-padding">
         <div class="profileContainer" routerLink="/pages/profile" routerDirection="root">
-            <div class="profileImages" [ngStyle]="{'background-image': 'url(../../../assets/images/user.jpg)'}"></div>
-        </div> 
+            <div class="profileImages" [ngStyle]="{'background-image': 'url(' + profileImage +')'}">
+            </div>
+        </div>
         <div class="row no-margin logo-container">
             <div class="col-12" style="display: flex;">
                 <img class="rm_logo" src="../../../assets/images/roommate_logo.svg" />
@@ -11,15 +12,15 @@
         <div class="row no-margin slider-container">
             <ion-slides pager="true" [options]="slideOpts">
                 <ion-slide>
-                  <img src="../../../../assets/images/image1.jpg">
+                    <img src="../../../../assets/images/image1.jpg">
                 </ion-slide>
                 <ion-slide>
-                  <img src="../../../../assets/images/image2.jpg">
+                    <img src="../../../../assets/images/image2.jpg">
                 </ion-slide>
                 <ion-slide>
-                  <img src="../../../../assets/images/image3.jpg">
+                    <img src="../../../../assets/images/image3.jpg">
                 </ion-slide>
-              </ion-slides>
+            </ion-slides>
         </div>
 
         <div class="row no-margin choice-container  ">
@@ -45,24 +46,28 @@
                    
                 </div>
             </div> -->
-         
+
             <div class="col-12 postVisited">
                 <h6>Recent Visited Ads</h6>
                 <div class="row">
                     <ng-container *ngIf="myRecentAdsVisit">
-                     <div class="visitorContainer col-3" *ngFor="let ads of myRecentAdsVisit | slice:0:7 | orderBy:'-recentVisitDate'" [routerLink]="['/pages/advertise/myadvertisementDetails', ads.adsid]">
-                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
+                        <div class="visitorContainer col-3"
+                            *ngFor="let ads of myRecentAdsVisit | slice:0:7 | orderBy:'-recentVisitDate'"
+                            [routerLink]="['/pages/advertise/myadvertisementDetails', ads.adsid]">
+                            <div class="postImages"
+                                [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
+                            </div>
+                            <div class="postDate"><span>{{ads.recentVisitDate | date: 'dd-MMM-yyyy'}}</span></div>
                         </div>
-                        <div class="postDate"><span>{{ads.recentVisitDate | date: 'dd-MMM-yyyy'}}</span></div>
-                    </div>
-                    <div class="visitorContainer col-3" *ngIf="myRecentAdsVisit.length > 7">
-                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
-                        </div>
-                        <div class="moreActivity"><span>More...</span></div>
+                        <div class="visitorContainer col-3" *ngIf="myRecentAdsVisit.length > 7">
+                            <div class="postImages"
+                                [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
+                            </div>
+                            <div class="moreActivity"><span>More...</span></div>
 
-                    </div>
+                        </div>
                     </ng-container>
-                   
+
                 </div>
             </div>
             <div class="col-12 postVisited">
@@ -72,40 +77,43 @@
                         <span>Not yet post any advertise</span>
                     </div>
                     <ng-container *ngIf="myAds">
-                     <div class="visitorContainer col-3" *ngFor="let ads of myAds | slice:0:7 | orderBy:'-postdate'" [routerLink]="['/pages/advertise/myadvertisementDetails', ads.id]">
-                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
+                        <div class="visitorContainer col-3" *ngFor="let ads of myAds | slice:0:7 | orderBy:'-postdate'"
+                            [routerLink]="['/pages/advertise/myadvertisementDetails', ads.id]">
+                            <div class="postImages"
+                                [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
+                            </div>
+                            <div class="postDate"><span>{{ads.postdate | date: 'dd-MMM-yyyy'}}</span></div>
+                            <span class="adsVisits" *ngIf="ads.adsvisits.length">{{ads.adsvisits.length}}</span>
                         </div>
-                        <div class="postDate"><span>{{ads.postdate | date: 'dd-MMM-yyyy'}}</span></div>
-                        <span class="adsVisits">{{ads.adsvisits.length}}</span>
-                    </div>
-                    <div class="visitorContainer col-3" *ngIf="myAds.length > 7">
-                        <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
-                        </div>
-                        <div class="moreActivity"><span>More...</span></div>
+                        <div class="visitorContainer col-3" *ngIf="myAds.length > 7">
+                            <div class="postImages"
+                                [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
+                            </div>
+                            <div class="moreActivity"><span>More...</span></div>
 
-                    </div>
+                        </div>
                     </ng-container>
-                   
+
                 </div>
             </div>
             <div class="col-12 container-padding referal-container">
                 <div class="row no-margin details">
-                  <div class="col-2 no-padding">
-                    <i class="fa fa-gift referIcon"></i>
-                  </div>
-                  <div class="col-7 no-padding">
-                    <span>Invite and earn<br /> Share this code</span>
-                    <span> 45376 <i class="fa fa-copy"></i></span>
-                  </div>
-                  <div class="col-3 no-padding" style="text-align:center">
-                    <div class="referBtn" (click)="inviteFriend()">
-                      <span>Invite</span>
+                    <div class="col-2 no-padding">
+                        <i class="fa fa-gift referIcon"></i>
                     </div>
-        
-                  </div>
-        
+                    <div class="col-7 no-padding">
+                        <span>Invite and earn<br /> Share this code</span>
+                        <span> 45376 <i class="fa fa-copy"></i></span>
+                    </div>
+                    <div class="col-3 no-padding" style="text-align:center">
+                        <div class="referBtn" (click)="inviteFriend()">
+                            <span>Invite</span>
+                        </div>
+
+                    </div>
+
                 </div>
-              </div>
+            </div>
             <!-- <div class="col-12">
                 <div class="option-select">
                     <img src="../../../assets/images/mypost.svg" routerLink="/pages/advertise/imageGallery" routerDirection="root" />
@@ -130,9 +138,12 @@
             </div> -->
         </div>
         <div class="action-button">
-            <div class="advertiseBtn" routerLink="/pages/advertise/myadvertisement" routerDirection="root"><i class="fa fa-telegram" aria-hidden="true"></i><span>My Post</span></div>
-            <div class="new-advertise" routerLink="/pages/advertise/search" routerDirection="root"><i class="fa fa-search"></i><span>Search Room</span></div>
-            <div class="advertiseBtn"  routerLink="/pages/advertise/newAds" routerDirection="root"><i class="fa fa-plus" aria-hidden="true"></i><span>New Post</span></div>
+            <div class="advertiseBtn" routerLink="/pages/advertise/myadvertisement" routerDirection="root"><i
+                    class="fa fa-telegram" aria-hidden="true"></i><span>My Post</span></div>
+            <div class="new-advertise" routerLink="/pages/advertise/search" routerDirection="root"><i
+                    class="fa fa-search"></i><span>Search Room</span></div>
+            <div class="advertiseBtn" routerLink="/pages/advertise/newAds" routerDirection="root"><i class="fa fa-plus"
+                    aria-hidden="true"></i><span>New Post</span></div>
         </div>
     </div>
 </div>

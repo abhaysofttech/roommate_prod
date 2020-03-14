@@ -15,28 +15,43 @@
       <div class="col-12 container-padding">
         <div class="card" *ngIf="Ads">
           <div class="card-body no-padding">
+            <div class="photosCount" *ngIf="Ads.images.length == 0"><span><i class="fa fa-camera"></i>{{Ads.images.length}}</span></div>
 
-            <ion-slides pager="true" [options]="slideOpts">
+            <ng-container *ngIf="Ads.images.length == 0">
+              <ion-slides pager="true" [options]="slideOpts">
               <ion-slide>
-                <img src="../../../../assets/images/image1.jpg">
+                <img src="../../../../assets/images/image-not-available.jpg">
               </ion-slide>
-              <ion-slide>
-                <img src="../../../../assets/images/image2.jpg">
-              </ion-slide>
-              <ion-slide>
-                <img src="../../../../assets/images/image3.jpg">
-              </ion-slide>
+               
             </ion-slides>
+            <div class="reqImages" (click)="requestImage()"><span>Request for Photos</span></div>
+          </ng-container>
+
+            <ng-container *ngIf="Ads.images.length > 0">
+              <ion-slides pager="true" [options]="slideOpts" (click)="viewGallary()">
+                <ion-slide  *ngFor="let images of Ads.images" >
+                  <img src='https://aklogical.com/api{{images.path}}'>
+                </ion-slide>
+               
+            </ion-slides>
+            <div class="addImages" (click)="viewGallary()"><span>View Photos</span></div>
+          </ng-container>
+
             <div class="adsDetails">
               <div class="adsOwner"><span>{{Ads.username}},</span><span class="age"> {{Ads.dob | age:Ads.dob}} | </span><span class="gender">
                 <i class="fa" aria-hidden="true" [ngClass]="{ 'fa-male': Ads.userGender === 'Male', 'fa-female':  Ads.userGender === 'Female'}"></i></span></div>
-              <div class="profilePicOwner">
+              
+                <div class="profilePicOwner" *ngIf="Ads.profileimages.length > 0" [ngStyle]="{'background-image': 'url(https://aklogical.com/api/profileImage/'+Ads.profileimages[0].profileId+''+Ads.profileimages[0].mimeType+')'}">
+                <!-- <img src="../../../../assets/images/image3.jpg"> -->
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+              </div>
+              <div class="profilePicOwner" *ngIf="Ads.profileimages.length == 0" [ngStyle]="{'background-image': 'url(../../../../assets/images/user.png)'}">
                 <!-- <img src="../../../../assets/images/image3.jpg"> -->
                 <i class="fa fa-check-circle" aria-hidden="true"></i>
               </div>
               <div class="adsAddressDetails">
-                <div class="adsTitle">{{Ads.roomType}} for {{Ads.gender}} in {{Ads.city}}</div>
-                <div class="adsAddress">{{Ads.shortaddress}}</div>
+                <div class="adsTitle">{{Ads.roomType}} for {{Ads.gender}} in {{Ads.area}} {{Ads.city}}</div>
+                <div class="adsAddress">{{Ads.address}}</div>
               </div>
               <span class="postedOn">Posted on: - {{Ads.postdate | date: 'dd-MMM-yyyy'}}</span>
             </div>
@@ -60,16 +75,38 @@
 
             </div>
           </div>
-          <div class="contact-container">
-              <div class="row">
-                <div class="col-4"><img src="../../../../assets/images/telephone.svg" /></div>
-                <div class="col-4"><img src="../../../../assets/images/message.svg" /></div>
-                <div class="col-4"><img src="../../../../assets/images/whatsapp.svg" /></div>
+          <div class="card-footer contact-container">
+            <div class="row">
+              <div class="col-2 no-padding">Owner Contact</div>
+              <div class="col-7 adsContact" [ngClass]="{'blur': Ads.visitedContact == false}">
+                <img src="../../../../assets/images/telephone.svg" /><span>9960732614</span>
+              </div>
+              <div class="col-3 no-padding" *ngIf="!Ads.visitedContact">
+                <span class="viewContact" (click)="viewContact(Ads)">
+                  View
+                </span>
+              </div>
+              <div class="col-3 no-padding" *ngIf="Ads.visitedContact" (click)="callJoint('7798567452')">
+                <span class="callNow">
+                  Call Now
+                </span>
               </div>
             </div>
+          </div>
           <div class="adsOverview">
             <div class="row no-margin">
-              <div class="col-12"><span>Amenities</span></div>
+              <div class="col-12 overViewTitle" ><span>Facilities</span></div>
+              <div class="col-12">
+                <div class="row no-margin serviceAme">
+                  <div class="col-6"><span class="serTitle">Bathroom</span><span class="serQty">{{Ads.bathroom}}</span></div>
+                  <div class="col-6"><span class="serTitle">Balcony</span><span class="serQty">{{Ads.balcony}}</span></div>
+                  <div class="col-6"><span class="serTitle">Cupboards</span><span class="serQty">{{Ads.cupboard}}</span></div>
+                  <div class="col-6"><span class="serTitle">Bathroom</span><span class="serQty">{{Ads.bathroom}}</span></div>
+                  <div class="col-6"><span class="serTitle">Non-Veg</span><span class="serQty">{{Ads.vegNonveg}}</span></div>
+                  <div class="col-6"><span class="serTitle">Cooking Facility</span><span class="serQty">{{Ads.cooking}}</span></div>
+                </div>
+              </div>
+              <div class="col-12 overViewTitle"><span>Amenities</span></div>
               <div class="col-12">
                 <div class="row no-margin">
                   <div class="col-4 amenities-list" *ngIf="Ads.powerBackup">

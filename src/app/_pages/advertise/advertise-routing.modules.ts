@@ -44,7 +44,7 @@ const routes: Routes = [
         component: MyAdvertisementDetailsComponent
     },
     {
-        path: 'imageGallery',
+        path: 'imageGallery/:id',
         component: ImageGalleryComponent
     },
     {
