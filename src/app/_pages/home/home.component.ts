@@ -3,6 +3,8 @@ import { advertiseService } from 'src/app/_service';
 import { Storage } from '@ionic/storage';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Router } from '@angular/router';
+import { Platform, AlertController } from '@ionic/angular';
+import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-home',
@@ -18,12 +20,31 @@ export class HomeComponent implements OnInit {
   subject:string = null;
   userData:any;
   profileImage:string;
+
+  scheduled = [];
   constructor(
     private _advertiseService: advertiseService,
     private storage: Storage,
     private socialSharing:SocialSharing,
     private router: Router,
-    ) { }
+    private platform: Platform,
+    private localNotifications:LocalNotifications,
+    private alterCtrl:AlertController
+    ) {
+      this.platform.ready().then(() => {
+        this.localNotifications.on('click').subscribe(res =>{
+          console.log('click: ', res)
+          let msg = res.data ? res.data.mydata : '';
+          this.showAlert(res.title, res.text, msg);
+        })
+
+        this.localNotifications.on('trigger').subscribe(res =>{
+          console.log('trigger: ', res)
+          let msg = res.data ? res.data.mydata : '';
+          this.showAlert(res.title, res.text, msg);
+        })
+      })
+     }
 
   ngOnInit() {
     console.log(JSON.parse(localStorage.getItem('roommate')));
@@ -92,4 +113,53 @@ export class HomeComponent implements OnInit {
     })
   }
 
+
+  scheduleNotification(){
+    this.localNotifications.schedule({
+      id:1,
+      title:'Attention',
+      text:'Schedule Notification',
+      data:{mydata:'This is hidden message this is'},
+      trigger:{in: 5, unit: ELocalNotificationTriggerUnit.SECOND},
+      foreground: true,
+      vibrate: true
+    });
+  }
+
+  recurringNotification(){
+    this.localNotifications.schedule({
+      id:22,
+      title:'Attention Recurring',
+      text:'Recurring Notification',
+      data:{mydata:'This is hidden message this is'},
+      trigger:{every: ELocalNotificationTriggerUnit.MINUTE},
+      foreground: true,
+      vibrate: true
+    });
+  }
+
+  repeatingDaily(){
+    this.localNotifications.schedule({
+      id:42,
+      title:'Attention Repeating',
+      text:'Repeating Notification',
+      data:{mydata:'This is hidden message this is'},
+      trigger:{every: {hour:11, minute:49}}
+    });
+  }
+
+  getAll(){
+    this.localNotifications.getAll().then(res =>{ 
+      this.scheduled = res;
+    })
+  }
+
+  showAlert(header, sub, msg){
+    this.alterCtrl.create({
+      header:header,
+      subHeader:sub,
+      message:msg,
+      buttons:['OK']
+    }).then(alert => alert.present());
+  }
 }

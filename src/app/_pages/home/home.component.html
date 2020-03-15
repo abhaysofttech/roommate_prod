@@ -114,28 +114,22 @@
 
                 </div>
             </div>
-            <!-- <div class="col-12">
-                <div class="option-select">
-                    <img src="../../../assets/images/mypost.svg" routerLink="/pages/advertise/imageGallery" routerDirection="root" />
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="option-select">
-                    <img src="../../../assets/images/search_new.svg" routerLink="/pages/advertise/search" routerDirection="root" />
-                    <div class="check"></div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="option-select">
-                    <img src="../../../assets/images/newpost.svg" routerLink="/pages/advertise/newAds"
-                        routerDirection="root" />
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="option-select">
-                    <img src="../../../assets/images/mypost.svg" routerLink="/pages/advertise/myadvertisement" routerDirection="root" />
-                </div>
-            </div> -->
+         
+        </div>
+        <div class="row no-margin notification">
+            <ion-button expand="block" (click)="scheduleNotification()">Schedule</ion-button>
+            <ion-button expand="block" (click)="recurringNotification()">Every Minute</ion-button>
+            <ion-button expand="block" (click)="repeatingDaily()">Daily</ion-button>
+            <ion-button expand="block" (click)="getAll()">Get All</ion-button>
+
+            <ion-list>
+                <ion-item *ngFor="let n of scheduled">
+                    <ion-label text-wrap>
+                        {{n.id}} - {{n-title}}
+                        <p>Trigger: {{n.trigger | json}}</p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
         </div>
         <div class="action-button">
             <div class="advertiseBtn" routerLink="/pages/advertise/myadvertisement" routerDirection="root"><i
