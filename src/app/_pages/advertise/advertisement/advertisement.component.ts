@@ -38,7 +38,6 @@ export class AdvertisementComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.Ads = this.router.getCurrentNavigation().extras.state.id;
-        console.log(this.Ads);
       // this.profileImage = 'https://aklogical.com/api/profileImage/'+this.Ads.profileimages[0].profileId+ this.Ads.profileimages[0].mimeType;
 
         this.Ads.forEach(col => {
@@ -51,22 +50,34 @@ export class AdvertisementComponent implements OnInit {
             })
           })
         })
-       
-     
-
         this.loading = false;
-
       }
     });
   }
 
+  ionRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+        this.Ads.forEach(col => {
+          col.visitedContact = false;
+        });
+        this.storage.get('phonenumber').then((phonenumber) => {
+          this.Ads.map(adsData => {
+            adsData.adsvisits.filter(visitData => {
+              if(visitData.phonenumber == phonenumber) return adsData.visitedContact = true 
+            })
+          })
+        })
+      event.target.complete();
+    }, 2000);
+  }
   ngOnInit() {
     // this.route.params.subscribe(params => {this.reqGender = JSON.parse(params.id)});
     // this._advertiseService.getAllAds(this.reqGender)
     // .subscribe(
     //   res =>{
     //     this.Ads=res;
-    //     console.log(res);
     //   })
   }
   viewContact(adsDetails){

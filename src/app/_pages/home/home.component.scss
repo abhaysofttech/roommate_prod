@@ -80,6 +80,10 @@
     }
 
 }
+button:disabled{
+    background: #6bd0fb !important;
+    box-shadow: none;
+}
 .advertiseBtn{
     width: auto;
     padding: 6px;

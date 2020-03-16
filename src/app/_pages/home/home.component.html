@@ -9,7 +9,7 @@
                 <img class="rm_logo" src="../../../assets/images/roommate_logo.svg" />
             </div>
         </div>
-        <div class="row no-margin slider-container">
+        <!-- <div class="row no-margin slider-container">
             <ion-slides pager="true" [options]="slideOpts">
                 <ion-slide>
                     <img src="../../../../assets/images/image1.jpg">
@@ -21,7 +21,7 @@
                     <img src="../../../../assets/images/image3.jpg">
                 </ion-slide>
             </ion-slides>
-        </div>
+        </div> -->
 
         <div class="row no-margin choice-container  ">
             <!-- <div class="col-12 postVisited">
@@ -47,10 +47,10 @@
                 </div>
             </div> -->
 
-            <div class="col-12 postVisited">
+            <ng-container *ngIf="myRecentAdsVisit?.length > 0">
+                <div class="col-12 postVisited" >
                 <h6>Recent Visited Ads</h6>
                 <div class="row">
-                    <ng-container *ngIf="myRecentAdsVisit">
                         <div class="visitorContainer col-3"
                             *ngFor="let ads of myRecentAdsVisit | slice:0:7 | orderBy:'-recentVisitDate'"
                             [routerLink]="['/pages/advertise/myadvertisementDetails', ads.adsid]">
@@ -66,17 +66,15 @@
                             <div class="moreActivity"><span>More...</span></div>
 
                         </div>
-                    </ng-container>
 
                 </div>
             </div>
+        </ng-container>
+        <ng-container  *ngIf="myAds?.length > 0">
+
             <div class="col-12 postVisited">
                 <h6>Your Recent Posts</h6>
                 <div class="row">
-                    <div class="col-12 noPost" *ngIf="!myAds">
-                        <span>Not yet post any advertise</span>
-                    </div>
-                    <ng-container *ngIf="myAds">
                         <div class="visitorContainer col-3" *ngFor="let ads of myAds | slice:0:7 | orderBy:'-postdate'"
                             [routerLink]="['/pages/advertise/myadvertisementDetails', ads.id]">
                             <div class="postImages"
@@ -92,10 +90,11 @@
                             <div class="moreActivity"><span>More...</span></div>
 
                         </div>
-                    </ng-container>
 
                 </div>
             </div>
+        </ng-container>
+
             <div class="col-12 container-padding referal-container">
                 <div class="row no-margin details">
                     <div class="col-2 no-padding">
@@ -116,28 +115,14 @@
             </div>
          
         </div>
-        <div class="row no-margin notification">
-            <ion-button expand="block" (click)="scheduleNotification()">Schedule</ion-button>
-            <ion-button expand="block" (click)="recurringNotification()">Every Minute</ion-button>
-            <ion-button expand="block" (click)="repeatingDaily()">Daily</ion-button>
-            <ion-button expand="block" (click)="getAll()">Get All</ion-button>
-
-            <ion-list>
-                <ion-item *ngFor="let n of scheduled">
-                    <ion-label text-wrap>
-                        {{n.id}} - {{n-title}}
-                        <p>Trigger: {{n.trigger | json}}</p>
-                    </ion-label>
-                </ion-item>
-            </ion-list>
-        </div>
+      
         <div class="action-button">
-            <div class="advertiseBtn" routerLink="/pages/advertise/myadvertisement" routerDirection="root"><i
-                    class="fa fa-telegram" aria-hidden="true"></i><span>My Post</span></div>
-            <div class="new-advertise" routerLink="/pages/advertise/search" routerDirection="root"><i
-                    class="fa fa-search"></i><span>Search Room</span></div>
-            <div class="advertiseBtn" routerLink="/pages/advertise/newAds" routerDirection="root"><i class="fa fa-plus"
-                    aria-hidden="true"></i><span>New Post</span></div>
+            <button class="advertiseBtn" routerLink="/pages/advertise/myadvertisement" routerDirection="root" [disabled]="!networkStatus"><i
+                    class="fa fa-telegram" aria-hidden="true" ></i><span>My Post</span></button>
+            <button class="new-advertise" routerLink="/pages/advertise/search" routerDirection="root" [disabled]="!networkStatus"><i
+                    class="fa fa-search"></i><span>Search Room</span></button>
+            <button class="advertiseBtn" routerLink="/pages/advertise/newAds" routerDirection="root" [disabled]="!networkStatus"><i class="fa fa-plus"
+                    aria-hidden="true"></i><span>New Post</span></button>
         </div>
     </div>
 </div>

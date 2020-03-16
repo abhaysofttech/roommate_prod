@@ -4,12 +4,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AgePipe, OrderByPipe } from '../_service';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { LocationBackDirective } from '../_directive/location-back.directive';
 
 @NgModule({
   declarations: [
     LoadingSpinnerComponent,
    AgePipe,
-   OrderByPipe
+   OrderByPipe,
+   LocationBackDirective
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
   exports:[
     LoadingSpinnerComponent,
     AgePipe,
-    OrderByPipe
+    OrderByPipe,
+    LocationBackDirective
   ]
 })
 export class SharedModule { }

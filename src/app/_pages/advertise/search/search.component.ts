@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { Router, NavigationExtras } from '@angular/router';
+import { NavController, AlertController } from '@ionic/angular';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { advertiseService } from 'src/app/_service';
 import { MapsAPILoader } from '@agm/core';
 @Component({
@@ -19,20 +19,36 @@ export class SearchComponent implements OnInit {
   RoomType: any;
   flatType: any;
   genderType: any;
-  selectedCities:string;
-  selectedArea:string;
+  selectedCities: string;
+  selectedArea: string;
   priceRange: any;
-  public loading:boolean = false;
+  public loading: boolean = false;
 
   selectedBuildingType: string = 'RoomMate'
 
   private geoCoder;
   // @ViewChild('search', { static: false })
   public searchElementRef: ElementRef;
-  constructor(public nav: NavController, private router: Router, private _advertiseService: advertiseService,
+  constructor(public nav: NavController, 
+    private router: Router, 
+    private route:ActivatedRoute,
+    private _advertiseService: advertiseService,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone, ) {
-
+    private ngZone: NgZone,
+    public alertController: AlertController ) {
+      route.params.subscribe(val => {
+        this._advertiseService.getRoomMateAds()
+        .subscribe(
+          (res:any) => {
+            if (res.length > 0) {
+              this.findCities();
+            }
+            else{
+              this.successAds();
+            }
+          })
+      });
+     
     this.priceRange = { lower: 2000, upper: 20000 };
     this.bedRoom = [
       { val: 'Pepperoni', isChecked: true },
@@ -67,11 +83,29 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+  
     this.loading = true;
     this.selectedLocation = "test"
     this.location = [{ id: 0, name: 'Tokai' },
     { id: 1, name: 'Tokaiq' }]
-    this.findCities();
+ 
+
+  }
+  async successAds() {
+    const alert = await this.alertController.create({
+      header: 'RoomMate',
+      message: 'Advertisement Not yet post will update soon ',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.router.navigate(['/pages']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
   // ionViewDidEnter() {
 
@@ -130,15 +164,14 @@ export class SearchComponent implements OnInit {
   }
 
   findAreas(area) {
-    console.log();
     this._advertiseService.getAreas(area)
       .subscribe(
         area => {
           this.areas = area;
           this.selectedArea = area[0].area;
           setInterval(() => {
-                     this.loading = false;
-            }, 1000);
+            this.loading = false;
+          }, 1000);
         })
   }
 

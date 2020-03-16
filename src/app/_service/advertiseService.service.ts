@@ -11,9 +11,9 @@ export class advertiseService {
   constructor(
     private http: HttpClient
   ) { }
-  // getAllAds(reqGender) {
-  //   return this.http.get(`${SERVER_URL}/postads`);
-  // }
+  getRoomMateAds() {
+    return this.http.get(`${SERVER_URL}/postads`);
+  }
   getAllAds(reqGender) {
     return this.http.get(`${SERVER_URL}/postads/reqGender/${reqGender}`);
   }

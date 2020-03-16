@@ -11,6 +11,21 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <!-- <ion-refresher slot="fixed" 
+  (ionRefresh)="ionRefresh($event)" 
+  (ionPull)="ionPull($event)" 
+  (ionStart)="ionStart($event)"
+  > -->
+  <ion-refresher slot="fixed" 
+  (ionRefresh)="ionRefresh($event)" 
+  >
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <div class="main-container full-height">
     <div class="row no-margin search-container">
 
@@ -18,6 +33,7 @@
         <app-loading-spinner [loadingType]="'bar'" *ngIf="loading">
         </app-loading-spinner>
         <ng-container *ngIf="Ads">
+         
           <div class="card" *ngFor="let ads of Ads | orderBy:'-postdate'">
             <div class="card-body no-padding" [routerLink]="['/pages/advertise/advertisementDetails', ads.id]">
               <ion-slides pager="true" [options]="slideOpts">

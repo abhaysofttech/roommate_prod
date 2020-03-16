@@ -60,7 +60,6 @@ export class AddressComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    debugger
     this.route.params.subscribe(params => this.adsId = params.id);
   }
   onSubmit() {
@@ -81,7 +80,6 @@ export class AddressComponent implements OnInit {
       .subscribe(
         data => {
           this.router.navigate(['/pages/advertise/rent-details', this.adsId]);
-          // console.log(data);
         },
         error => {
           //  this.alertService.error(error);
@@ -133,7 +131,6 @@ export class AddressComponent implements OnInit {
 
 
   markerDragEnd($event: MouseEvent) {
-    //console.log($event);
     this.searchElementRef.nativeElement.value = "";
     this.eventResponse = $event;
     this.latitude = this.eventResponse.coords.lat;
@@ -145,8 +142,6 @@ export class AddressComponent implements OnInit {
   }
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-      console.log(results);
-      console.log(status);
       if (status === 'OK') {
         if (results[0]) {
           this.zoom = 18;

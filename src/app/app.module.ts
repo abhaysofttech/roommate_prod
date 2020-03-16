@@ -26,14 +26,15 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { Network } from '@ionic-native/network/ngx';
 
-import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent],
+    RegisterComponent
+    ],
   entryComponents: [],
   imports: [
     SharedModule,
@@ -62,8 +63,8 @@ import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
     Camera,
     Crop,
     CallNumber,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    LocalNotifications
+    Network,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })

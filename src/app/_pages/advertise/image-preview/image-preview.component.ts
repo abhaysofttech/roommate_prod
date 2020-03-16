@@ -13,7 +13,6 @@ export class ImagePreviewComponent implements OnInit {
     private modalController:ModalController
   ) { }
   ngOnInit() {
-    console.log(this.imageID);
     this.previewImages = this.imageID
   }
 

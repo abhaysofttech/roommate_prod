@@ -37,7 +37,6 @@ export class MyAdvertisementDetailsComponent implements OnInit {
     .subscribe(
       res =>{
         this.Ads=res;
-        console.log(res);
       })
   }
 

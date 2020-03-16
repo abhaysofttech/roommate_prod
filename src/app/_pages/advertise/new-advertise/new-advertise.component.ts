@@ -25,7 +25,6 @@ export class NewAdvertiseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    debugger
     this.adpost = this.formBuilder.group({
       roomType: ['Single Room', Validators.required],
       gender: ['Male', Validators.required],
@@ -48,7 +47,6 @@ export class NewAdvertiseComponent implements OnInit {
         .subscribe(
           res => {
             this.Ads = res;
-            console.log(res);
             this.setFormControlValues(res);
 
           })
@@ -80,7 +78,6 @@ export class NewAdvertiseComponent implements OnInit {
             this._advertiseService.postAds(this.adpost.value)
               .subscribe(
                 data => {
-                  console.log(data);
                   this.storage.get('myads').then((adsDetails) => {
                     if (adsDetails) {
                       this.adsArray = adsDetails.split(',')
@@ -98,7 +95,6 @@ export class NewAdvertiseComponent implements OnInit {
             this._advertiseService.updateRent(this.adsId, this.adpost.value)
               .subscribe(
                 data => {
-                  console.log(data);
                   this.storage.get('myads').then((adsDetails) => {
                     if (adsDetails) {
                       this.adsArray = adsDetails.split(',')

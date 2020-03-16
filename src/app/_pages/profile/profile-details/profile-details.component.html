@@ -16,13 +16,14 @@
       <div class="col-12 no-padding profile-container">
         <div class="row no-margin">
           <div class="col-8 no-padding user-profile">
-            <div class="userName">Advik Narnaware</div>
-            <div class="userContact">+9960732614</div>
+            <div class="userName">{{userData?.firstname}} {{userData?.lastname}}</div>
+            <!-- <div class="userContact">{{userData.phonenumber}}</div> -->
             <!-- <div class="userEmail">abhaysofttech@gmail.com</div> -->
           </div>
           <div class="col-4">
             <div class="profileContainer">
-              <div class="profileImages" [ngStyle]="{'background-image': 'url(../../../../assets/images/user.jpg)'}">
+              <div class="profileImages" [ngStyle]="{'background-image': 'url(' + profileImage +')'}">
+                <i class="fa fa-camera" (click)="selectImage()"></i>
               </div>
             </div>
           </div>
@@ -73,7 +74,7 @@
             <i class="fa fa-gift referIcon"></i>
           </div>
           <div class="col-9 no-padding">
-            <span><b>Mobile number</b><br /> +91 9960732614</span>
+            <span><b>Mobile number</b><br /> {{userData?.phonenumber}}</span>
           </div>
           <div class="col-1 no-padding edit">
             <i class="fa fa-edit"></i>
@@ -84,7 +85,7 @@
             <i class="fa fa-send referIcon"></i>
           </div>
           <div class="col-9 no-padding">
-            <span><b>Email ID</b><br />abhaysofttech@gmail.com</span>
+            <span><b>Email ID</b><br /><span [ngClass]="userData?.email != ''? '' : 'noEmail'">{{userData?.email != ''? userData?.email : 'Update Email Id'}}</span></span>
           </div>
           <div class="col-1 no-padding edit">
             <i class="fa fa-edit"></i>
@@ -102,8 +103,8 @@
           <div class="col-2 no-padding">
             <i class="fa fa-power-off referIcon"></i>
           </div>
-          <div class="col-10 no-padding">
-            <span><b>Log out</b><br /> Log out account</span>
+          <div class="col-10 no-padding" (click)="logout()">
+            <span><b>Logout</b><br /> Logout account</span>
           </div>
         </div>
         <div class="row no-margin details">

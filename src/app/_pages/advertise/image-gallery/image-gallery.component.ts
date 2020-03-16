@@ -53,7 +53,6 @@ export class ImageGalleryComponent implements OnInit {
 
   image: any = ''
   openCam() {
-    debugger
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
@@ -102,8 +101,6 @@ export class ImageGalleryComponent implements OnInit {
   }
 
   pickImage(sourceType) {
-    debugger
-    console.log(sourceType);
     const options: CameraOptions = {
       quality: 100,
       sourceType: sourceType,
@@ -117,7 +114,6 @@ export class ImageGalleryComponent implements OnInit {
       correctOrientation: true,
     }
     this.camera.getPicture(options).then((imagePath) => {
-      console.log(imagePath);
 
       // imagePath is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
@@ -162,7 +158,6 @@ export class ImageGalleryComponent implements OnInit {
     this.croppedImagepath = (<any>window).Ionic.WebView.convertFileSrc(ImagePath);
 
     // this.base64.encodeFile(ImagePath).then((base64File: string) => {
-    //   //   console.log(base64File);
     //   //  this.croppedImagepath = base64File;
     //   this.profilePicBase64 = base64File;
     //   this.croppedImagepath = this.sanitizer.bypassSecurityTrustResourceUrl(base64File);
@@ -214,7 +209,6 @@ export class ImageGalleryComponent implements OnInit {
   }
 
   uploadImage() {
-    debugger
     // Destination URL
     var url = `${SERVER_URL}/postads/${this.adsId}/images`;
 
@@ -251,7 +245,6 @@ export class ImageGalleryComponent implements OnInit {
     this._advertiseService.getImage(this.adsId)
     .subscribe(
       (res: any) => {
-        debugger
         this.gallaryImages = res.images;
      
       })

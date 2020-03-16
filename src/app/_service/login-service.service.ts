@@ -37,4 +37,12 @@ export class LoginServiceService {
         localStorage.removeItem('roommate');
         this.currentUserSubject.next(null);
     }
+
+    getAll() {
+        return this.http.get(`${SERVER_URL}/users`);
+    }
+    register(user) {
+        // debugger
+        return this.http.post(`${SERVER_URL}/users/register`, user);
+    }
 }

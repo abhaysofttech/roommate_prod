@@ -19,14 +19,12 @@ export class MyAdvertisementComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    debugger
     this.storage.get('phonenumber').then((phonenumber) => {
       //  this.route.params.subscribe(params => this.adsId = params.id);
       this._advertiseService.getMyAds(phonenumber)
         .subscribe(
           (res: any) => {
             this.myAds = res;
-            console.log(res);
             let myAdsWithNoAddress: any = res.filter(x => { return x.city === '' }).map(data => { return data });
             // if(myAdsWithNoAddress.length > 0 ){
             //   this.router.navigate(['/address', myAdsWithNoAddress[0].id]);

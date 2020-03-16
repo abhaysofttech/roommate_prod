@@ -84,7 +84,6 @@ export class AmenitiesDetailsComponent implements OnInit {
     // if (this.amenitiesDetail.invalid) {
     //   return;
     // }
-    //  console.log(this.amenitiesDetail.value);
     this._advertiseService.updateAmenities(this.adsId, this.form)
       //  .pipe(first())
       .subscribe(
@@ -92,7 +91,6 @@ export class AmenitiesDetailsComponent implements OnInit {
           this.successAds()
         },
         error => {
-          debugger
           //  this.alertService.error(error);
           //  this.loading = false;
         });
@@ -101,7 +99,6 @@ export class AmenitiesDetailsComponent implements OnInit {
   }
 
   setFormControlValues(adsData: any) {
-   console.log(this.form);
    this.form = [
     { val: 'Air-Conditioner', id: 'airConditioner', isChecked: adsData.airConditioner },
     { val: 'Club', id: 'club', isChecked: adsData.club },

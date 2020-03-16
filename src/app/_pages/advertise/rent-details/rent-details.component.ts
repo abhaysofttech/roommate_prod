@@ -88,7 +88,6 @@ export class RentDetailsComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    debugger
     if (!this.address) {
       this.presentAlert()
     }
@@ -102,7 +101,6 @@ export class RentDetailsComponent implements OnInit {
 
             this.router.navigate(['/pages/advertise/amenities', this.adsId]);
             // this.router.navigate(['/amenities', this.adsId]);
-            console.log(data);
           },
           error => {
             //  this.alertService.error(error);
