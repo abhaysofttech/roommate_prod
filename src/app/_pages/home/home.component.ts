@@ -10,7 +10,7 @@ import { Network } from '@ionic-native/network/ngx';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent  {
   myAds: any;
   myRecentAdsVisit: any;
   message: string = null;
@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   userData: any;
   profileImage: string;
   networkStatus: boolean;
+  public loading: boolean = false;
   constructor(
     private _advertiseService: advertiseService,
     private storage: Storage,
@@ -30,11 +31,13 @@ export class HomeComponent implements OnInit {
     private _sharedService: SharedService
 
   ) {
+    this.loading = true;
     this._sharedService.networkDataStatus.subscribe(
       networkStatus => {
         this.networkStatus = networkStatus;
         if (localStorage.getItem('roommate') != null) {
           this.userData = JSON.parse(localStorage.getItem('roommate'))
+          this._sharedService.setUserData(this.userData); // Set the user data to the shared service
           if (this.userData.profileimages.length > 0 && networkStatus) {
             this.profileImage = 'https://aklogical.com/api/profileImage/' + this.userData.id + this.userData.profileimages[0].mimeType;
           }
@@ -44,9 +47,13 @@ export class HomeComponent implements OnInit {
 
          
           if (networkStatus) {
+            setInterval(() => {
+              this.loading = false;
+            }, 1000);
             this._advertiseService.getRecentAdsVisit(this.userData.phonenumber)
             .subscribe(
               (res: any) => {
+                debugger
                 this.myRecentAdsVisit = res;
 
               })
@@ -58,73 +65,12 @@ export class HomeComponent implements OnInit {
           }
         }
         else {
+          this.loading = false;
           this.router.navigate(['/login'])
         }
       })
   }
-  ngOnInit(){
-    // this._sharedService.networkDataStatus.subscribe(
-    //   networkStatus => {
-    //     this.networkStatus = networkStatus;
-    //     if (localStorage.getItem('roommate') != null) {
-    //       this.userData = JSON.parse(localStorage.getItem('roommate'))
-    //       if (this.userData.profileimages.length > 0 && networkStatus) {
-    //         this.profileImage = 'https://aklogical.com/api/profileImage/' + this.userData.id + this.userData.profileimages[0].mimeType;
-    //       }
-    //       else {
-    //         this.profileImage = '../../../../assets/images/user.png';
-    //       }
-
-         
-    //       if (networkStatus) {
-    //         this._advertiseService.getRecentAdsVisit(this.userData.phonenumber)
-    //         .subscribe(
-    //           (res: any) => {
-    //             this.myRecentAdsVisit = res;
-
-    //           })
-    //         this._advertiseService.getMyAds(this.userData.phonenumber)
-    //           .subscribe(
-    //             (res: any) => {
-    //               this.myAds = res;
-    //             })
-    //       }
-    //     }
-    //     else {
-    //       this.router.navigate(['/login'])
-    //     }
-    //   })
-  }
-
-  initAPP() {
-  
-    
-    if (localStorage.getItem('roommate') != null) {
-      this.userData = JSON.parse(localStorage.getItem('roommate'))
-      if (this.userData.profileimages.length > 0 && this.networkStatus) {
-        this.profileImage = 'https://aklogical.com/api/profileImage/' + this.userData.id + this.userData.profileimages[0].mimeType;
-      }
-      else {
-        this.profileImage = '../../../../assets/images/user.png';
-      }
-      this._advertiseService.getRecentAdsVisit(this.userData.phonenumber)
-        .subscribe(
-          (res: any) => {
-            this.myRecentAdsVisit = res;
-
-          })
-      if (this.networkStatus) {
-        this._advertiseService.getMyAds(this.userData.phonenumber)
-          .subscribe(
-            (res: any) => {
-              this.myAds = res;
-            })
-      }
-    }
-    else {
-      this.router.navigate(['/login'])
-    }
-  }
+ 
   inviteFriend() {
     this.socialSharing.share("This is test with love of Kanchan", this.subject, this.file, this.link)
       .then((res: any) => {

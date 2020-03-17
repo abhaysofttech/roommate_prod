@@ -13,7 +13,8 @@
 
                   <div class="reg-title ">
                     <!-- <img src="../../../../assets/images/@logo.svg" class="login_symbol" /> -->
-                    <span>Register</span>
+                    <img class="rm_header_logo_pannel" src="../../../assets/images/roommate_logo.svg" />
+                    <span>Registration</span>
                     <ion-avatar item-end>
                       <img [src]="croppedImagepath" (click)="selectImage()">
                       <ion-icon name="camera" class="camera-icon"></ion-icon>
@@ -54,7 +55,7 @@
 
 
 
-                  <div class="login-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                  <div class="login-sec"><i class="fa fa-calendar" aria-hidden="true"></i>
                     <input type="date" formControlName="dob" class="form-control" placeholder="Enter Your BirthDate"
                       [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
                   </div>
@@ -62,7 +63,7 @@
                     <div *ngIf="f.dob.errors.required">Please Enter Your BirthDate</div>
                   </div>
 
-                  <div class="login-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                  <div class="login-sec"><i class="fa fa-mobile" aria-hidden="true"></i>
                     <!-- <input type="text" placeholder="User Name" class="form-control" 
                       name="username" required> -->
 
@@ -74,7 +75,7 @@
                   <div *ngIf="submitted && f.phonenumber.errors" class="invalid-feedback-error">
                     <div *ngIf="f.phonenumber.errors.required">Please Enter Phone Number</div>
                   </div>
-                  <div class="login-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                  <div class="login-sec"><i class="fa fa-key" aria-hidden="true"></i>
                     <input type="password" formControlName="password" class="form-control"
                       placeholder="Enter You Choice Password"
                       [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />

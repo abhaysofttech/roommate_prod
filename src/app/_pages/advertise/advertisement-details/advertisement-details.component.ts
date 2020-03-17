@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { advertiseService } from 'src/app/_service';
+import { advertiseService, SharedService } from 'src/app/_service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { CallNumber } from '@ionic-native/call-number/ngx';
@@ -25,6 +25,7 @@ export class AdvertisementDetailsComponent implements OnInit {
     },
   };
   Ads: any;
+  userData: any;
 
   constructor(
     private _advertiseService: advertiseService,
@@ -32,7 +33,8 @@ export class AdvertisementDetailsComponent implements OnInit {
     private router: Router,
     private storage: Storage,
     private callNumber: CallNumber,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private _sharedService: SharedService
   ) { }
 
   ngOnInit() {
@@ -42,32 +44,33 @@ export class AdvertisementDetailsComponent implements OnInit {
         res => {
           this.Ads = res;
           this.Ads.visitedContact = false;
-          this.storage.get('phonenumber').then((phonenumber) => {
-            this.Ads.adsvisits.filter(visitData => {
-              if (visitData.phonenumber == phonenumber) return this.Ads.visitedContact = true
+          this._sharedService.getUserData.subscribe(
+            (userData: any) => {
+              this.userData = userData;
+              this.Ads.adsvisits.filter(visitData => {
+                if (visitData.phonenumber == this.userData.phonenumber) return this.Ads.visitedContact = true
+              })
             })
-          })
+
         })
   }
 
-  viewContact(adsDetails){
-    this.storage.get('phonenumber').then((phonenumber) => {
-      this._advertiseService.adsVisits(adsDetails.id,phonenumber)
+  viewContact(adsDetails) {
+    this._advertiseService.adsVisits(adsDetails.id, this.userData.phonenumber)
       .subscribe(
-       (res:any) =>{
-        this.Ads.filter(x => { return x.id == res.adsId; }).map(data => { 
-          return data.visitedContact = true 
-        });
-       })
-    })
-  
+        (res: any) => {
+          this.Ads.filter(x => { return x.id == res.adsId; }).map(data => {
+            return data.visitedContact = true
+          });
+        })
+
   }
   callJoint(telephoneNumber) {
     this.callNumber.callNumber(telephoneNumber, true)
       .then(res => console.log('Launched dialer!', res))
       .catch(err => console.log('Error launching dialer', err));
   }
-  viewGallary(){
+  viewGallary() {
     this.router.navigate(['/pages/advertise/imageGallery', this.adsId]);
   }
 

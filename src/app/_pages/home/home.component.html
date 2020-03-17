@@ -1,3 +1,5 @@
+<app-loading-spinner *ngIf="loading" >  </app-loading-spinner>
+
 <div class="row no-margin land full-height">
     <div class="col-12 no-padding">
         <div class="profileContainer" routerLink="/pages/profile" routerDirection="root">
@@ -9,19 +11,6 @@
                 <img class="rm_logo" src="../../../assets/images/roommate_logo.svg" />
             </div>
         </div>
-        <!-- <div class="row no-margin slider-container">
-            <ion-slides pager="true" [options]="slideOpts">
-                <ion-slide>
-                    <img src="../../../../assets/images/image1.jpg">
-                </ion-slide>
-                <ion-slide>
-                    <img src="../../../../assets/images/image2.jpg">
-                </ion-slide>
-                <ion-slide>
-                    <img src="../../../../assets/images/image3.jpg">
-                </ion-slide>
-            </ion-slides>
-        </div> -->
 
         <div class="row no-margin choice-container  ">
             <!-- <div class="col-12 postVisited">
@@ -49,7 +38,7 @@
 
             <ng-container *ngIf="myRecentAdsVisit?.length > 0">
                 <div class="col-12 postVisited" >
-                <h6>Recent Visited Ads</h6>
+                <h6 class="postTitle">Recent Visited Ads</h6>
                 <div class="row">
                         <div class="visitorContainer col-3"
                             *ngFor="let ads of myRecentAdsVisit | slice:0:7 | orderBy:'-recentVisitDate'"
@@ -73,13 +62,19 @@
         <ng-container  *ngIf="myAds?.length > 0">
 
             <div class="col-12 postVisited">
-                <h6>Your Recent Posts</h6>
+                <h6 class="postTitle">Your Recent Posts</h6>
                 <div class="row">
                         <div class="visitorContainer col-3" *ngFor="let ads of myAds | slice:0:7 | orderBy:'-postdate'"
                             [routerLink]="['/pages/advertise/myadvertisementDetails', ads.id]">
-                            <div class="postImages"
-                                [ngStyle]="{'background-image': 'url(../../../assets/images/image1.jpg)'}">
+                           <ng-container *ngIf="ads.images.length > 0">
+                            <div class="postImages" [ngStyle]="{'background-image': 'url(https://aklogical.com/api/'+ads.images[0].path+')'}">
                             </div>
+                           </ng-container>
+                           <ng-container *ngIf="ads.images.length == 0">
+                            <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image-not-available.jpg)'}">
+                            </div>
+                           </ng-container>
+                           
                             <div class="postDate"><span>{{ads.postdate | date: 'dd-MMM-yyyy'}}</span></div>
                             <span class="adsVisits" *ngIf="ads.adsvisits.length">{{ads.adsvisits.length}}</span>
                         </div>

@@ -47,6 +47,10 @@ export class advertiseService {
         return this.http.put(`${SERVER_URL}/postads/updateamenities/${id}`, amenities);
 
   }
+  updateAds(id: string, status: boolean) {
+        return this.http.put(`${SERVER_URL}/postads/updateads/${id}`, {adsStatus: status});
+
+  }
 
   adsVisits(adsDetails:any, phonenumber:Number) {
     // return this.http.post(`${SERVER_URL}/adsvisits/${phonenumber}`, {adsID:adsDetails});

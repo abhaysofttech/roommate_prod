@@ -3,11 +3,14 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/pages"></ion-back-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button class="actButton closeButton" shape="round" [routerLink]="['/pages/advertise/newAds', adsId]">Close</ion-button>
+    <ion-buttons slot="end" *ngIf="Ads?.adsStatus">
+      <ion-button class="actButton closeButton" shape="round" (click)="closeAds(adsId)">Close</ion-button>
     </ion-buttons>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" *ngIf="Ads?.adsStatus">
       <ion-button class="actButton" shape="round" [routerLink]="['/pages/advertise/newAds', adsId]">Edit</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="!Ads?.adsStatus">
+      <ion-button class="actButton closeButton" shape="round">Ads Closed</ion-button>
     </ion-buttons>
     <ion-title class="no-padding">
       <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
@@ -23,23 +26,12 @@
         <div class="card" *ngIf="Ads">
           <div class="card-body no-padding">
 
-            <!-- <ion-slides pager="true" [options]="slideOpts">
-              <ion-slide>
-                <img src="../../../../assets/images/image1.jpg">
-              </ion-slide>
-              <ion-slide>
-                <img src="../../../../assets/images/image2.jpg">
-              </ion-slide>
-              <ion-slide>
-                <img src="../../../../assets/images/image3.jpg">
-              </ion-slide>
-            </ion-slides> -->
-
+         
             <div class="photosCount" *ngIf="Ads.images.length == 0"><span><i
                   class="fa fa-camera"></i>{{Ads.images.length}}</span></div>
 
             <ng-container *ngIf="Ads.images.length == 0">
-              <ion-slides pager="true" [options]="slideOpts" (click)="viewGallary()">
+              <ion-slides pager="true" [options]="slideOpts" (click)="Ads?.adsStatus?viewGallary():''">
                 <ion-slide>
                   <img src="../../../../assets/images/image-not-available.jpg">
                 </ion-slide>
@@ -49,22 +41,14 @@
             </ng-container>
 
             <ng-container *ngIf="Ads.images.length > 0">
-              <ion-slides pager="true" [options]="slideOpts" (click)="viewGallary()">
+              <ion-slides pager="true" [options]="slideOpts" (click)="Ads?.adsStatus?viewGallary():''">
                 <ion-slide *ngFor="let images of Ads.images">
                   <img src='https://aklogical.com/api{{images.path}}'>
                 </ion-slide>
-
+                <div class="viewPhotos" (click)="viewGallary()"><span>View Photos</span></div>
               </ion-slides>
             </ng-container>
             <div class="adsDetails">
-              <div class="adsOwner"><span>{{Ads.username}},</span><span class="age"> {{Ads.dob | age:Ads.dob}} |
-                </span><span class="gender"><i class="fa" aria-hidden="true"
-                    [ngClass]="{ 'fa-male': Ads.userGender === 'male', 'fa-female':  Ads.userGender === 'Female'}"></i></span>
-              </div>
-              <div class="profilePicOwner">
-                <!-- <img src="../../../../assets/images/image3.jpg"> -->
-                <i class="fa fa-check-circle" aria-hidden="true"></i>
-              </div>
               <div class="adsAddressDetails">
                 <div class="adsTitle">{{Ads.roomType}} for {{Ads.gender}} in {{Ads.area}} {{Ads.city}}</div>
                 <div class="adsAddress">{{Ads.address}}</div>
@@ -95,7 +79,7 @@
           <div class="adsOverview">
             <div class="row no-margin">
               <div class="col-12" style="margin: 8px 0 20px 0;">
-                <div class="row no-margin counteDetails">
+                <div class="row no-margin counterDetails">
                   <div class="col-6"><span class="counterTitle">Visited User</span><span
                       class="serQty">{{Ads.adsvisits.length}}</span></div>
                   <div class="col-6"><span class="counterTitle">Connected User</span><span

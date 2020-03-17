@@ -29,26 +29,26 @@ export class SearchComponent implements OnInit {
   private geoCoder;
   // @ViewChild('search', { static: false })
   public searchElementRef: ElementRef;
-  constructor(public nav: NavController, 
-    private router: Router, 
-    private route:ActivatedRoute,
+  constructor(public nav: NavController,
+    private router: Router,
+    private route: ActivatedRoute,
     private _advertiseService: advertiseService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    public alertController: AlertController ) {
-      route.params.subscribe(val => {
-        this._advertiseService.getRoomMateAds()
+    public alertController: AlertController) {
+    route.params.subscribe(val => {
+      this._advertiseService.getRoomMateAds()
         .subscribe(
-          (res:any) => {
+          (res: any) => {
             if (res.length > 0) {
               this.findCities();
             }
-            else{
+            else {
               this.successAds();
             }
           })
-      });
-     
+    });
+
     this.priceRange = { lower: 2000, upper: 20000 };
     this.bedRoom = [
       { val: 'Pepperoni', isChecked: true },
@@ -83,12 +83,12 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-  
+
     this.loading = true;
     this.selectedLocation = "test"
     this.location = [{ id: 0, name: 'Tokai' },
     { id: 1, name: 'Tokaiq' }]
- 
+
 
   }
   async successAds() {

@@ -136,9 +136,10 @@
   width: 60%;
   display: inline-block;
   vertical-align: middle;
-  line-height: normal;
+  line-height: 15px;
+  font-size: 15px;
 }
-.counteDetails {
+.counterDetails {
   vertical-align: middle;
   display: flex;
   align-items: center;
@@ -146,6 +147,21 @@
   box-shadow: 2px 2px 10px #ccc;
   background: #ffc107;
   border-radius: 10px 10px 0 0;
+  .serQty{
+    width: 35px;
+    height: 25px;
+    border-right: 4px solid #a80a1a;
+    display: inline-grid;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    background: #dc3545;
+    box-shadow: 0px 0px 10px #ccc;
+    color: #fff;
+    margin-left: 9px;
+    font-size: 13px;
+  }
   .col-6 {
     padding: 10px 0;
     vertical-align: middle;
@@ -179,7 +195,8 @@
     width: 60%;
     display: inline-block;
     vertical-align: middle;
-    line-height: normal;
+    line-height: 15px;
+    font-size: 15px;
   }
 }
 .serQty {
@@ -230,4 +247,17 @@
 .closeButton{
   box-shadow: 1px 2px 7px #dc3545;
   background: #dc3545;
+}
+.viewPhotos{
+  position: absolute;
+    top: 133px;
+    display: inline-block;
+    right: 10px;
+    z-index: 99;
+    background: #28a745;
+    padding: 4px 10px;
+    border-radius: 32px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
 }

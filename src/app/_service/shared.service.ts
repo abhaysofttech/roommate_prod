@@ -6,16 +6,17 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SharedService {
 
-  private data = new BehaviorSubject('');
-  currentData = this.data.asObservable()
+  private userData = new BehaviorSubject('');
+  getUserData = this.userData.asObservable()
 
   private networkData = new BehaviorSubject(false);
   networkDataStatus = this.networkData.asObservable()
 
+
   constructor() { }
 
-  updateMessage(item: any) {
-    this.data.next(item);
+  setUserData(data: any) {
+    this.userData.next(data);
   }
 
   networkStatus(status: boolean) {

@@ -9,3 +9,4 @@ export * from './my-advertisement/my-advertisement.component';
 export * from './my-advertisement-details/my-advertisement-details.component';
 export * from './image-gallery/image-gallery.component';
 export * from './image-preview/image-preview.component';
+export * from './close-advertisement/close-advertisement.component';

@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NewAdvertiseComponent, RentDetailsComponent, AmenitiesDetailsComponent, AddressComponent, SearchComponent, AdvertisementComponent, AdvertisementDetailsComponent, ImageGalleryComponent, ImagePreviewComponent, MyAdvertisementComponent, MyAdvertisementDetailsComponent } from '.';
+import { CloseAdvertisementComponent } from './close-advertisement/close-advertisement.component';
 
 const routes: Routes = [
     {
@@ -50,6 +51,10 @@ const routes: Routes = [
     {
         path: 'imagePreview',
         component: ImagePreviewComponent
+    },
+    {
+        path: 'closeAds/:id',
+        component: CloseAdvertisementComponent
     }
 
 

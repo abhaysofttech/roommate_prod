@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { advertiseService } from 'src/app/_service';
+import { advertiseService, SharedService } from 'src/app/_service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { CallNumber } from '@ionic-native/call-number/ngx';
@@ -25,50 +25,51 @@ export class AdvertisementComponent implements OnInit {
   Ads: any;
   reqGender = '';
   foo: any;
-  public loading:boolean=true;
-  profileImage:string;
+  public loading: boolean = true;
+  profileImage: string;
+  userData: any;
   constructor(
     private _advertiseService: advertiseService,
     private route: ActivatedRoute,
     private router: Router,
     private storage: Storage,
-    private callNumber: CallNumber
+    private callNumber: CallNumber,
+    private _sharedService: SharedService
 
   ) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.Ads = this.router.getCurrentNavigation().extras.state.id;
-      // this.profileImage = 'https://aklogical.com/api/profileImage/'+this.Ads.profileimages[0].profileId+ this.Ads.profileimages[0].mimeType;
+        // this.profileImage = 'https://aklogical.com/api/profileImage/'+this.Ads.profileimages[0].profileId+ this.Ads.profileimages[0].mimeType;
 
         this.Ads.forEach(col => {
           col.visitedContact = false;
         });
-        this.storage.get('phonenumber').then((phonenumber) => {
-          this.Ads.map(adsData => {
-            adsData.adsvisits.filter(visitData => {
-              if(visitData.phonenumber == phonenumber) return adsData.visitedContact = true 
+
+        this._sharedService.getUserData.subscribe(
+          (userData: any) => {
+            this.userData = userData;
+            this.Ads.map(adsData => {
+              adsData.adsvisits.filter(visitData => {
+                if (visitData.phonenumber == userData.phonenumber) return adsData.visitedContact = true
+              })
             })
           })
-        })
         this.loading = false;
       }
     });
   }
 
   ionRefresh(event) {
-    console.log('Begin async operation');
-
     setTimeout(() => {
-        this.Ads.forEach(col => {
-          col.visitedContact = false;
-        });
-        this.storage.get('phonenumber').then((phonenumber) => {
-          this.Ads.map(adsData => {
-            adsData.adsvisits.filter(visitData => {
-              if(visitData.phonenumber == phonenumber) return adsData.visitedContact = true 
-            })
-          })
+      this.Ads.forEach(col => {
+        col.visitedContact = false;
+      });
+      this.Ads.map(adsData => {
+        adsData.adsvisits.filter(visitData => {
+          if (visitData.phonenumber == this.userData.phonenumber) return adsData.visitedContact = true
         })
+      })
       event.target.complete();
     }, 2000);
   }
@@ -80,21 +81,19 @@ export class AdvertisementComponent implements OnInit {
     //     this.Ads=res;
     //   })
   }
-  viewContact(adsDetails){
-    this.storage.get('phonenumber').then((phonenumber) => {
-      this._advertiseService.adsVisits(adsDetails.id,phonenumber)
+  viewContact(adsDetails) {
+    this._advertiseService.adsVisits(adsDetails.id, this.userData.phonenumber)
       .subscribe(
-       (res:any) =>{
-        this.Ads.filter(x => { return x.id == res.adsId; }).map(data => { 
-          return data.visitedContact = true 
-        });
-       })
-    })
-  
+        (res: any) => {
+          this.Ads.filter(x => { return x.id == res.adsId; }).map(data => {
+            return data.visitedContact = true
+          });
+        })
+
   }
   callJoint(telephoneNumber) {
     this.callNumber.callNumber(telephoneNumber, true)
-    .then(res => console.log('Launched dialer!', res))
-  .catch(err => console.log('Error launching dialer', err));
-}
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+  }
 }

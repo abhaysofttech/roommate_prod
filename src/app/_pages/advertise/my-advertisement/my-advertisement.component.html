@@ -9,6 +9,11 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <div class="main-container1">
     <div class="row no-margin search-container">
       <div class="col-12 container-padding" *ngIf="myAds?.length > 0">
@@ -46,10 +51,10 @@
                 <div class="adsTitle">{{ads.roomType}} for {{ads.gender}} in {{ads.city}}</div>
                 <div class="adsAddress">{{ads.address}}</div>
               </div>
-              <span class="knowMore">Click on ads to Know More</span>
+              <span class="knowMore">Click on ads to Know More Details..</span>
             </div>
           </div>
-          <div class="card-footer contact-container" style="text-align: center; ">
+          <div class="card-footer contact-container" style="text-align: center; " *ngIf="ads.adsStatus"> 
               <ion-button shape="round" [routerLink]="['/pages/advertise/myadvertisementDetails', ads.id]"  style="float: left; ">
                 Detail
               </ion-button>
