@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pages"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="no-padding">
+      <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
+      <span class="tab-title">Notification</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="row no-margin notification-container">
+    <div class="col-12 no-padding">
+      <div class="accordion1" id="accordionExample">
+        <div class="card" *ngFor="let request of notification?.requestData; index as indx">
+          <div class="notify-title">
+            <span class="btn headerStyle" data-toggle="collapse" attr.data-target="#id{{indx}}"
+              attr.aria-controls="id{{indx}}">
+              {{request.type}}
+              <i [ngClass]="'collapseIcon fa fa-chevron-right'" aria-hidden="true"></i>
+            </span>
+          </div>
+
+          <div attr.id="id{{indx}}" class="collapse" data-parent="#accordionExample">
+            <div class="card-body">
+              <!-- <img src='https://aklogical.com/api{{ads.images[0].path}}'> -->
+              {{request.userId}} is requested for {{request.adsId}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

@@ -15,8 +15,8 @@
                     <!-- <img src="../../../../assets/images/@logo.svg" class="login_symbol" /> -->
                     <img class="rm_header_logo_pannel" src="../../../assets/images/roommate_logo.svg" />
                     <span>Registration</span>
-                    <ion-avatar item-end>
-                      <img [src]="croppedImagepath" (click)="selectImage()">
+                    <ion-avatar item-end  (click)="selectImage()">
+                      <img [src]="profileImage">
                       <ion-icon name="camera" class="camera-icon"></ion-icon>
                       <!-- <i class="fas fa-camera"></i> -->
                       <!-- <span class="glyphicon glyphicon-search" aria-hidden="true"></span> -->
@@ -27,18 +27,19 @@
                       name="username" required> -->
 
                     <input type="text" formControlName="firstname" class="form-control" placeholder="Your Good Name"
-                      [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+                      [ngClass]="{ 'is-invalid': f.firstname.touched && f.firstname.invalid && f.firstname.errors }" />
 
                   </div>
-                  <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback-error">
-                    <div *ngIf="f.firstname.errors.required">Please Enter Your Good Name ! </div>
+                  <div *ngIf="f.firstname.touched && f.firstname.invalid">
+                    <div *ngIf="f.firstname.errors.required" class="registerValidation">Please Enter Your Good Name !
+                    </div>
                   </div>
                   <div class="login-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
                     <input type="text" formControlName="lastname" class="form-control" placeholder="Enter LastName"
-                      [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+                      [ngClass]="{ 'is-invalid': f.lastname.touched && f.lastname.invalid && f.lastname.errors }" />
                   </div>
-                  <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback-error">
-                    <div *ngIf="f.lastname.errors.required">Please Enter You LastName</div>
+                  <div *ngIf="f.lastname.touched && f.lastname.invalid">
+                    <div *ngIf="f.lastname.errors.required" class="registerValidation">Please Enter You LastName</div>
                   </div>
 
                   <div class="Gender-sec"><span>Gender</span>
@@ -49,18 +50,18 @@
                       <ion-label>Female <i class="fa fa-female" aria-hidden="true"></i></ion-label>
                     </ion-radio-group>
                   </div>
-                  <div *ngIf="submitted && f.userGender.errors" class="invalid-feedback-error">
-                    <div *ngIf="f.userGender.errors.required">Please Select Your Gender</div>
+                  <div *ngIf="f.userGender.touched && f.userGender.invalid">
+                    <div *ngIf="f.userGender.errors.required" class="registerValidation">Please Select Your Gender</div>
                   </div>
 
 
 
                   <div class="login-sec"><i class="fa fa-calendar" aria-hidden="true"></i>
-                    <input type="date" formControlName="dob" class="form-control" placeholder="Enter Your BirthDate"
-                      [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
+                    <input type="text" formControlName="dob" #inp (focus)="inp.type='date'" (focusout)="inp.type='text'" class="form-control" placeholder="Enter Your BirthDate"
+                      [ngClass]="{ 'is-invalid': f.dob.touched && f.dob.invalid && f.dob.errors }" />
                   </div>
-                  <div *ngIf="submitted && f.dob.errors" class="invalid-feedback-error">
-                    <div *ngIf="f.dob.errors.required">Please Enter Your BirthDate</div>
+                  <div *ngIf="f.dob.touched && f.dob.invalid">
+                    <div *ngIf="f.dob.errors.required" class="registerValidation">Please Enter Your BirthDate</div>
                   </div>
 
                   <div class="login-sec"><i class="fa fa-mobile" aria-hidden="true"></i>
@@ -69,25 +70,39 @@
 
                     <input type="tel" formControlName="phonenumber" class="form-control"
                       placeholder="Enter Phone Number"
-                      [ngClass]="{ 'is-invalid': submitted && f.phonenumber.errors }" />
+                      [ngClass]="{ 'is-invalid': f.phonenumber.touched && f.phonenumber.invalid && f.phonenumber.errors }" />
 
                   </div>
-                  <div *ngIf="submitted && f.phonenumber.errors" class="invalid-feedback-error">
-                    <div *ngIf="f.phonenumber.errors.required">Please Enter Phone Number</div>
+                  <div *ngIf="f.phonenumber.touched && f.phonenumber.invalid">
+                    <div *ngIf="f.phonenumber.errors.required" class="registerValidation">Please Enter Phone Number
+                    </div>
                   </div>
                   <div class="login-sec"><i class="fa fa-key" aria-hidden="true"></i>
                     <input type="password" formControlName="password" class="form-control"
                       placeholder="Enter You Choice Password"
-                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                      [ngClass]="{ 'is-invalid': f.password.touched && f.password.invalid && f.password.errors }" />
 
                   </div>
-                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback-error">
-                    <div *ngIf="f.password.errors.required">Please Enter Your Password</div>
+                  <div *ngIf="f.password.touched && f.password.invalid">
+                    <div *ngIf="f.password.errors.required" class="registerValidation">Please Enter Your Password</div>
+                    <div class="registerValidation" *ngIf="f.password.errors?.minlength">Minimum required 6 character.
+                    </div>
+
                   </div>
+                  <!-- <div class="login-sec"><i class="fa fa-key" aria-hidden="true"></i>
+                    <input type="password" formControlName="confirmPassword" class="form-control" 
+                    placeholder="Reenter You Choice Password" [ngClass]="{ 'is-invalid': f.password.touched && f.password.invalid && f.password.errors }" />
+
+                  </div>
+                  <div *ngIf="f.confirmPassword.touched && f.confirmPassword.invalid">
+                    <div *ngIf="f.confirmPassword.errors.required" class="registerValidation">Confirm Password is required</div>
+                    <div *ngIf="f.confirmPassword.errors.mustMatch" class="registerValidation">Passwords must match</div>
+
+                  </div> -->
 
                   <div class="signin-sec margin-top">
-                    <input type="submit" [disabled]="loading" class="form-control connect-btn" name="Register"
-                      value="Register">
+                    <input type="submit" [disabled]="!registerForm.valid" class="form-control connect-btn"
+                      name="Register" value="Register">
                     <input type="button" [disabled]="loading" class="form-control back-btn" name="Back" routerLink="/"
                       value="Back">
                   </div>

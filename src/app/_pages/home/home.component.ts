@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { advertiseService, NetworkService, ConnectionStatus, SharedService } from 'src/app/_service';
 import { Storage } from '@ionic/storage';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { Network } from '@ionic-native/network/ngx';
 
 @Component({
@@ -10,8 +10,9 @@ import { Network } from '@ionic-native/network/ngx';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent  {
+export class HomeComponent {
   myAds: any;
+  notification:any;
   myRecentAdsVisit: any;
   message: string = null;
   file: string = null;
@@ -45,22 +46,27 @@ export class HomeComponent  {
             this.profileImage = '../../../../assets/images/user.png';
           }
 
-         
+
           if (networkStatus) {
             setInterval(() => {
               this.loading = false;
             }, 1000);
             this._advertiseService.getRecentAdsVisit(this.userData.phonenumber)
-            .subscribe(
-              (res: any) => {
-                debugger
-                this.myRecentAdsVisit = res;
-
-              })
+              .subscribe(
+                (res: any) => {
+                  this.myRecentAdsVisit = res;
+                })
             this._advertiseService.getMyAds(this.userData.phonenumber)
               .subscribe(
                 (res: any) => {
+                  debugger
                   this.myAds = res;
+                })
+            this._advertiseService.getNotification(this.userData.id, 'Active')
+              .subscribe(
+                (res: any) => {
+                  console.log(res);
+                  this.notification = res.requestData;
                 })
           }
         }
@@ -70,7 +76,7 @@ export class HomeComponent  {
         }
       })
   }
- 
+
   inviteFriend() {
     this.socialSharing.share("This is test with love of Kanchan", this.subject, this.file, this.link)
       .then((res: any) => {
@@ -80,4 +86,8 @@ export class HomeComponent  {
       })
   }
 
+  notificationFn(){
+    let navigationExtras: NavigationExtras = { state: { userId: this.userData.id } };
+    this.router.navigate(['/pages/profile/notification'], navigationExtras);
+  }
 }

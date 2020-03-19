@@ -15,3 +15,8 @@
     }
   }
   
+  input[disabled] {
+    cursor: default;
+    background: #96d6f1;
+    box-shadow: none;
+}

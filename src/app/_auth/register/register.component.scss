@@ -140,3 +140,15 @@
     }
   }
 }
+.registerValidation {
+  color: #ffc107;
+  padding-left: 15px;
+}
+.input-container {
+  margin-bottom: 0.2rem;
+}
+input[disabled] {
+  cursor: default;
+  background-color: #78a3b4 !important;
+  box-shadow: none;
+}

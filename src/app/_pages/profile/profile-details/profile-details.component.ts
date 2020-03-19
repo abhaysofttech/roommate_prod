@@ -116,7 +116,6 @@ export class ProfileDetailsComponent {
   }
 
   pickImage(sourceType) {
-    debugger;
     const options: CameraOptions = {
       quality: 100,
       sourceType: sourceType,
@@ -224,7 +223,6 @@ export class ProfileDetailsComponent {
   }
 
   uploadImage() {
-    debugger
     // Destination URL
     var url = `${SERVER_URL}/users/${this.userData.id}/profileimages`;
 

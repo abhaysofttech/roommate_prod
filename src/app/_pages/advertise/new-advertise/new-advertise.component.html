@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title class="no-padding">
       <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
-      
+
       <span class="tab-title">{{adsId ? 'Update' : 'New'}} Ads</span>
     </ion-title>
   </ion-toolbar>
@@ -85,25 +85,31 @@
               <div class="input-container radio-option">
                 <label class="input-label">Non-Veg Allow?</label>
                 <ion-radio-group formControlName="vegNonveg">
-                    <ion-radio slot="start" value="Yes" name="Yes"></ion-radio>
-                    <ion-label>Yes</ion-label>
-                    <ion-radio slot="start" value="No" name="No"></ion-radio>
-                    <ion-label>No</ion-label>
+                  <ion-radio slot="start" value="Yes" name="Yes"></ion-radio>
+                  <ion-label>Yes</ion-label>
+                  <ion-radio slot="start" value="No" name="No"></ion-radio>
+                  <ion-label>No</ion-label>
                 </ion-radio-group>
               </div>
               <div class="input-container radio-option">
                 <label class="input-label">Cooking Facility</label>
                 <ion-radio-group formControlName="cooking">
-                    <ion-radio slot="start" value="Yes" name="Yes"></ion-radio>
-                    <ion-label>Yes</ion-label>
-                    <ion-radio slot="start" value="No" name="No"></ion-radio>
-                    <ion-label>No</ion-label>
+                  <ion-radio slot="start" value="Yes" name="Yes"></ion-radio>
+                  <ion-label>Yes</ion-label>
+                  <ion-radio slot="start" value="No" name="No"></ion-radio>
+                  <ion-label>No</ion-label>
                 </ion-radio-group>
               </div>
               <div class="input-container">
                 <label class="input-label">Bathroom(s)</label>
                 <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
                   <input type="number" class="form-control" formControlName="bathroom" placeholder="No. of Bathroom" />
+
+                </div>
+                <div *ngIf="f.bathroom.invalid && (f.bathroom.dirty ||f.bathroom.touched)">
+                  <div class="validation" *ngIf="f.bathroom.errors?.min">Minimum required number is 0.</div>
+                  <div class="validation" *ngIf="f.bathroom.errors?.max">Minimum required number is 5.</div>
+                  <div class="validation" *ngIf="f.bathroom.errors?.required">No. of Bathroom is required</div>
                 </div>
               </div>
               <div class="input-container">
@@ -111,16 +117,26 @@
                 <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
                   <input type="number" class="form-control" formControlName="balcony" placeholder="No. of Balcony" />
                 </div>
+                <div *ngIf="f.balcony.invalid && (f.balcony.dirty ||f.balcony.touched)">
+                  <div class="validation" *ngIf="f.balcony.errors?.min">Minimum required number is 0.</div>
+                  <div class="validation" *ngIf="f.balcony.errors?.max">Minimum required number is 5.</div>
+                  <div class="validation" *ngIf="f.balcony.errors?.required">No. of Balcony is required</div>
+                </div>
               </div>
               <div class="input-container">
                 <label class="input-label">Cupboard(s)</label>
                 <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
                   <input type="number" class="form-control" formControlName="cupboard" placeholder="No. of Cupboard" />
                 </div>
+                <div *ngIf="f.cupboard.invalid && (f.cupboard.dirty ||f.cupboard.touched)">
+                  <div class="validation" *ngIf="f.cupboard.errors?.min">Minimum required number is 0.</div>
+                  <div class="validation" *ngIf="f.cupboard.errors?.max">Minimum required number is 5.</div>
+                  <div class="validation" *ngIf="f.cupboard.errors?.required">No. of Cupboard is required</div>
+                </div>
               </div>
               <!-- <ion-button expand="full" type="submit" shape="round">{{adsId ? 'Update' : 'Save'}} & Continue
               </ion-button> -->
-              <input type="submit" class="full-submit" value="{{adsId ? 'Update' : 'Save'}} & Continue" />
+              <input type="submit" [disabled]="!adpost.valid" class="full-submit" value="{{adsId ? 'Update' : 'Save'}} & Continue" />
 
             </div>
           </div>

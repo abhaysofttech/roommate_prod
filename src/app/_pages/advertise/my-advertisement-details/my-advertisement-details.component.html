@@ -45,7 +45,7 @@
                 <ion-slide *ngFor="let images of Ads.images">
                   <img src='https://aklogical.com/api{{images.path}}'>
                 </ion-slide>
-                <div class="viewPhotos" (click)="viewGallary()"><span>View Photos</span></div>
+                <div class="viewPhotos" *ngIf="Ads?.adsStatus" (click)="viewGallary()"><span>View Photos</span></div>
               </ion-slides>
             </ng-container>
             <div class="adsDetails">

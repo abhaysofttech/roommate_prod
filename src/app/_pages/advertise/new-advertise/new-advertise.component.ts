@@ -34,9 +34,9 @@ export class NewAdvertiseComponent implements OnInit {
       gatedSecurity: ['No', Validators.required],
       cooking: ['No', Validators.required],
       vegNonveg: ['No', Validators.required],
-      bathroom: ['', Validators.required],
-      balcony: ['', Validators.required],
-      cupboard: ['', Validators.required],
+      bathroom: ['', [Validators.required,Validators.min(0),Validators.max(5)]],
+      balcony: ['', [Validators.required,Validators.min(0),Validators.max(5)]],
+      cupboard: ['', [Validators.required,Validators.min(0),Validators.max(5)]],
 
 
     });

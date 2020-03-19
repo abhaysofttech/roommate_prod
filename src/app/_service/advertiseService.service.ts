@@ -32,6 +32,9 @@ export class advertiseService {
   getMyAds(adId) {
         return this.http.get(`${SERVER_URL}/postads/myads/${adId}`);
   }
+  getNotification(userId,requestStatus?) {
+    return this.http.get(`${SERVER_URL}/users/request/${userId}/${requestStatus}`);
+}
   getAdsDetails(adId) {
     return this.http.get(`${SERVER_URL}/postads/${adId}`);
 }

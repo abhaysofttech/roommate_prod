@@ -1,5 +1,3 @@
-
-
 <div class="wrapper">
   <div class="main-panel">
     <div class="main-content">
@@ -17,23 +15,32 @@
                     <img class="rm_header_logo_pannel" src="../../../assets/images/roommate_logo.svg" />
                     <span>Login</span>
                   </div>
-                  <div class="login-sec"><i class="fa fa-mobile" aria-hidden="true"></i>
-                    <input type="number" formControlName="phonenumber" class="form-control" placeholder="Enter Your Mobile Number"
-                      [ngClass]="{ 'is-invalid': submitted && f.phonenumber.errors }" />
-                  </div>
-                  <div *ngIf="submitted && f.phonenumber.errors" class="invalid-feedback-error">
-                    <div *ngIf="f.phonenumber.errors.required">Please Enter Your Register Mobile Number</div>
+                  <div class="input-container">
+                    <div class="login-sec"><i class="fa fa-mobile" aria-hidden="true"></i>
+                      <input type="tel" formControlName="phonenumber" class="form-control"
+                        placeholder="Enter Your Mobile Number" maxlength="10"
+                        [ngClass]="{ 'is-invalid': f.phonenumber.touched && f.phonenumber.invalid && f.phonenumber.errors }" />
+                    </div>
+                  
+                    <div *ngIf="f.phonenumber.invalid && (f.phonenumber.dirty ||f.phonenumber.touched)" >
+                      <div *ngIf="f.phonenumber.errors.required" class="loginValidation">Mobile Number is required.
+                      </div>
+                      <div *ngIf="f.phonenumber.errors.pattern" class="loginValidation">Please, Enter 10 digit Mobile
+                        Number.</div>
+                    </div>
                   </div>
                   <div class="login-sec"><i class="fa fa-key" aria-hidden="true"></i>
-                    <input type="password" formControlName="password" class="form-control"  placeholder="Enter Your Password"
-                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <input type="password" formControlName="password" class="form-control"
+                      placeholder="Enter Your Password" [ngClass]="{ 'is-invalid': f.password.touched && f.password.invalid && f.password.errors }" />
                   </div>
-                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback-error">
-                    <div *ngIf="f.password.errors.required">Please Enter Your Password</div>
+                  <div  *ngIf="f.password.invalid && (f.password.dirty ||f.password.touched)">
+                    <div *ngIf="f.password.errors?.required" class="loginValidation">Please Enter Your Password</div>
+                    <div class="loginValidation" *ngIf="f.password.errors?.minlength">Minimum required 6 character.</div>
                   </div>
 
                   <div class="signin-sec">
-                    <input type="submit"  class="form-control" name="Connect" value="Connect">
+                    <input type="submit" [disabled]="!loginForm.valid" class="form-control connect" name="Connect"
+                      value="Connect">
                   </div>
                   <!-- <div class="col-12">
                     <div class="option-select">
@@ -43,12 +50,13 @@
                   </div> -->
 
                   <div class="signin-sec reg-btn">
-                      <span class="reg-panel"  style="color: #fff;">If new user then click on register button</span>
-                     
-                      <input type="button" [disabled]="loading" class="form-control" routerLink="/register" name="Register" value="Register">
-                    </div>
+                    <span class="reg-panel" style="color: #fff;">If new user then click on register button</span>
 
-                  
+                    <input type="button" [disabled]="loading" class="form-control" routerLink="/register"
+                      name="Register" value="Register">
+                  </div>
+
+
                 </div>
               </div>
             </div>
@@ -58,4 +66,3 @@
     </div>
   </div>
 </div>
-
