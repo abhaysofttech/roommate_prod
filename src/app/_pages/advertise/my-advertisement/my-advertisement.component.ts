@@ -12,6 +12,19 @@ export class MyAdvertisementComponent implements OnInit {
   myAds: any;
   adsId = '';
   userData: any;
+  slideOpts = {
+    initialSlide: 0,
+    speed: 400,
+    pager: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  };
   constructor(
     private _advertiseService: advertiseService,
     private router: Router,

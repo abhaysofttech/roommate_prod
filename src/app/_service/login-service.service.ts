@@ -27,6 +27,18 @@ export class LoginServiceService {
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('roommate', JSON.stringify(user));
+                localStorage.setItem('roommatetoken', JSON.stringify(user.token));
+                this.currentUserSubject.next(user);
+                return user;
+            }));
+    }
+    loginemail(email, password) {
+        return this.http.post<any>(`${SERVER_URL}/users/authenticatebyemail`, { email, password })
+            .pipe(map(user => {
+                debugger
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('roommate', JSON.stringify(user));
+                localStorage.setItem('roommatetoken', JSON.stringify(user.token));
                 this.currentUserSubject.next(user);
                 return user;
             }));
@@ -44,5 +56,11 @@ export class LoginServiceService {
     register(user) {
         // debugger
         return this.http.post(`${SERVER_URL}/users/register`, user);
+    }
+    checkphonenumber(phonenumber){
+        return this.http.get(`${SERVER_URL}/users/phonenumber/${phonenumber}`);
+    }
+    checkemail(email){
+        return this.http.get(`${SERVER_URL}/users/emailcheck/${email}`);
     }
 }

@@ -45,7 +45,7 @@ export class MyAdvertisementDetailsComponent implements OnInit {
     this.router.navigate(['/pages/advertise/imageGallery', this.adsId]);
   }
 
-  async closeAds() {
+  async closeAds(id) {
     debugger
     const alert = await this.alertController.create({
       header: 'Close Advertisement!',

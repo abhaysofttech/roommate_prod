@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent, RegisterComponent } from './_auth';
+import { LoginComponent, RegisterComponent, LoginViaPasswordComponent } from './_auth';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -27,15 +27,18 @@ import { File } from '@ionic-native/file/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { Network } from '@ionic-native/network/ngx';
+import { ActionSheetComponent } from './_auth/action-sheet/action-sheet.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    LoginViaPasswordComponent,
+    RegisterComponent,
+    ActionSheetComponent
     ],
-  entryComponents: [],
+  entryComponents: [ActionSheetComponent],
   imports: [
     SharedModule,
     BrowserModule,

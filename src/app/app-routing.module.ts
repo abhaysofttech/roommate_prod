@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { LoginComponent, RegisterComponent } from './_auth';
+import { LoginComponent, RegisterComponent, LoginViaPasswordComponent } from './_auth';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -8,6 +8,10 @@ const routes: Routes = [
   {
     path: 'login',
     component:LoginComponent
+  },
+  {
+    path: 'loginviapassword',
+    component:LoginViaPasswordComponent
   },
   {
     path: 'register',

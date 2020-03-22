@@ -1,0 +1,23 @@
+<ion-content>
+  <div class="closeModal" (click)="closeModal()">
+    <!-- <span>close</span> -->
+  </div>
+  <form [formGroup]="loginOTPForm" (ngSubmit)="onSubmit()">
+  <div class="row no-margin actionSheet-container">
+    <div class="col-12 no-padding">
+      <h4>Welcome Back, <span class="password">{{userData.username}}</span></h4>
+      <h6>OTP has been sent to your registered mobile number <span class="password">{{phonenumber}}</span></h6>
+      <div class="otp-container"><i class="fa fa-unlock-alt" aria-hidden="true"></i>
+        <input type="tel" formControlName="otp" class="form-control phonenumber" placeholder="Enter OTP*" maxlength="6" />
+      </div>
+      <div class="timeLeft">{{timeLeft}} sec</div>
+      <h6 class="password" (click)="viaPassword()">Login via Password</h6>
+      <input type="button" [disabled]="timeLeft>0" class="form-control resend" (click)="oberserableTimer()" name="resendotp" value="RESEND OTP">
+      <div class="submit-container">
+        <input type="submit" [disabled]="!loginOTPForm.valid" class="form-control connect" name="Connect" value="Conform">
+      </div>
+    </div>
+  </div>
+  </form>
+
+</ion-content>

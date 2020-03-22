@@ -41,6 +41,13 @@
                   <div *ngIf="f.lastname.touched && f.lastname.invalid">
                     <div *ngIf="f.lastname.errors.required" class="registerValidation">Please Enter You LastName</div>
                   </div>
+                  <div class="login-sec"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    <input type="text" formControlName="email" class="form-control" placeholder="Enter Email"
+                      [ngClass]="{ 'is-invalid': f.email.touched && f.email.invalid && f.email.errors }" />
+                  </div>
+                  <div *ngIf="f.email.touched && f.email.invalid">
+                    <div *ngIf="f.email.errors.required" class="registerValidation">Please Enter You Email Id</div>
+                  </div>
 
                   <div class="Gender-sec"><span>Gender</span>
                     <ion-radio-group formControlName="userGender">

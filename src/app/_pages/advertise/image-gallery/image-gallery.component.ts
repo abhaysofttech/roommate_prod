@@ -44,7 +44,7 @@ export class ImageGalleryComponent implements OnInit {
   openModal(imageID) {
     this.modalController.create({
       component: ImagePreviewComponent,
-      cssClass: 'my-custom-modal-css',
+      cssClass: 'action-sheet-modal-css',
       componentProps: { imageID: imageID }
     }).then((modalElement) => {
       modalElement.present();

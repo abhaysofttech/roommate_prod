@@ -7,9 +7,13 @@
 }
 .loginValidation {
   color: #ffc107;
-  padding-left: 15px;
+  font-size: 13px;
+  text-align: center;
+  display: block;
 }
-
+input.form-control {
+  color: #b8176e;
+}
 .wrapper {
   height: 100%;
   .main-panel {
@@ -59,6 +63,7 @@
                 margin: 0 auto;
                 color: #fff;
                 margin-bottom: 10px;
+                font-size: 1.3rem;
               }
               .login-sec {
                 width: 100%;
@@ -112,6 +117,8 @@
                 height: 49px;
                 border: none;
               }
+
+           
               .connect-btn {
                 width: calc(60% - 5px) !important;
                 margin-right: 5px !important;
@@ -143,6 +150,16 @@
     }
   }
 }
+
+.login_img {
+  margin-bottom: 20px;
+}
+.phonenumber{
+  font-size: 0.8rem;
+}
+// .phonenumber::placeholder {
+//   font-size: 13px;
+// }
 .input-container {
   margin-bottom: 0.2rem;
 }
@@ -150,4 +167,29 @@ input[disabled] {
   cursor: default;
   background-color: #78a3b4 !important;
   box-shadow: none;
+}
+a[disabled], button[disabled], html input[disabled] {
+  cursor: default;
+  background: #cbbd92 !important;
+  color: #a89d83 !important;
+}
+.signin-sec{
+  text-align: center;
+  margin-top: 20px;
+  .login-cont{
+    display: inline-block;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 1px 2px 9px #373736;
+    button{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 29px;
+      background: #ffc107;
+      border: 2px solid rgba(255, 255, 255, 0.34);
+      color: #9e7702;
+    }
+  }
 }

@@ -42,7 +42,9 @@ export class RegisterComponent implements OnInit {
     private file: File,
     private filePath: FilePath,
     private transfer: FileTransfer,
-  ) { }
+  ) {
+  
+   }
 
   ngOnInit() {
     this.profileImage = 'assets/imgs/blank-avatar.jpg';
@@ -50,6 +52,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
+      email: ['', Validators.required],
       userGender: ['', Validators.required],
       dob: ['', Validators.required],
       phonenumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
@@ -60,6 +63,15 @@ export class RegisterComponent implements OnInit {
   //     validator: MustMatch('password', 'confirmPassword')
   // }
   );
+  if (this.route.getCurrentNavigation().extras.state.phonenumber) {
+    let phonenumber = this.route.getCurrentNavigation().extras.state.phonenumber;
+    this.registerForm.get('phonenumber').setValue(phonenumber);
+  }
+  if (this.route.getCurrentNavigation().extras.state.email) {
+    let email = this.route.getCurrentNavigation().extras.state.email;
+    this.registerForm.get('email').setValue(email);
+  }
+
   }
 
   // convenience getter for easy access to form fields
