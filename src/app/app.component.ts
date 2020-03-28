@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild} from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, IonRouterOutlet, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { NetworkService, ConnectionStatus, SharedService } from './_service';
-
+import { Router } from '@angular/router';
+// import { Toast } from '@ionic-native/toast/ngx';
 
 @Component({
   selector: 'app-root',
@@ -15,16 +16,22 @@ import { NetworkService, ConnectionStatus, SharedService } from './_service';
 })
 export class AppComponent {
   networkStatus:boolean = true;
+  @ViewChild(IonRouterOutlet, { static: false }) routerOutlet: IonRouterOutlet;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private screenOrientation: ScreenOrientation,
     private network: Network,
+    private router: Router,
     private networkService: NetworkService,
-    private _sharedService: SharedService
+    private _sharedService: SharedService,
+    public alertController: AlertController
+    // private routerOutlet: IonRouterOutlet,
+    // private toast: Toast
   ) {
     this.initializeApp();
+   
   }
 
   initializeApp() {
@@ -70,5 +77,51 @@ export class AppComponent {
 
     
     });
+    this.platform.backButton.subscribeWithPriority(999990, () => {
+      if (this.router.url === '/pages') {
+        // this.platform.exitApp(); 
+         // or if that doesn't work, try for ionic 4
+        //  navigator['app'].exitApp();
+        this.exitApp();
+       } else if (this.routerOutlet && this.routerOutlet.canGoBack()) {
+        this.routerOutlet.pop();
+      }  else {
+        this.router.navigate(['/login'])
+        // this.generic.showAlert("Exit", "Do you want to exit the app?", this.onYesHandler, this.onNoHandler, "backPress");
+        // this.toast.show(
+        //   `Press back again to exit App.`,
+        //   '2000',
+        //   'center')
+        //   .subscribe(toast => {
+        //       // console.log(JSON.stringify(toast));
+        //   });
+      // this.lastTimeBackPress = new Date().getTime();
+      }
+    });
   }
+
+  async exitApp() {
+    const alert = await this.alertController.create({
+      header: 'Exit App',
+      message: 'Do you want to close RoomMate?',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            navigator['app'].exitApp();
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+      ]
+    });
+
+    await alert.present();
+  }
+ 
 }

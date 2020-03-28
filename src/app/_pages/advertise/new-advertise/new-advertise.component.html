@@ -136,7 +136,8 @@
               </div>
               <!-- <ion-button expand="full" type="submit" shape="round">{{adsId ? 'Update' : 'Save'}} & Continue
               </ion-button> -->
-              <input type="submit" [disabled]="!adpost.valid" class="full-submit" value="{{adsId ? 'Update' : 'Save'}} & Continue" />
+              <input type="submit" [disabled]="!adpost.valid" [ngStyle]="Ads?.adsStatus == 'pending' ? {'width':'65%'} : {'width':'100%'}"  class="full-submit" value="{{Ads?.adsStatus == 'pending' ? 'Update' : 'Save'}} & Continue" />
+              <input *ngIf="Ads?.adsStatus == 'pending'" type="button" class="skip" value="Skip" [routerLink]="['/pages/advertise/rent-details', adsId]"/> 
 
             </div>
           </div>

@@ -18,13 +18,12 @@ import { ActionSheetComponent } from '../action-sheet/action-sheet.component';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted: boolean = false;
-  loading = false;
   returnUrl: any;
   router: any;
   // AuthenticationService:any;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   phoneNumber = "^(\+\d{1,3}[- ]?)?\d{10}$";
-
+  public loading: boolean = false;
  
   constructor(
     private formBuilder: FormBuilder, private route: Router,
@@ -66,7 +65,6 @@ export class LoginComponent implements OnInit {
       this.loginServiceService.checkemail(this.f.phonenumber.value)
         .subscribe(
           (res: any) => {
-            console.log(res)
             if (res == 'No record') {
               let navigationExtras: NavigationExtras = { state: { email: this.f.phonenumber.value } };
               this.route.navigate(['/register'], navigationExtras);
@@ -90,7 +88,6 @@ export class LoginComponent implements OnInit {
       this.loginServiceService.checkphonenumber(this.f.phonenumber.value)
         .subscribe(
           (res: any) => {
-            console.log(res)
             if (res == 'No record') {
               let navigationExtras: NavigationExtras = { state: { phonenumber: this.f.phonenumber.value } };
               this.route.navigate(['/register'], navigationExtras);

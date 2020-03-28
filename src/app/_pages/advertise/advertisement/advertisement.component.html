@@ -69,14 +69,14 @@
               <div class="row">
                 <div class="col-2 no-padding">Owner Contact</div>
                 <div class="col-7 adsContact" [ngClass]="{'blur': ads.visitedContact == false}">
-                  <img src="../../../../assets/images/telephone.svg" /><span>9960732614</span>
+                  <img src="../../../../assets/images/telephone.svg" /><span>{{ads.phonenumber}}</span>
                 </div>
                 <div class="col-3 no-padding" *ngIf="!ads.visitedContact">
                   <span class="viewContact" (click)="viewContact(ads)">
                     View
                   </span>
                 </div>
-                <div class="col-3 no-padding" *ngIf="ads.visitedContact" (click)="callJoint('7798567452')">
+                <div class="col-3 no-padding" *ngIf="ads.visitedContact" (click)="callJoint(ads.phonenumber)">
                   <span class="callNow">
                     Call Now
                   </span>

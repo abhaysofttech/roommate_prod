@@ -176,6 +176,7 @@ export class SearchComponent implements OnInit {
   }
 
   findAds() {
+    debugger
     this.loading = true //. loading
     let gender = this.genderType.filter(function (item) { return item.isChecked == true });
     if (gender[0].val === 'Any') {
@@ -206,6 +207,7 @@ export class SearchComponent implements OnInit {
     this._advertiseService.searchAds(options)
       .subscribe(
         res => {
+          console.log(res);
           //  this.nav.navigateForward(['ads', JSON.stringify(res)]);
           let navigationExtras: NavigationExtras = { state: { id: res } };
           this.router.navigate(['/pages/advertise/advertisement'], navigationExtras);

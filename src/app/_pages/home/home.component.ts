@@ -59,13 +59,11 @@ export class HomeComponent {
             this._advertiseService.getMyAds(this.userData.phonenumber)
               .subscribe(
                 (res: any) => {
-                  debugger
                   this.myAds = res;
                 })
             this._advertiseService.getNotification(this.userData.id, 'Active')
               .subscribe(
                 (res: any) => {
-                  console.log(res);
                   this.notification = res.requestData;
                 })
           }

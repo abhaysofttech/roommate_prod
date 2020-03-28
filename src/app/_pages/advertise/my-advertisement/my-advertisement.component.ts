@@ -48,6 +48,7 @@ export class MyAdvertisementComponent implements OnInit {
     }, 2000);
   }
   ngOnInit() {
+    debugger
     this._sharedService.getUserData.subscribe(
       (userData: any) => {
         this.userData = userData;

@@ -1,4 +1,4 @@
-<app-loading-spinner *ngIf="loading" >  </app-loading-spinner>
+<app-loading-spinner *ngIf="loading"> </app-loading-spinner>
 
 <div class="row no-margin land full-height">
     <div class="col-12 no-padding">
@@ -41,9 +41,9 @@
             </div> -->
 
             <ng-container *ngIf="myRecentAdsVisit?.length > 0">
-                <div class="col-12 postVisited" >
-                <h6 class="postTitle">Recent Visited Ads</h6>
-                <div class="row">
+                <div class="col-12 postVisited">
+                    <h6 class="postTitle">Recent Visited Ads</h6>
+                    <div class="row">
                         <div class="visitorContainer col-3"
                             *ngFor="let ads of myRecentAdsVisit | slice:0:7 | orderBy:'-recentVisitDate'"
                             [routerLink]="['/pages/advertise/myadvertisementDetails', ads.adsid]">
@@ -60,25 +60,27 @@
 
                         </div>
 
+                    </div>
                 </div>
-            </div>
-        </ng-container>
-        <ng-container  *ngIf="myAds?.length > 0">
+            </ng-container>
+            <ng-container *ngIf="myAds?.length > 0">
 
-            <div class="col-12 postVisited">
-                <h6 class="postTitle">Your Recent Posts</h6>
-                <div class="row">
+                <div class="col-12 postVisited">
+                    <h6 class="postTitle">Your Recent Posts</h6>
+                    <div class="row">
                         <div class="visitorContainer col-3" *ngFor="let ads of myAds | slice:0:7 | orderBy:'-postdate'"
                             [routerLink]="['/pages/advertise/myadvertisementDetails', ads.id]">
-                           <ng-container *ngIf="ads.images.length > 0">
-                            <div class="postImages" [ngStyle]="{'background-image': 'url(https://aklogical.com/api/'+ads.images[0].path+')'}">
-                            </div>
-                           </ng-container>
-                           <ng-container *ngIf="ads.images.length == 0">
-                            <div class="postImages" [ngStyle]="{'background-image': 'url(../../../assets/images/image-not-available.jpg)'}">
-                            </div>
-                           </ng-container>
-                           
+                            <ng-container *ngIf="ads.images.length > 0">
+                                <div class="postImages"
+                                    [ngStyle]="{'background-image': 'url(https://aklogical.com/api/'+ads.images[0].path+')'}">
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="ads.images.length == 0">
+                                <div class="postImages"
+                                    [ngStyle]="{'background-image': 'url(../../../assets/images/image-not-available.jpg)'}">
+                                </div>
+                            </ng-container>
+
                             <div class="postDate"><span>{{ads.postdate | date: 'dd-MMM-yyyy'}}</span></div>
                             <span class="adsVisits" *ngIf="ads.adsvisits.length">{{ads.adsvisits.length}}</span>
                         </div>
@@ -90,11 +92,11 @@
 
                         </div>
 
+                    </div>
                 </div>
-            </div>
-        </ng-container>
+            </ng-container>
 
-            <div class="col-12 container-padding referal-container">
+            <!-- <div class="col-12 container-padding referal-container">
                 <div class="row no-margin details">
                     <div class="col-2 no-padding">
                         <i class="fa fa-gift referIcon"></i>
@@ -111,17 +113,18 @@
                     </div>
 
                 </div>
-            </div>
-         
+            </div> -->
+
         </div>
-      
+
         <div class="action-button">
-            <button class="advertiseBtn" routerLink="/pages/advertise/myadvertisement" routerDirection="root" [disabled]="!networkStatus"><i
-                    class="fa fa-telegram" aria-hidden="true" ></i><span>My Post</span></button>
-            <button class="new-advertise" routerLink="/pages/advertise/search" routerDirection="root" [disabled]="!networkStatus"><i
-                    class="fa fa-search"></i><span>Search Room</span></button>
-            <button class="advertiseBtn" routerLink="/pages/advertise/newAds" routerDirection="root" [disabled]="!networkStatus"><i class="fa fa-plus"
-                    aria-hidden="true"></i><span>New Post</span></button>
+            <button class="advertiseBtn" routerLink="/pages/advertise/myadvertisement" routerDirection="root"
+                [disabled]="!networkStatus"><i class="fa fa-telegram" aria-hidden="true"></i><span>My
+                    Post</span></button>
+            <button class="new-advertise" routerLink="/pages/advertise/search" routerDirection="root"
+                [disabled]="!networkStatus"><i class="fa fa-search"></i><span>Search Room</span></button>
+            <button class="advertiseBtn" routerLink="/pages/advertise/newAds" routerDirection="root"
+                [disabled]="!networkStatus"><i class="fa fa-plus" aria-hidden="true"></i><span>New Post</span></button>
         </div>
     </div>
 </div>

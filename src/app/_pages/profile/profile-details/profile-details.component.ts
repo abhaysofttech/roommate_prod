@@ -8,6 +8,7 @@ import { File } from '@ionic-native/file/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { SERVER_URL } from 'src/environments/environment';
+import { LoginServiceService } from 'src/app/_service';
 @Component({
   selector: 'app-profile-details',
   templateUrl: './profile-details.component.html',
@@ -36,11 +37,18 @@ export class ProfileDetailsComponent {
     private file: File,
     private filePath: FilePath,
     private transfer: FileTransfer,
+    private loginServiceService: LoginServiceService,
   ) {
-    route.params.subscribe(val => {
+  
+  this.init();
+  }
+
+  init(){
+      this.route.params.subscribe(val => {
       if (localStorage.getItem('roommate') != null) {
 
-        this.userData = JSON.parse(localStorage.getItem('roommate'))
+        this.userData = JSON.parse(localStorage.getItem('roommate'));
+      
         if (this.userData.profileimages.length > 0) {
           this.profileImage = 'https://aklogical.com/api/profileImage/' + this.userData.id + this.userData.profileimages[0].mimeType;
         }
@@ -50,7 +58,6 @@ export class ProfileDetailsComponent {
       }
       else {
         this.router.navigate(['/login'])
-
       }
     })
   }
@@ -239,12 +246,24 @@ export class ProfileDetailsComponent {
       fileName: filename,
       chunkedMode: false,
       // mimeType: "multipart/form-data",
+      headers: {
+        Accept : 'application/json',
+        Authorization: `Bearer ${this.loginServiceService.getToken()}`
+    }
     };
 
     const fileTransfer: FileTransferObject = this.transfer.create();
 
     fileTransfer.upload(targetPath, url, options, true).then(data => {
       // this.loading.dismissAll()
+      this.loginServiceService.syncLocalDB(this.userData.id)
+      .subscribe(
+        (res: any) => {
+          localStorage.removeItem('roommate');
+          localStorage.setItem('roommate', JSON.stringify(res));
+          this.init()
+
+        })
       this.presentToast('Image succesful uploaded.');
     }, err => {
       // this.loading.dismissAll()

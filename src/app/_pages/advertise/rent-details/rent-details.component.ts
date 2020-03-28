@@ -29,7 +29,26 @@ export class RentDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public alertController: AlertController
-  ) { }
+  ) {
+    this.route.params.subscribe(params => {
+      this.adsId = params.id;
+      if (this.adsId) {
+        debugger
+        this._advertiseService.getAdsDetails(this.adsId)
+          .subscribe(
+            (res: any) => {
+              this.adsDetails = res;
+              if (res.city === '') {
+                // this.router.navigate(['/pages/advertise/address', this.adsId]);
+  
+              }
+              this.setFormControlValues(res);
+            })
+  
+      }
+    });
+   
+   }
 
   ngOnInit() {
     this.adrent = this.formBuilder.group({
@@ -49,20 +68,7 @@ export class RentDetailsComponent implements OnInit {
 
 
     });
-    this.route.params.subscribe(params => this.adsId = params.id);
-    if (this.adsId) {
-      this._advertiseService.getAdsDetails(this.adsId)
-        .subscribe(
-          (res: any) => {
-            this.adsDetails = res;
-            if (res.city === '') {
-              // this.router.navigate(['/pages/advertise/address', this.adsId]);
-
-            }
-            this.setFormControlValues(res);
-          })
-
-    }
+  
 
   }
   get f() {

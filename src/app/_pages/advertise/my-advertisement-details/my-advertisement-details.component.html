@@ -3,13 +3,13 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/pages"></ion-back-button>
     </ion-buttons>
-    <ion-buttons slot="end" *ngIf="Ads?.adsStatus">
+    <ion-buttons slot="end" *ngIf="Ads?.adsStatus != 'closed'">
       <ion-button class="actButton closeButton" shape="round" (click)="closeAds(adsId)">Close</ion-button>
     </ion-buttons>
-    <ion-buttons slot="end" *ngIf="Ads?.adsStatus">
+    <ion-buttons slot="end" *ngIf="Ads?.adsStatus != 'closed'">
       <ion-button class="actButton" shape="round" [routerLink]="['/pages/advertise/newAds', adsId]">Edit</ion-button>
     </ion-buttons>
-    <ion-buttons slot="end" *ngIf="!Ads?.adsStatus">
+    <ion-buttons slot="end" *ngIf="Ads?.adsStatus == 'closed'">
       <ion-button class="actButton closeButton" shape="round">Ads Closed</ion-button>
     </ion-buttons>
     <ion-title class="no-padding">
@@ -26,26 +26,26 @@
         <div class="card" *ngIf="Ads">
           <div class="card-body no-padding">
 
-         
+
             <div class="photosCount" *ngIf="Ads.images.length == 0"><span><i
                   class="fa fa-camera"></i>{{Ads.images.length}}</span></div>
 
             <ng-container *ngIf="Ads.images.length == 0">
-              <ion-slides pager="true" [options]="slideOpts" (click)="Ads?.adsStatus?viewGallary():''">
+              <ion-slides pager="true" [options]="slideOpts" (click)="Ads?.adsStatus != 'closed'?viewGallary():''">
                 <ion-slide>
                   <img src="../../../../assets/images/image-not-available.jpg">
                 </ion-slide>
 
               </ion-slides>
-              <div class="addImages" (click)="viewGallary()"><span>Add Images</span></div>
+              <div class="addImages" *ngIf="Ads?.adsStatus != 'closed'" (click)="Ads?.adsStatus != 'closed'?viewGallary():''"><span>Add Images</span></div>
             </ng-container>
 
             <ng-container *ngIf="Ads.images.length > 0">
-              <ion-slides pager="true" [options]="slideOpts" (click)="Ads?.adsStatus?viewGallary():''">
+              <ion-slides pager="true" [options]="slideOpts" (click)="Ads?.adsStatus != 'closed'?viewGallary():''">
                 <ion-slide *ngFor="let images of Ads.images">
                   <img src='https://aklogical.com/api{{images.path}}'>
                 </ion-slide>
-                <div class="viewPhotos" *ngIf="Ads?.adsStatus" (click)="viewGallary()"><span>View Photos</span></div>
+                <div class="viewPhotos" *ngIf="Ads?.adsStatus != 'closed'" (click)="viewGallary()"><span>View Photos</span></div>
               </ion-slides>
             </ng-container>
             <div class="adsDetails">
@@ -120,7 +120,7 @@
                     <span>Gated Socity</span>
                   </div>
                   <div class="col-4 amenities-list" *ngIf="Ads.airConditioner">
-                    <span><img src="../../../../assets/icon/intercom.svg"></span>
+                    <span><img src="../../../../assets/icon/ac.svg"></span>
                     <span>AC</span>
                   </div>
                   <div class="col-4 amenities-list" *ngIf="Ads.liftService">

@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <!-- <ion-buttons slot="start">
       <ion-back-button defaultHref="/pages"></ion-back-button>
-    </ion-buttons>
-    <ion-title class="no-padding">
+    </ion-buttons> -->
+    <ion-title>
       <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
     </ion-title>
     <!-- <ion-title>{{adsId ? 'Update' : 'Add'}} Amenities</ion-title> -->
@@ -25,7 +25,8 @@
                   <ion-checkbox slot="end" mode="ios" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}"></ion-checkbox>
                 </ion-item>
               </div>
-              <input type="submit" class="full-submit" value="{{adsId ? 'Update' : 'Save'}} & Continue" />
+              <input type="submit" class="full-submit" [ngStyle]="adsDetails?.adsStatus == 'pending' && adsId ? {'width':'65%'} : {'width':'100%'}" value="{{adsDetails?.adsStatus == 'pending' && adsId ? 'Update' : 'Save'}} & Continue" />
+              <input *ngIf="adsDetails?.adsStatus == 'pending' && adsId" type="button" class="skip" value="Skip" [routerLink]="['/pages/advertise/amenities', adsId]"/>
             </div>
           </div>
           </form>

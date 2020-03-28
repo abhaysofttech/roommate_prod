@@ -16,6 +16,7 @@ export class NewAdvertiseComponent implements OnInit {
   adsArray: Array<string> = [];
   adsId = '';
   Ads: any;
+  userData: any;
   constructor(
     private formBuilder: FormBuilder,
     private _advertiseService: advertiseService,
@@ -34,15 +35,16 @@ export class NewAdvertiseComponent implements OnInit {
       gatedSecurity: ['No', Validators.required],
       cooking: ['No', Validators.required],
       vegNonveg: ['No', Validators.required],
-      bathroom: ['', [Validators.required,Validators.min(0),Validators.max(5)]],
-      balcony: ['', [Validators.required,Validators.min(0),Validators.max(5)]],
-      cupboard: ['', [Validators.required,Validators.min(0),Validators.max(5)]],
+      bathroom: ['', [Validators.required, Validators.min(0), Validators.max(5)]],
+      balcony: ['', [Validators.required, Validators.min(0), Validators.max(5)]],
+      cupboard: ['', [Validators.required, Validators.min(0), Validators.max(5)]],
 
 
     });
 
     this.route.params.subscribe(params => this.adsId = params.id);
     if (this.adsId) {
+      debugger
       this._advertiseService.getAdsDetails(this.adsId)
         .subscribe(
           res => {
@@ -59,6 +61,7 @@ export class NewAdvertiseComponent implements OnInit {
     return this.adpost.controls;
   }
   onSubmit() {
+    debugger
     this.adsArray = [];
     this.submitted = true;
 
@@ -66,59 +69,50 @@ export class NewAdvertiseComponent implements OnInit {
     if (this.adpost.invalid) {
       return;
     }
-    this.storage.get('phonenumber').then((phonenumber) => {
-      this.storage.get('username').then((username) => {
-        this.storage.get('dob').then((dob) => {
-          this.storage.get('userGender').then((userGender) => {
-          this.adpost.value.phonenumber = phonenumber;
-          this.adpost.value.username = username;
-          this.adpost.value.dob = dob;
-          this.adpost.value.userGender = userGender;
-          if (!this.Ads) {
-            this._advertiseService.postAds(this.adpost.value)
-              .subscribe(
-                data => {
-                  this.storage.get('myads').then((adsDetails) => {
-                    if (adsDetails) {
-                      this.adsArray = adsDetails.split(',')
-                    }
-                    //   adsDetails?{ this.adsArray.push(JSON.parse(adsDetails))}:'';
-                    this.adsArray.push(data.toString());
-                    this.storage.set('myads', this.adsArray.toString());
-                    this.router.navigate(['/pages/advertise/rent-details', data]);
-                  })
+    this.userData = JSON.parse(localStorage.getItem('roommate'));
+    if (this.userData) {
+      this.adpost.value.phonenumber = this.userData.phonenumber;
+      this.adpost.value.username = this.userData.firstname + " " + this.userData.lastname;
+      this.adpost.value.userid = this.userData.id;
+      this.adpost.value.dob = this.userData.dob;
+      this.adpost.value.userGender = this.userData.userGender;
+      if (!this.Ads) {
+        this._advertiseService.postAds(this.adpost.value)
+          .subscribe(
+            data => {
+              this.router.navigate(['/pages/advertise/rent-details', data]);
+              // this.storage.get('myads').then((adsDetails) => {
+              //   if (adsDetails) {
+              //     this.adsArray = adsDetails.split(',')
+              //   }
+              //   //   adsDetails?{ this.adsArray.push(JSON.parse(adsDetails))}:'';
+              //   this.adsArray.push(data.toString());
+              //   this.storage.set('myads', this.adsArray.toString());
+              //   this.router.navigate(['/pages/advertise/rent-details', data]);
+              // })
+            }
+          )
+      }
+      else {
+        this._advertiseService.updateRent(this.adsId, this.adpost.value)
+          .subscribe(
+            data => {
+              this.storage.get('myads').then((adsDetails) => {
+                if (adsDetails) {
+                  this.adsArray = adsDetails.split(',')
                 }
-              )
-          }
-          else {
+                //   adsDetails?{ this.adsArray.push(JSON.parse(adsDetails))}:'';
+                this.adsArray.push(data.toString());
 
-            this._advertiseService.updateRent(this.adsId, this.adpost.value)
-              .subscribe(
-                data => {
-                  this.storage.get('myads').then((adsDetails) => {
-                    if (adsDetails) {
-                      this.adsArray = adsDetails.split(',')
-                    }
-                    //   adsDetails?{ this.adsArray.push(JSON.parse(adsDetails))}:'';
-                    this.adsArray.push(data.toString());
+                this.storage.set('myads', this.adsArray.toString());
+                // this.router.navigate(['/rent-details/${this.adsId}', data]);
+                this.router.navigate(['/pages/advertise/rent-details', this.adsId, data]);
 
-                    this.storage.set('myads', this.adsArray.toString());
-                    // this.router.navigate(['/rent-details/${this.adsId}', data]);
-                    this.router.navigate(['/pages/advertise/rent-details', this.adsId, data]);
-
-                  })
-                }
-              )
-          }
-
-        });
-      });
-      });
-
-    });
-
-
-
+              })
+            }
+          )
+      }
+    }
   }
 
   setFormControlValues(adsData: any) {

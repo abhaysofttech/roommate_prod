@@ -4,7 +4,7 @@ import { ActionSheetController, ModalController, Platform, ToastController } fro
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Crop } from '@ionic-native/crop/ngx';
 import { ImagePreviewComponent } from '../image-preview/image-preview.component';
-import { advertiseService } from 'src/app/_service';
+import { advertiseService, LoginServiceService } from 'src/app/_service';
 import { ActivatedRoute } from '@angular/router';
 import { File } from '@ionic-native/file/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
@@ -34,6 +34,7 @@ export class ImageGalleryComponent implements OnInit {
     private file: File,
     private filePath: FilePath,
     private transfer: FileTransfer,
+    private loginServiceService: LoginServiceService,
 
   ) { }
   ngOnInit() {
@@ -225,6 +226,10 @@ export class ImageGalleryComponent implements OnInit {
       fileName: filename,
       chunkedMode: false,
       // mimeType: "multipart/form-data",
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${this.loginServiceService.getToken()}`
+      }
     };
 
     const fileTransfer: FileTransferObject = this.transfer.create();
@@ -233,6 +238,7 @@ export class ImageGalleryComponent implements OnInit {
       // this.loading.dismissAll()
       this.getImagesGallary();
       this.presentToast('Image succesful uploaded.');
+      this.image = '';
     }, err => {
       // this.loading.dismissAll()
       this.presentToast('Error while uploading file.');

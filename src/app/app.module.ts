@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent, RegisterComponent, LoginViaPasswordComponent } from './_auth';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
@@ -28,6 +28,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { ActionSheetComponent } from './_auth/action-sheet/action-sheet.component';
+import { TokenInterceptor } from './_helpers';
 
 
 @NgModule({
@@ -67,7 +68,12 @@ import { ActionSheetComponent } from './_auth/action-sheet/action-sheet.componen
     Crop,
     CallNumber,
     Network,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

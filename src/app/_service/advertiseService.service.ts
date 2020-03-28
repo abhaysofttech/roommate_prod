@@ -46,11 +46,11 @@ export class advertiseService {
         return this.http.put(`${SERVER_URL}/postads/updaterents/${id}`, rents);
 
   }
-  updateAmenities(id: string, amenities: any) {
-        return this.http.put(`${SERVER_URL}/postads/updateamenities/${id}`, amenities);
+  updateAmenities(id: string, amenities: any, adsStatus: any) {
+        return this.http.put(`${SERVER_URL}/postads/updateamenities/${id}`, {adsStatus: adsStatus,amenities:amenities});
 
   }
-  updateAds(id: string, status: boolean) {
+  updateAds(id: string, status: string) {
         return this.http.put(`${SERVER_URL}/postads/updateads/${id}`, {adsStatus: status});
 
   }

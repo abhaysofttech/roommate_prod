@@ -54,7 +54,7 @@ export class MyAdvertisementDetailsComponent implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this._advertiseService.updateAds(this.Ads.id, false)
+            this._advertiseService.updateAds(this.Ads.id, 'closed')
             //  .pipe(first())
             .subscribe(
               data => {

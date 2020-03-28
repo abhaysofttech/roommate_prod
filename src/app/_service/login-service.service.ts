@@ -21,13 +21,18 @@ export class LoginServiceService {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('roommate')));
         return this.currentUserSubject.value;
     }
-
+    syncLocalDB(userID){
+        return this.http.get(`${SERVER_URL}/users/syncUser/${userID}`);
+    }
+    getToken(): string {
+        return localStorage.getItem('roommatetoken');
+    }
     login(phonenumber, password) {
         return this.http.post<any>(`${SERVER_URL}/users/authenticate`, { phonenumber, password })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('roommate', JSON.stringify(user));
-                localStorage.setItem('roommatetoken', JSON.stringify(user.token));
+                localStorage.setItem('roommate', JSON.stringify(user[0]));
+                localStorage.setItem('roommatetoken', user[1].token);
                 this.currentUserSubject.next(user);
                 return user;
             }));
@@ -35,10 +40,8 @@ export class LoginServiceService {
     loginemail(email, password) {
         return this.http.post<any>(`${SERVER_URL}/users/authenticatebyemail`, { email, password })
             .pipe(map(user => {
-                debugger
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('roommate', JSON.stringify(user));
-                localStorage.setItem('roommatetoken', JSON.stringify(user.token));
+                localStorage.setItem('roommate', JSON.stringify(user[0]));
+                localStorage.setItem('roommatetoken', user[1].token);
                 this.currentUserSubject.next(user);
                 return user;
             }));
@@ -47,6 +50,7 @@ export class LoginServiceService {
     logout() {
         // remove user from local storage and set current user to null
         localStorage.removeItem('roommate');
+        localStorage.removeItem('roommatetoken');
         this.currentUserSubject.next(null);
     }
 
@@ -57,10 +61,10 @@ export class LoginServiceService {
         // debugger
         return this.http.post(`${SERVER_URL}/users/register`, user);
     }
-    checkphonenumber(phonenumber){
+    checkphonenumber(phonenumber) {
         return this.http.get(`${SERVER_URL}/users/phonenumber/${phonenumber}`);
     }
-    checkemail(email){
+    checkemail(email) {
         return this.http.get(`${SERVER_URL}/users/emailcheck/${email}`);
     }
 }

@@ -5,8 +5,8 @@
 export const environment = {
   production: false
 };
-// export const SERVER_URL = 'https://aklogical.com/api';
-export const SERVER_URL = 'http://localhost:4000';
+export const SERVER_URL = 'https://aklogical.com/api';
+// export const SERVER_URL = 'http://localhost:4000';
 // export const SERVER_URL = 'http://139.59.22.86:4000';
 
 /*

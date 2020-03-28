@@ -15,7 +15,7 @@ export class AmenitiesDetailsComponent implements OnInit {
   loading = false;
   submitted = false;
   adsId = '';
-
+  adsDetails: any;
   public form = [
     { val: 'Air-Conditioner', id: 'airConditioner', isChecked: false },
     { val: 'Club', id: 'club', isChecked: false },
@@ -54,9 +54,12 @@ export class AmenitiesDetailsComponent implements OnInit {
     // });
     this.route.params.subscribe(params => this.adsId = params.id);
     if (this.adsId) {
+    debugger
+
       this._advertiseService.getAdsDetails(this.adsId)
         .subscribe(
           res => {
+            this.adsDetails = res;
             this.setFormControlValues(res);
           })
 
@@ -78,17 +81,39 @@ export class AmenitiesDetailsComponent implements OnInit {
 
     await alert.present();
   }
+
+  async updatedsuccessAds() {
+    const alert = await this.alertController.create({
+      header: 'Updated Success !',
+      message: 'Your Advertise update successfully',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.router.navigate(['/pages']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
   onSubmit() {
     this.submitted = true;
 
     // if (this.amenitiesDetail.invalid) {
     //   return;
     // }
-    this._advertiseService.updateAmenities(this.adsId, this.form)
+    this._advertiseService.updateAmenities(this.adsId, this.form, 'pending')
       //  .pipe(first())
       .subscribe(
         data => {
-          this.successAds()
+          if(this.adsDetails.adsStatus == 'pending'){
+            this.updatedsuccessAds()
+          }
+          else{
+            this.successAds()
+          }
         },
         error => {
           //  this.alertService.error(error);
