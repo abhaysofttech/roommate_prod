@@ -1,7 +1,7 @@
 .land{
     background-image: url('../../../assets/images/back.png');
-    background-position: top;
-    background-size: contain;
+    background-position: 64% 100%;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 .logo-container{
@@ -42,9 +42,9 @@
 }
 .choice-container {
     border-radius: 15px 15px 0 0;
-    box-shadow: 0px -6px 8px #929292;
-    background: #fff;
-    padding: 20px 5px;
+    // box-shadow: 0px -6px 8px #929292;
+    background: linear-gradient(90deg, #dc3545, #a11783);
+    padding: 5px 5px;
     position: absolute;
     width: 100%;
     bottom: 0;
@@ -70,29 +70,34 @@
     padding: 10px;
     border-radius: 50px;
     text-align: center;
-    background: #01b3ff;
+    background: #dc3545;
     color: #fff;
     font-size: 18px;
-    // box-shadow: 0px 0px 10px #0aa7ea;
     margin: 0 7px;
+    border: 2px solid #fff;
     i{
         padding-right: 5px;
     }
 
 }
 button:disabled{
-    background: #6bd0fb !important;
+    background: #e97681 !important;
     box-shadow: none;
+    border: 2px solid rgba(255, 255, 255, 0.37);
+}
+.advertiseBtn:disabled{
+    background: rgba(255, 193, 7, 0.6705882352941176) !important;
+    box-shadow: none;
+    border: 2px solid rgba(255, 255, 255, 0.37);
 }
 .advertiseBtn{
     width: auto;
     padding: 6px;
     border-radius: 50px;
     text-align: center;
-    background: #01b3ff;
-    color: #fff;
+    background: #ffc107;
+    color: #343a40;
     font-size: 15px;
-    // box-shadow: 0px 0px 10px #0aa7ea;
     display: inline-block;
     i{
         padding-right: 5px;
@@ -131,6 +136,7 @@ button:disabled{
     align-items: center;
     vertical-align: middle;
     display: inline-flex;
+    border: 1px solid #fff;
 }
 .profileContainer {
     position: absolute;
@@ -154,7 +160,8 @@ button:disabled{
 }
 }
 .postDate{
- font-size: 10px;
+    font-size: 10px;
+    color: #fff;
 }
 
 .moreActivity{
@@ -189,9 +196,10 @@ button:disabled{
 }
 
 .postTitle{
-    background: #0aa7ea;
-    color: #fff;
+    background: #f8f9fa;
+    color: #0aa7ea;
     padding: 4px 12px;
     font-size: 13px;
     display: inline-block;
+    border-radius: 0 50px 50px 0;
 }
