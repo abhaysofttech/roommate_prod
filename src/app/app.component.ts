@@ -8,7 +8,7 @@ import { Network } from '@ionic-native/network/ngx';
 import { NetworkService, ConnectionStatus, SharedService } from './_service';
 import { Router } from '@angular/router';
 // import { Toast } from '@ionic-native/toast/ngx';
-
+import { Meta, Title } from "@angular/platform-browser";
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -26,12 +26,18 @@ export class AppComponent {
     private router: Router,
     private networkService: NetworkService,
     private _sharedService: SharedService,
-    public alertController: AlertController
+    public alertController: AlertController,
     // private routerOutlet: IonRouterOutlet,
     // private toast: Toast
+    private meta: Meta,
   ) {
     this.initializeApp();
-   
+    meta.addTags([
+      { name: 'author',   content: 'com.roommatedekho.app'},
+      { name: 'keywords', content: 'flats for rent, Apartments for rent, flats for sale, apartments for sale, Properties for rent, without broker, no brokerage, broker free rental properties, flat, apartment, rent, rental, roommatedekho.com, Room Mate, RoomMate, roommate, roommatedekho'},
+      { name: 'description', content: 'Lookup for Residential properties & RoomMate for rent/buy/sell in India. ✓0% Brokerage,✓100% Genuine Owners. Indias Top Real Estate Portal Without Brokers & Complete Free' }
+    ]);
+
   }
 
   initializeApp() {
@@ -75,7 +81,8 @@ export class AppComponent {
      
       }
 
-    
+  
+
     });
     this.platform.backButton.subscribeWithPriority(999990, () => {
       if (this.router.url === '/pages') {

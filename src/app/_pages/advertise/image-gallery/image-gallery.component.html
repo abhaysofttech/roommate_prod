@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/pages"></ion-back-button>
+      <ion-back-button defaultHref='/pages/advertise/imageUpload/{{adsId}}'></ion-back-button>
     </ion-buttons>
-    <ion-title class="no-padding">
+    <ion-title >
       <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
       <span class="tab-title">Gallery</span>
     </ion-title>
@@ -17,8 +17,11 @@
         <h4>New Image</h4>
         <!-- <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null"> -->
         <img src="{{image}}" style="width: 100%" [hidden]="lastImage === null">
+        
+        <input type="text" class="form-control imageTitle" placeholder="Write a Image Title" #imageTitle >
+
         <div class="newImageAction">
-          <ion-button (click)="uploadImage()">Upload</ion-button>
+          <ion-button (click)="uploadImage(imageTitle)">Upload</ion-button>
           <ion-button (click)="cancelUpload()">Cancel</ion-button>
         </div>
       </div>
@@ -33,8 +36,8 @@
 
         <img [src]="croppedImagepath" (click)="selectImage()"> -->
         <div class="row no-margin ">
-        <div class="col-12 noImages" *ngIf="!gallaryImages?.length">
-          <span>No Images for this Advertise <br> Please Add Images</span>
+        <div class="col-12 noImages" *ngIf="!gallaryImages?.length" (click)="selectImage()">
+          <span>No Images for this Advertise <br> Please Add Images <br/><span class="addNewImage">Click Here to Add Images</span></span>
        
         </div>
           <div class="col-6 image-padding" *ngFor="let images of gallaryImages" (click)="openModal(gallaryImages)">

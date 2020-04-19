@@ -10,7 +10,6 @@ export class LocationBackDirective {
 
   @HostListener('click', ['$event'])
   clickEvent(event) {
-    debugger
     event.preventDefault();
     event.stopPropagation();
     this.location.back();

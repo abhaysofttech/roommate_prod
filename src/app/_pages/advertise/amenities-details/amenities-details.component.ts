@@ -29,6 +29,8 @@ export class AmenitiesDetailsComponent implements OnInit {
     { val: 'Car Parking', id: 'carParking', isChecked: false },
     { val: 'Two-Wheeler Parking', id: 'twoWheelerParking', isChecked: false },
     { val: 'Swimming Pool', id: 'swimmingPool', isChecked: false },
+    { val: 'InterCom', id: 'interCom', isChecked: false },
+    { val: 'Gated socity', id: 'gatedsocity', isChecked: false },
     { val: 'Internet Connectivity', id: 'internetConnectivity', isChecked: false },
   ];
   constructor(
@@ -54,8 +56,6 @@ export class AmenitiesDetailsComponent implements OnInit {
     // });
     this.route.params.subscribe(params => this.adsId = params.id);
     if (this.adsId) {
-    debugger
-
       this._advertiseService.getAdsDetails(this.adsId)
         .subscribe(
           res => {
@@ -112,7 +112,8 @@ export class AmenitiesDetailsComponent implements OnInit {
             this.updatedsuccessAds()
           }
           else{
-            this.successAds()
+            // this.successAds()
+            this.router.navigate(['/pages/advertise/imageUpload', this.adsId]);
           }
         },
         error => {
@@ -137,6 +138,8 @@ export class AmenitiesDetailsComponent implements OnInit {
     { val: 'Car Parking', id: 'carParking', isChecked: adsData.carParking },
     { val: 'Two-Wheeler Parking', id: 'twoWheelerParking', isChecked: adsData.twoWheelerParking },
     { val: 'Swimming Pool', id: 'swimmingPool', isChecked: adsData.swimmingPool },
+    { val: 'InternetCom', id: 'internetCom', isChecked: adsData.internetCom },
+    { val: 'Gated socity', id: 'gatedsocity', isChecked: adsData.gatedsocity },
     { val: 'Internet Connectivity', id: 'internetConnectivity', isChecked: adsData.internetConnectivity }
   ];
     

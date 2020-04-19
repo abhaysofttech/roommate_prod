@@ -45,33 +45,29 @@
           </div>
           <div class="card">
             <div class="card-body">
-              <!-- <div class="input-container">
-                <label class="input-label">City</label>
-                <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                  <select class="form-control" formControlName="city">
-                    <option value="Mumbai">Mumbai</option>
-                    <option value="Pune">Pune</option>
-                    <option value="Banglore">Banglore</option>
-                  </select>
-                </div>
-              </div>
-              
+            
               <div class="input-container">
-                <label class="input-label">Location</label>
-                <div class="input-sec"><i class="fa fa-crosshairs" aria-hidden="true"></i>
-                  <input type="text" class="form-control" formControlName="location" placeholder="" />
-                </div>
+                <label class="input-label">Available From</label>
+                <!-- <div class="input-sec-semi" (click)="pickDate()"><i class="fa fa-calender" aria-hidden="true"></i>
+                  <input type="number" class="form-control" formControlName="rentAmount" placeholder="Enter Amount" />
+                  <div><span>/month</span></div>
+                </div> -->
+                <ion-item>
+                  <ion-label>Date</ion-label>
+                  <ion-icon slot="end" name="calendar"></ion-icon>
+                  <ion-datetime formControlName="availableDate"
+                                 [min]="date"
+                                 [max]="next30days"
+                                name="availableDate"
+                                (click)="selectDate()"></ion-datetime>
+                </ion-item>
               </div>
-              <div class="input-container">
-                <label class="input-label">Landmark</label>
-                  <textarea  class="form-control" formControlName="landmark" placeholder="Enter Rental Place Landmark" ></textarea>
-              </div>
-              <div class="input-container">
-                <label class="input-label">PinCode</label>
-                <div class="input-sec"><i class="fa fa-inr" aria-hidden="true"></i>
-                  <input type="number" class="form-control" formControlName="pincode" placeholder="Pin Code" />
-                </div>
-              </div> -->
+            
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+            
               <div class="input-container">
                 <label class="input-label">Expected Rent / Monthly</label>
                 <div class="input-sec-semi"><i class="fa fa-inr" aria-hidden="true"></i>
@@ -94,8 +90,8 @@
                 <ion-toggle formControlName="rentNegotiable" mode="ios"></ion-toggle>
                 <span>Yes</span>
               </div>
-              <input *ngIf="adsDetails" type="submit" class="save-submit" [ngStyle]="adsDetails.adsStatus == 'pending' && adsId ? {'width':'65%'} : {'width':'100%'}" value="{{adsDetails.adsStatus == 'pending' && adsId ? 'Update' : 'Save'}} & Continue" />
-              <input *ngIf="adsDetails && adsDetails.adsStatus == 'pending' && adsId" type="button" class="skip" value="Skip" [routerLink]="['/pages/advertise/amenities', adsId]"/>
+              <input *ngIf="adsDetails" [disabled]="!adrent.valid" type="submit" class="save-submit" [ngStyle]="adsDetails.adsStatus == 'pending' && adsId ? {'width':'65%'} : {'width':'100%'}" value="{{adsDetails.adsStatus == 'pending' && adsId ? 'Update' : 'Save'}} & Continue" />
+              <input *ngIf="adsDetails && adsDetails.adsStatus == 'pending' && adsId" [disabled]="!adrent.valid" type="button" class="skip" value="Skip" [routerLink]="['/pages/advertise/amenities', adsId]"/>
 
             </div>
           </div>

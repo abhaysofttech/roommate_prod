@@ -26,7 +26,7 @@
           <div class="input-container">
             <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
               <select class="form-control" [(ngModel)]="selectedArea">
-                <option [ngValue]="area.area" [selected]="area" *ngFor="let area of areas">{{area.area}}</option>
+                <option [ngValue]="area.area" [selected]="area" *ngFor="let area of areas | unique">{{area.area}}</option>
                
               </select>
             </div>

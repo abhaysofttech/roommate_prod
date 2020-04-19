@@ -58,7 +58,6 @@ export class LoginServiceService {
         return this.http.get(`${SERVER_URL}/users`);
     }
     register(user) {
-        // debugger
         return this.http.post(`${SERVER_URL}/users/register`, user);
     }
     checkphonenumber(phonenumber) {

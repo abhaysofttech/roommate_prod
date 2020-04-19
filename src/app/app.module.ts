@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent, RegisterComponent, LoginViaPasswordComponent } from './_auth';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -29,7 +29,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { Network } from '@ionic-native/network/ngx';
 import { ActionSheetComponent } from './_auth/action-sheet/action-sheet.component';
 import { TokenInterceptor } from './_helpers';
-
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 
 @NgModule({
   declarations: [
@@ -68,6 +68,8 @@ import { TokenInterceptor } from './_helpers';
     Crop,
     CallNumber,
     Network,
+    DatePicker,
+    DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: HTTP_INTERCEPTORS,

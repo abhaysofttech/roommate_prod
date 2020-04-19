@@ -31,7 +31,7 @@
               </div>
               <div class="input-container">
                 <label class="input-label">Marital status</label>
-                <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <div class="input-sec"><i class="fa fa-xing " aria-hidden="true"></i>
                   <select class="form-control" formControlName="marital">
                     <option value="Bachelor">Bachelor</option>
                     <option value="Married">Married</option>
@@ -41,7 +41,7 @@
               </div>
               <div class="input-container">
                 <label class="input-label">Apartment Type</label>
-                <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <div class="input-sec"><i class="fa fa-building" aria-hidden="true"></i>
                   <select class="form-control" formControlName="apparttype">
                     <option value="RoomMate">Room</option>
                     <option value="PG/Hostel">PG/Hostel</option>
@@ -51,7 +51,7 @@
               </div>
               <div class="input-container" *ngIf="adpost.value.apparttype !== 'Flat/House'">
                 <label class="input-label">Room Type</label>
-                <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <div class="input-sec"><i class="fa fa-bed" aria-hidden="true"></i>
                   <select class="form-control" formControlName="roomType">
                     <option value="Single Room">Single Room</option>
                     <option value="2 Sharing">2 Sharing</option>
@@ -62,7 +62,7 @@
               </div>
               <div class="input-container" *ngIf="adpost.value.apparttype === 'Flat/House'">
                 <label class="input-label">BHK Type</label>
-                <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <div class="input-sec"><i class="fa fa-building" aria-hidden="true"></i>
                   <select class="form-control" formControlName="bhkType">
                     <option value="1HK">1HK</option>
                     <option value="1BHK">1BHK</option>
@@ -102,7 +102,7 @@
               </div>
               <div class="input-container">
                 <label class="input-label">Bathroom(s)</label>
-                <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <div class="input-sec"><i class="fa fa-bath" aria-hidden="true"></i>
                   <input type="number" class="form-control" formControlName="bathroom" placeholder="No. of Bathroom" />
 
                 </div>
@@ -114,7 +114,7 @@
               </div>
               <div class="input-container">
                 <label class="input-label">Balcony(s)</label>
-                <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <div class="input-sec"><i class="fa fa-window-minimize" aria-hidden="true"></i>
                   <input type="number" class="form-control" formControlName="balcony" placeholder="No. of Balcony" />
                 </div>
                 <div *ngIf="f.balcony.invalid && (f.balcony.dirty ||f.balcony.touched)">
@@ -125,7 +125,7 @@
               </div>
               <div class="input-container">
                 <label class="input-label">Cupboard(s)</label>
-                <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <div class="input-sec"><i class="fa  fa-th-large" aria-hidden="true"></i>
                   <input type="number" class="form-control" formControlName="cupboard" placeholder="No. of Cupboard" />
                 </div>
                 <div *ngIf="f.cupboard.invalid && (f.cupboard.dirty ||f.cupboard.touched)">

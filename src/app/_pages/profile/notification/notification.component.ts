@@ -18,12 +18,10 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit() {
       if (this.router.getCurrentNavigation().extras.state) {
-        debugger
         this.userId = this.router.getCurrentNavigation().extras.state.userId;
         this._advertiseService.getNotification(this.userId, 'Active')
         .subscribe(
           (res: any) => {
-            debugger
             console.log(res);
             this.notification = res;
           })

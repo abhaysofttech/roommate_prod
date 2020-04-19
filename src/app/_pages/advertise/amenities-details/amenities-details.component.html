@@ -21,12 +21,14 @@
               <div class="input-container">
                 <label class="input-label">Other Amenities</label>
                 <ion-item class="amenities-item" *ngFor="let entry of form">
-                  <i class="fa fa-user-circle-o" aria-hidden="true"></i><ion-label>{{entry.val}}</ion-label>
+                 <img src="../../../../assets/icon/{{entry.id}}.svg" />
+                  <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
+                  <ion-label>{{entry.val}}</ion-label>
                   <ion-checkbox slot="end" mode="ios" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}"></ion-checkbox>
                 </ion-item>
               </div>
               <input type="submit" class="full-submit" [ngStyle]="adsDetails?.adsStatus == 'pending' && adsId ? {'width':'65%'} : {'width':'100%'}" value="{{adsDetails?.adsStatus == 'pending' && adsId ? 'Update' : 'Save'}} & Continue" />
-              <input *ngIf="adsDetails?.adsStatus == 'pending' && adsId" type="button" class="skip" value="Skip" [routerLink]="['/pages/advertise/amenities', adsId]"/>
+              <input *ngIf="adsDetails?.adsStatus == 'pending' && adsId" type="button" class="skip" value="Skip"(click)="updatedsuccessAds()"/>
             </div>
           </div>
           </form>

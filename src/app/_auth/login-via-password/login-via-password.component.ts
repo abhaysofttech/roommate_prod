@@ -36,7 +36,6 @@ export class LoginViaPasswordComponent implements OnInit {
     var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
 
     if (EMAIL_REGEXP.test(this.f.phonenumber.value)) {
-      debugger
       this.loginServiceService.loginemail(this.f.phonenumber.value, this.f.password.value)
       // .pipe(first())
       .subscribe(

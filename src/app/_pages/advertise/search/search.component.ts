@@ -176,7 +176,6 @@ export class SearchComponent implements OnInit {
   }
 
   findAds() {
-    debugger
     this.loading = true //. loading
     let gender = this.genderType.filter(function (item) { return item.isChecked == true });
     if (gender[0].val === 'Any') {

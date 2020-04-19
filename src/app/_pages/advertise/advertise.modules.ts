@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { NewAdvertiseComponent, RentDetailsComponent, AmenitiesDetailsComponent, AddressComponent, SearchComponent, AdvertisementComponent, AdvertisementDetailsComponent, MyAdvertisementComponent, MyAdvertisementDetailsComponent, ImageGalleryComponent, ImagePreviewComponent, CloseAdvertisementComponent } from '.';
+import { NewAdvertiseComponent, RentDetailsComponent, AmenitiesDetailsComponent, AddressComponent, SearchComponent, AdvertisementComponent, AdvertisementDetailsComponent, MyAdvertisementComponent, MyAdvertisementDetailsComponent, ImageGalleryComponent, ImagePreviewComponent, CloseAdvertisementComponent, ImageUploadComponent } from '.';
 import { AgmCoreModule } from '@agm/core';
 import { SharedModule } from 'src/app/_shared/shared.module';
 
@@ -18,6 +18,7 @@ import { SharedModule } from 'src/app/_shared/shared.module';
         AdvertisementDetailsComponent,
         MyAdvertisementComponent,
         MyAdvertisementDetailsComponent,
+        ImageUploadComponent,
         ImageGalleryComponent,
         ImagePreviewComponent,
         CloseAdvertisementComponent

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pages"></ion-back-button>
+    </ion-buttons> -->
+    <ion-title >
+      <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
+      <span class="tab-title">Photos Upload</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+
+  <div class="main-container full-height">
+    <div class="row no-margin search-container">
+      <div class="col-12 container-padding uploadImage"  [routerLink]="['/pages/advertise/imageGallery', adsId]">
+        <img src="../../../../assets/images/imageUpload.svg" style="padding: 50px;">
+      </div>
+      <div class="col-12 container-padding " >
+        <input type="button" class="full-submit" style="width: 100%;" (click)="skip()" value="Upload Photos Later" />
+      </div>
+
+    </div>
+  </div>
+</ion-content>

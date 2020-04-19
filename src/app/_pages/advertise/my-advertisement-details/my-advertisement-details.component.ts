@@ -46,7 +46,6 @@ export class MyAdvertisementDetailsComponent implements OnInit {
   }
 
   async closeAds(id) {
-    debugger
     const alert = await this.alertController.create({
       header: 'Close Advertisement!',
       message: `Do you really want to close ${this.Ads.bhkType} for ${this.Ads.marital} ${this.Ads.gender} Advertisement  `,

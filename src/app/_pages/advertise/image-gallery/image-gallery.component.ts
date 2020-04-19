@@ -209,7 +209,7 @@ export class ImageGalleryComponent implements OnInit {
     }
   }
 
-  uploadImage() {
+  uploadImage(imageTitle:any) {
     // Destination URL
     var url = `${SERVER_URL}/postads/${this.adsId}/images`;
 
@@ -220,7 +220,7 @@ export class ImageGalleryComponent implements OnInit {
     var filename = this.lastImage;
 
     var options = {
-      params: { label: "testing 8888", adsId: this.adsId, },
+      params: { label: imageTitle.value, adsId: this.adsId, },
       fileKey: "data",
       // data:filename,
       fileName: filename,

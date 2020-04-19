@@ -47,13 +47,13 @@
               </div>
             </div>
             <div class="form-group">
-              <h6>Enter Landmark *</h6>
+              <h6>Enter Landmark <span class="text-danger">*</span></h6>
               <div class="input-group mb-3">
-                <textarea [(ngModel)]="landmark" name="landmark" class="form-control" placeholder="Enter Place Landmark"></textarea>
+                <textarea [(ngModel)]="landmark" name="landmark" class="form-control" placeholder="Enter Place Landmark" required minlength="5"></textarea>
               </div>
             </div>
 
-            <input type="submit" class="full-submit" value="Save Property Address" />
+            <input type="submit" [disabled]="!f.valid" class="full-submit" value="Save Property Address" />
 
           </div>
         </div>

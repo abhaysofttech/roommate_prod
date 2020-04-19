@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.aklogical.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>RoomMate</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget id="com.roommatedekho.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>RoomMate Dekho</name>
+    <description>Lookup for Residential properties for rent,buy,sell in India Without Brokerage.0% Brokerage,100% Genuine Owners. India's Top Real Estate Property Website Without Brokers. Get Rent Agreement,Packers &amp; Movers,Property Management &amp; Registration Service in India. Owners &amp; NRI can List/Post Property Ad for FREE.</description>
+    <author email="roommatedekho@gmail.com" href="http://roommatedekho.com/">RoomMate Dekho Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

@@ -44,7 +44,6 @@ export class NewAdvertiseComponent implements OnInit {
 
     this.route.params.subscribe(params => this.adsId = params.id);
     if (this.adsId) {
-      debugger
       this._advertiseService.getAdsDetails(this.adsId)
         .subscribe(
           res => {
@@ -61,7 +60,6 @@ export class NewAdvertiseComponent implements OnInit {
     return this.adpost.controls;
   }
   onSubmit() {
-    debugger
     this.adsArray = [];
     this.submitted = true;
 
