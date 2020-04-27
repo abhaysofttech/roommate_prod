@@ -65,7 +65,8 @@
 
                   <div class="login-sec"><i class="fa fa-calendar" aria-hidden="true"></i>
                     <input type="text" formControlName="dob" #inp (focus)="inp.type='date'" (focusout)="inp.type='text'" class="form-control" placeholder="Enter Your BirthDate"
-                      [ngClass]="{ 'is-invalid': f.dob.touched && f.dob.invalid && f.dob.errors }" />
+                      [ngClass]="{ 'is-invalid': f.dob.touched && f.dob.invalid && f.dob.errors }" 
+                      [max]="date | date:'yyyy-MM-dd' "/>
                   </div>
                   <div *ngIf="f.dob.touched && f.dob.invalid">
                     <div *ngIf="f.dob.errors.required" class="registerValidation">Please Enter Your BirthDate</div>

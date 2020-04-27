@@ -1,0 +1,73 @@
+.land {
+    background-image: url("../../../assets/images/back.png");
+    background-position: 64% 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.logo-container {
+    height: 50px;
+    position: absolute;
+    width: 100%;
+    top: 15px;
+}
+// .choice-container{
+//     height: auto;
+//     min-height: calc(100% - 50px);
+// }
+.rm_logo {
+    width: 140px;
+    margin: 0 auto;
+}
+.dash-container {
+    padding: 5px 5px;
+    position: relative;
+    width: 100%;
+    height: calc(100% - 50px);
+    top: 60px;
+    text-align: center;
+    .text {
+        padding: 16px 80px;
+    }
+    .search-btn {
+        padding: 16px 50px;
+    }
+    .swiper {
+        padding: 16px 80px;
+    }
+}
+.earn {
+    background: #d60a1e;
+    box-shadow: 1px 2px 7px #dc3545;
+}
+ion-slides {
+    height: 100% !important;
+}
+ion-slide {
+    width: 100% !important;
+    .row {
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+.profileContainer {
+    position: absolute;
+    border: 1.3px dotted;
+    right: 10px;
+    top: 12px;
+    border-radius: 50%;
+    padding: 4px;
+    z-index: 999999;
+
+    .profileImages {
+        background-position: center;
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        align-items: center;
+        vertical-align: middle;
+        display: inline-flex;
+        box-shadow: 0px 0px 12px #6c757d;
+    }
+}

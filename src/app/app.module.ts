@@ -30,6 +30,9 @@ import { Network } from '@ionic-native/network/ngx';
 import { ActionSheetComponent } from './_auth/action-sheet/action-sheet.component';
 import { TokenInterceptor } from './_helpers';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
+import { AppUpdate } from '@ionic-native/app-update/ngx';
+import { Market } from '@ionic-native/market/ngx';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 
 @NgModule({
   declarations: [
@@ -70,6 +73,9 @@ import { DatePicker } from '@ionic-native/date-picker/ngx';
     Network,
     DatePicker,
     DatePipe,
+    AppUpdate,
+    AppVersion,
+    Market,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: HTTP_INTERCEPTORS,

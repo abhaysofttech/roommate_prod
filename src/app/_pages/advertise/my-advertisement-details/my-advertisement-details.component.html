@@ -82,8 +82,8 @@
                 <div class="row no-margin counterDetails">
                   <div class="col-6"><span class="counterTitle">Visited User</span><span
                       class="serQty">{{Ads.adsvisits.length}}</span></div>
-                  <div class="col-6"><span class="counterTitle">Connected User</span><span
-                      class="serQty">{{Ads.balcony}}</span></div>
+                  <!-- <div class="col-6"><span class="counterTitle">Connected User</span><span
+                      class="serQty">{{Ads.balcony}}</span></div> -->
                 </div>
               </div>
               <div class="col-12 overViewTitle"><span>Facilities</span></div>
@@ -106,50 +106,34 @@
               <div class="col-12 overViewTitle"><span>Amenities</span></div>
               <div class="col-12">
                 <div class="row no-margin">
-                  <div class="col-4 amenities-list" *ngIf="Ads.powerBackup">
-                    <span><img src="../../../../assets/icon/powerBackup.svg" /></span>
-                    <span>Power Backup</span>
+                  <div class="col-4 amenities-list" *ngIf="Ads.airConditioner">
+                    <span><img src="../../../../assets/icon/airConditioner.svg" /></span>
+                    <span>A/C</span>
                   </div>
-
-                  <div class="col-4 amenities-list">
+                  <div class="col-4 amenities-list" *ngIf="Ads.club">
                     <span><img src="../../../../assets/icon/club.svg"></span>
                     <span>Club</span>
                   </div>
-                  <div class="col-4 amenities-list" *ngIf="Ads.airConditioner">
-                    <span><img src="../../../../assets/icon/airConditioner.svg"></span>
-                    <span>AC</span>
+                  <div class="col-4 amenities-list" *ngIf="Ads.playground">
+                    <span><img src="../../../../assets/icon/playground.svg" /></span>
+                    <span>Playground</span>
                   </div>
-                  <div class="col-4 amenities-list" *ngIf="Ads.liftService">
-                    <span><img src="../../../../assets/icon/liftService.svg"></span>
-                    <span>Lift</span>
+                  <div class="col-4 amenities-list" *ngIf="Ads.gas">
+                    <span><img src="../../../../assets/icon/gas.svg" /></span>
+                    <span>Gas</span>
                   </div>
                   <div class="col-4 amenities-list" *ngIf="Ads.sewage">
                     <span><img src="../../../../assets/icon/sewage.svg"></span>
                     <span>Sewage</span>
                   </div>
-                  <div class="col-4 amenities-list" *ngIf="Ads.swimmingPool">
-                    <span><img src="../../../../assets/icon/swimmingPool.svg"></span>
-                    <span>Swimming pool</span>
-                  </div>
-                  <div class="col-4 amenities-list" *ngIf="Ads.carParking">
-                    <span><img src="../../../../assets/icon/carParking.svg"></span>
-                    <span>Car Parking</span>
-                  </div>
-                  <div class="col-4 amenities-list" *ngIf="Ads.twoWheelerParking">
-                    <span><img src="../../../../assets/icon/twoWheelerParking.svg"></span>
-                    <span>2Wheeler Parking</span>
-                  </div>
+
                   <div class="col-4 amenities-list" *ngIf="Ads.powerBackup">
-                    <span><img src="../../../../assets/icon/powerBackup.svg"></span>
+                    <span><img src="../../../../assets/icon/powerBackup.svg" /></span>
                     <span>Power Backup</span>
                   </div>
-                  <div class="col-4 amenities-list" *ngIf="Ads.playground">
-                    <span><img src="../../../../assets/icon/playground.svg"></span>
-                    <span>Playground</span>
-                  </div>
-                  <div class="col-4 amenities-list" *ngIf="Ads.gas">
-                    <span><img src="../../../../assets/icon/gas.svg"></span>
-                    <span>Gas Connection</span>
+                  <div class="col-4 amenities-list" *ngIf="Ads.liftService">
+                    <span><img src="../../../../assets/icon/liftService.svg"></span>
+                    <span>Lift Service</span>
                   </div>
                   <div class="col-4 amenities-list" *ngIf="Ads.houseKeeper">
                     <span><img src="../../../../assets/icon/houseKeeper.svg"></span>
@@ -157,20 +141,33 @@
                   </div>
                   <div class="col-4 amenities-list" *ngIf="Ads.security">
                     <span><img src="../../../../assets/icon/security.svg"></span>
-                    <span>Security Gaurd</span>
+                    <span>Security</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.carParking">
+                    <span><img src="../../../../assets/icon/carParking.svg"></span>
+                    <span>Car Parking</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.twoWheelerParking">
+                    <span><img src="../../../../assets/icon/twoWheelerParking.svg"></span>
+                    <span>Two Wheeler Parking</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.swimmingPool">
+                    <span><img src="../../../../assets/icon/swimmingPool.svg"></span>
+                    <span>Swimming Pool</span>
                   </div>
                   <div class="col-4 amenities-list" *ngIf="Ads.internetCom">
-                    <span><img src="../../../../assets/icon/interCom.svg"></span>
-                    <span>Inter Com</span>
+                    <span><img src="../../../../assets/icon/internetCom.svg"></span>
+                    <span>Internet Com</span>
                   </div>
                   <div class="col-4 amenities-list" *ngIf="Ads.gatedsocity">
                     <span><img src="../../../../assets/icon/gatedsocity.svg"></span>
-                    <span>Internet Connectivity</span>
+                    <span>Gated Socity</span>
                   </div>
                   <div class="col-4 amenities-list" *ngIf="Ads.internetConnectivity">
                     <span><img src="../../../../assets/icon/internetConnectivity.svg"></span>
-                    <span>Gated socity</span>
+                    <span>Internet Connectivity</span>
                   </div>
+
                 </div>
               </div>
 

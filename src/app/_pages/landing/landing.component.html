@@ -1,0 +1,78 @@
+<app-loading-spinner *ngIf="loading"> </app-loading-spinner>
+
+<div class="row no-margin full-height">
+  <div class="col-12 no-padding">
+    <div class="notification" (click)="notification?.length > 0 ?  notificationFn() : null">
+      <div class="count">{{notification?.length > 0 ? notification?.length : 0 }}</div>
+      <i class="bell fa fa-bell" aria-hidden="true"></i>
+    </div>
+    <div class="profileContainer" routerLink="/pages/profile" routerDirection="root">
+      <div class="profileImages" [ngStyle]="{'background-image': 'url(' + profileImage +')'}">
+      </div>
+    </div>
+    <div class="row no-margin logo-container">
+      <div class="col-12" style="display: flex;">
+        <img class="rm_logo" src="../../../assets/images/roommate_logo.svg" />
+      </div>
+    </div>
+
+    <div class="row no-margin dash-container  ">
+      <div class="col-12">
+        <ion-slides pager="true" [options]="slideOpts" (ionSlideDidChange)="$event.preventDefault();$event.stopPropagation()">
+          <ion-slide>
+            <div class="row">
+              <div class="col-12">
+                <img src="../../../assets/imgs/img.svg" />
+              </div>
+              <div class="col-12 text">
+                <img src="../../../assets/imgs/text.svg" />
+              </div>
+              <div class="col-12 search-btn">
+                <img src="../../../assets/imgs/search.svg"  (click)="$event.preventDefault();$event.stopPropagation()" routerLink="/pages/roommate/search-roommate"
+                  routerDirection="root" />
+              </div>
+              <div class="col-12 container-padding ">
+                <input type="button" class="full-submit" (click)="$event.preventDefault();$event.stopPropagation()"
+                  routerLink="/pages/advertise/newAds" routerDirection="root" value="Post Your New Ads" />
+                <!-- <input type="button" class="full-submit" style="width: 60%; margin-right: 15px;"
+                  routerLink="/pages/advertise/newAds" routerDirection="root" value="Post Your New Ads" />
+                <input type="button" class="full-submit earn" style="width: 30%;" routerLink="/pages/advertise/newAds"
+                  routerDirection="root" value="Earn" /> -->
+              </div>
+              <div class="col-12 swiper">
+                <img src="../../../assets/imgs/swiper.svg" />
+              </div>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="row">
+              <div class="col-12">
+                <img src="../../../assets/imgs/img2.svg" />
+              </div>
+              <div class="col-12 text">
+                <img src="../../../assets/imgs/text2.svg" />
+              </div>
+              <div class="col-12 search-btn">
+                <img src="../../../assets/imgs/search.svg" (click)="$event.preventDefault();$event.stopPropagation()" routerLink="/pages/advertise/search"
+                  routerDirection="root" />
+              </div>
+              <div class="col-12 container-padding ">
+                <!-- <input type="button" class="full-submit earn" style="width: 30%; margin-right: 15px;"
+                  routerLink="/pages/advertise/newAds" routerDirection="root" value="Earn" />
+                <input type="button" class="full-submit" style="width: 60%; " routerLink="/pages/advertise/newAds"
+                  routerDirection="root" value="Post Your New Ads" /> -->
+                  <input type="button" class="full-submit" (click)="$event.preventDefault();$event.stopPropagation()"  routerLink="/pages/advertise/newAds"
+                  routerDirection="root" value="Post Your New Ads" /> 
+              </div>
+              <div class="col-12 swiper">
+                <img src="../../../assets/imgs/swiper2.svg" />
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+
+
+  </div>
+</div>

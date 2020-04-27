@@ -63,7 +63,7 @@ export class ProfileDetailsComponent {
   }
 
   inviteFriend() {
-    this.socialSharing.share(this.message, this.subject, this.fileName, this.link)
+    this.socialSharing.share('https://play.google.com/store/apps/details?id=com.roommatedekho.app', this.subject, this.fileName, this.link)
       .then((res: any) => {
         // console.log(res);
       }).catch((err: any) => {

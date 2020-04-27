@@ -28,8 +28,12 @@ export class RegisterComponent implements OnInit {
   alertService: any;
 
   userData: any;
+  userID:any;
   profileImage: string;
   lastImage: string = null;
+  date: String = new Date().toISOString();
+  min18yrs = new Date(new Date().setDate(new Date().getDate() + 30)).toISOString();
+
   constructor(
     private formBuilder: FormBuilder,
     private _loginServiceService: LoginServiceService,
@@ -42,13 +46,13 @@ export class RegisterComponent implements OnInit {
     private file: File,
     private filePath: FilePath,
     private transfer: FileTransfer,
+    public alertController: AlertController,
   ) {
-  
-   }
+
+  }
 
   ngOnInit() {
     this.profileImage = 'assets/imgs/blank-avatar.jpg';
-
     this.registerForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -59,18 +63,18 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       // confirmPassword: ['', Validators.required],
     }
-  //   ,{
-  //     validator: MustMatch('password', 'confirmPassword')
-  // }
-  );
-  if (this.route.getCurrentNavigation().extras.state.phonenumber) {
-    let phonenumber = this.route.getCurrentNavigation().extras.state.phonenumber;
-    this.registerForm.get('phonenumber').setValue(phonenumber);
-  }
-  if (this.route.getCurrentNavigation().extras.state.email) {
-    let email = this.route.getCurrentNavigation().extras.state.email;
-    this.registerForm.get('email').setValue(email);
-  }
+      //   ,{
+      //     validator: MustMatch('password', 'confirmPassword')
+      // }
+    );
+    if (this.route.getCurrentNavigation().extras.state.phonenumber) {
+      let phonenumber = this.route.getCurrentNavigation().extras.state.phonenumber;
+      this.registerForm.get('phonenumber').setValue(phonenumber);
+    }
+    if (this.route.getCurrentNavigation().extras.state.email) {
+      let email = this.route.getCurrentNavigation().extras.state.email;
+      this.registerForm.get('email').setValue(email);
+    }
 
   }
 
@@ -96,16 +100,18 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
+          this.userID = data;
           if (this.profileImage != 'assets/imgs/blank-avatar.jpg') {
             this.uploadImage()
           }
           else {
-            this.route.navigate(['/'])
+            // this.route.navigate(['/'])
+            this.successReg()
 
           }
         },
         error => {
-        this.presentToast(error.error.message);
+          this.presentToast(error.error.message);
         });
   }
 
@@ -242,8 +248,9 @@ export class RegisterComponent implements OnInit {
   }
 
   uploadImage() {
+    debugger
     // Destination URL
-    var url = `${SERVER_URL}/users/${this.userData.id}/profileimages`;
+    var url = `${SERVER_URL}/users/${this.userID}/profileimages`;
 
     // File for Upload
     var targetPath = this.pathForImage(this.lastImage);
@@ -252,7 +259,7 @@ export class RegisterComponent implements OnInit {
     var filename = this.lastImage;
 
     var options = {
-      params: { userName: this.userData.firstname, profileId: this.userData.id, },
+      params: { userName: this.registerForm.value.firstname, profileId: this.userID, },
       fileKey: "data",
       // data:filename,
       fileName: filename,
@@ -264,14 +271,32 @@ export class RegisterComponent implements OnInit {
 
     fileTransfer.upload(targetPath, url, options, true).then(data => {
       // this.loading.dismissAll()
-      this.presentToast('Image succesful uploaded.');
+      this.successReg();
       this.route.navigate(['/'])
     }, err => {
       // this.loading.dismissAll()
-      this.presentToast('Error while uploading file.');
+      this.presentToast('Register successfully. Please try to upload profile photo from  profile page');
       this.route.navigate(['/'])
     });
 
 
+  }
+
+
+  async successReg() {
+    const alert = await this.alertController.create({
+      header: 'Register Successfully !',
+      message: `Hi ${this.registerForm.value.firstname} welcome to Room Mate Dekho.`,
+      buttons: [
+        {
+          text: 'Thanks',
+          handler: () => {
+            this.route.navigate(['/']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

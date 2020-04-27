@@ -1,14 +1,16 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, ElementRef, NgZone } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
-import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { advertiseService } from 'src/app/_service';
 import { MapsAPILoader } from '@agm/core';
+
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  selector: 'app-search-roommate',
+  templateUrl: './search-roommate.component.html',
+  styleUrls: ['./search-roommate.component.scss'],
 })
-export class SearchComponent implements OnInit {
+export class SearchRoommateComponent implements OnInit {
+
   city: any;
   areas: any;
   location: any;
@@ -85,9 +87,9 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
 
     this.loading = true;
-    // this.selectedLocation = "test"
-    // this.location = [{ id: 0, name: 'Tokai' },
-    // { id: 1, name: 'Tokaiq' }]
+    this.selectedLocation = "test"
+    this.location = [{ id: 0, name: 'Tokai' },
+    { id: 1, name: 'Tokaiq' }]
 
 
   }
@@ -175,7 +177,7 @@ export class SearchComponent implements OnInit {
         })
   }
 
-  findAds() {
+  findRoomMate() {
     this.loading = true //. loading
     let gender = this.genderType.filter(function (item) { return item.isChecked == true });
     if (gender[0].val === 'Any') {
@@ -184,17 +186,12 @@ export class SearchComponent implements OnInit {
     else {
       gender = gender[0].val;
     }
-    let building = this.buildingType.filter(function (item) { return item.isChecked == true });
-    if (building[0].val === 'Any') {
-      building = ['RoomMate', 'PG/Hostel', 'Flat/House'];
-    }
-    else {
-      building = building[0].val;
-    }
+    let building = 'RoomMate'
+   
     let room = this.RoomType.filter(function (item) { return item.isChecked == true }).map(data => { return data.val });
     let flat = this.flatType.filter(function (item) { return item.isChecked == true });
     let options = {
-      location: this.city,
+      // location: this.city,
       area: this.selectedArea,
       apparttype: building,
       roomType: room,
@@ -210,6 +207,7 @@ export class SearchComponent implements OnInit {
           //  this.nav.navigateForward(['ads', JSON.stringify(res)]);
           let navigationExtras: NavigationExtras = { state: { id: res } };
           this.router.navigate(['/pages/advertise/advertisement'], navigationExtras);
+
         })
 
   }

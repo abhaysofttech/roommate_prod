@@ -17,7 +17,10 @@
         <img src="../../../../assets/images/imageUpload.svg" style="padding: 50px;">
       </div>
       <div class="col-12 container-padding " >
-        <input type="button" class="full-submit" style="width: 100%;" (click)="skip()" value="Upload Photos Later" />
+        <input type="button" class="full-submit" style="width: 100%;" [routerLink]="['/pages/advertise/imageGallery', adsId]" value="Upload Photos" />
+      </div>
+      <div class="col-12 container-padding " >
+        <input type="button" class="full-submit later" style="width: 100%;" (click)="skip()" value="Upload Photos Later" />
       </div>
 
     </div>

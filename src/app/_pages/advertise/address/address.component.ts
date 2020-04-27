@@ -35,14 +35,13 @@ export class AddressComponent implements OnInit {
   latitude: number;
   longitude: number;
   landmark: string;
-
+  addressEdit: boolean = false;
   private geoCoder;
 
   adsaddress: FormGroup;
   //loading = false;
   submitted = false;
   adsId = '';
-
   @ViewChild('search', { static: false })
   public searchElementRef: ElementRef;
   constructor(
@@ -144,6 +143,7 @@ export class AddressComponent implements OnInit {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
+          console.log(results);
           this.zoom = 18;
           this.address = results[0].formatted_address;
           let shortaddress1 = results[0].address_components.filter(function (item) { return item.types[2] === 'sublocality_level_2' });

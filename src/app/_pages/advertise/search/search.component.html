@@ -16,7 +16,8 @@
       <!-- <div class="card"> -->
         <div class="search-cnt">
           <div class="input-container">
-            <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            <div class="input-sec">
+              <span>Select City</span>
               <select class="form-control" [(ngModel)]="selectedCities" (ngModelChange)="findAreas(selectedCities)">
                 <option [ngValue]="citi"  [selected]="citi" *ngFor="let citi of city">{{citi}}</option>
                
@@ -24,7 +25,8 @@
             </div>
           </div>
           <div class="input-container">
-            <div class="input-sec"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            <div class="input-sec">
+              <span>Select Area</span>
               <select class="form-control" [(ngModel)]="selectedArea">
                 <option [ngValue]="area.area" [selected]="area" *ngFor="let area of areas | unique">{{area.area}}</option>
                

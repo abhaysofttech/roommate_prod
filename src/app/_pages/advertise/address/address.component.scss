@@ -1,45 +1,115 @@
-.map{
+.map {
     width: 100%;
     height: 300px;
     .center-marker {
-    position: absolute;
-    top:50%;left:50%;
-    z-index:1;
-    margin-left:-111px;
-    margin-top:-42px;
-    width: 200px;
-    height: 30px;
-    background-color: #0c60ee;
-    color:#fff;
-    border-radius: 5px;
-    box-shadow: 10px 10px 5px #888888;
-    border-radius: 14px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        margin-left: -111px;
+        margin-top: -42px;
+        width: 200px;
+        height: 30px;
+        background-color: #0c60ee;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 10px 10px 5px #888888;
+        border-radius: 14px;
+    }
 }
+.search-cnt {
+    display: inline-flex;
+    width: 85%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0 0.2rem 0 0.4rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem 0 0 0.25rem;
+    -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    vertical-align: middle;
+    -webkit-box-align: center;
+    align-items: center;
+    float: left;
+    .close-icon {
+        font-size: 22px;
+        padding: 7px 0px;
+        color: #858282;
+        position: relative;
+        right: -10px;
+        z-index: 999999;
+    }
+
+    .search-icon {
+        color: #ccc;
+    }
+    .search-input {
+        border: 0;
+        width: 81%;
+        padding-left: 3px;
+    }
 }
 
-.currentLocation{
+.currentLocation {
     cursor: pointer;
+    span {
+        font-size: 22px;
+        padding: 7px 11px;
+        color: #858282;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        margin-bottom: 0;
+        line-height: 1.5;
+        text-align: center;
+        white-space: nowrap;
+        background-color: #e9ecef;
+        border: 1px solid #ced4da;
+        border-radius: 0 0.25rem 0.25rem 0;
+    }
 }
 .map-note {
-    color: #d39e00;
+    background: #dc3545;
     font-size: 12px;
     float: right;
+    padding: 0 10px;
+    color: #fff;
 }
-.address{
+.address {
     font-size: 12px;
     line-height: normal;
 }
-.pincode{
+.pincode {
     float: right;
 }
 
 agm-map {
-    height: 300px;
+    height: 200px;
 }
-agm-marker{
+agm-marker {
     position: fixed;
     left: 50vw;
-    top:50vh;
+    top: 50vh;
     z-index: 9999;
 }
- 
+
+.location-group{
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    input{
+        border-radius: 0 5px 5px 0 !important;
+    }
+    .close-icon{
+        position: absolute;
+        right: 7px;
+        z-index: 999999;
+    }
+}
+
+

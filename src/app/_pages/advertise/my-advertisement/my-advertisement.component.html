@@ -19,8 +19,8 @@
       <div class="col-12 container-padding" *ngIf="myAds?.length > 0">
         <div class="card" *ngFor="let ads of myAds | orderBy:'-postdate'">
           <div class="card-body no-padding" [routerLink]="['/pages/advertise/myadvertisementDetails', ads.id]">
-            <div class="adsStatus" [style.background]="ads.adsStatus == 'pending' ? '#28a745' : '#dc3545'">
-              <span>{{ads.adsStatus == 'pending'?'Pending':'Close'}}</span>
+            <div class="adsStatus" [style.background]="ads.adsStatus == 'pending' ? '#d39e00': ads.adsStatus == 'active'? '#28a745' : '#dc3545'">
+              <span>{{ads.adsStatus == 'pending'?'Pending': ads.adsStatus == 'active'?'Active' : 'Close'}}</span>
             </div>
             <ion-slides pager="true" [options]="slideOpts">
               <div class="photosCount" *ngIf="ads.images.length == 0"><span><i
@@ -41,8 +41,8 @@
                 <i class="fa fa-check-circle" aria-hidden="true"></i>
               </div> -->
               <div class="postDate"><span class="postDateTitle">Post On</span><span
-                class="postDateDetails">{{ads.postdate | date: 'dd-MMM-yyyy'}}</span>
-            </div>
+                  class="postDateDetails">{{ads.postdate | date: 'dd-MMM-yyyy'}}</span>
+              </div>
               <!-- <div class="rentDetails">
                 <span class="rupees_icon"><i class="fa fa-inr" aria-hidden="true"></i>
                 </span><span class="amount"> {{ads.rentAmount}} </span><span class="month">/Month</span>
@@ -54,18 +54,20 @@
               <span class="knowMore">Click on ads to Know More Details..</span>
             </div>
           </div>
-          <div class="card-footer contact-container" style="text-align: center; " *ngIf="ads.adsStatus != 'closed'"> 
-              <ion-button shape="round" [routerLink]="['/pages/advertise/myadvertisementDetails', ads.id]"  style="float: left; ">
-                Detail
-              </ion-button>
-              <ion-button shape="round" [routerLink]="['/pages/advertise/newAds', ads.id]"  style="float: right; ">
-                Edit</ion-button>
+          <div class="card-footer contact-container" style="text-align: center; " *ngIf="ads.adsStatus != 'closed'">
+            <ion-button shape="round" [routerLink]="['/pages/advertise/myadvertisementDetails', ads.id]"
+              style="float: left; ">
+              Detail
+            </ion-button>
+            <ion-button shape="round" [routerLink]="['/pages/advertise/newAds', ads.id]" style="float: right; ">
+              Edit</ion-button>
           </div>
         </div>
-       
+
       </div>
       <div class="col-12 container-padding" *ngIf="myAds?.length == 0">
-        <input type="button" class="full-submit" value="Post New Advertise"  routerLink="/pages/advertise/newAds" routerDirection="root" />
+        <input type="button" class="full-submit" value="Post New Advertise" routerLink="/pages/advertise/newAds"
+          routerDirection="root" />
       </div>
     </div>
   </div>

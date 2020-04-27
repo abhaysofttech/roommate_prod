@@ -15,37 +15,43 @@
       <div class="col-12 container-padding">
         <div class="card" *ngIf="Ads">
           <div class="card-body no-padding">
-            <div class="photosCount" *ngIf="Ads.images.length == 0"><span><i class="fa fa-camera"></i>{{Ads.images.length}}</span></div>
+            <div class="photosCount" *ngIf="Ads.images.length == 0"><span><i
+                  class="fa fa-camera"></i>{{Ads.images.length}}</span></div>
 
             <ng-container *ngIf="Ads.images.length == 0">
               <ion-slides pager="true" [options]="slideOpts">
-              <ion-slide>
-                <img src="../../../../assets/images/image-not-available.jpg">
-              </ion-slide>
-               
-            </ion-slides>
-            <div class="reqImages" (click)="requestImage()"><span>Request for Photos</span></div>
-          </ng-container>
+                <ion-slide>
+                  <img src="../../../../assets/images/image-not-available.jpg">
+                </ion-slide>
+
+              </ion-slides>
+              <div class="reqImages" (click)="requestImage()"><span>Request for Photos</span></div>
+            </ng-container>
 
             <ng-container *ngIf="Ads.images.length > 0">
               <ion-slides pager="true" [options]="slideOpts" (click)="viewGallary()">
-                <ion-slide  *ngFor="let images of Ads.images" >
+                <ion-slide *ngFor="let images of Ads.images">
                   <img src='https://aklogical.com/api{{images.path}}'>
                 </ion-slide>
-               
-            </ion-slides>
-            <div class="addImages" (click)="viewGallary()"><span>View Photos</span></div>
-          </ng-container>
+
+              </ion-slides>
+              <div class="addImages" (click)="viewGallary()"><span>View Photos</span></div>
+            </ng-container>
 
             <div class="adsDetails">
-              <div class="adsOwner"><span>{{Ads.username}},</span><span class="age"> {{Ads.dob | age:Ads.dob}} | </span><span class="gender">
-                <i class="fa" aria-hidden="true" [ngClass]="{ 'fa-male': Ads.userGender === 'Male', 'fa-female':  Ads.userGender === 'Female'}"></i></span></div>
-              
-                <div class="profilePicOwner" *ngIf="Ads.profileimages.length > 0" [ngStyle]="{'background-image': 'url(https://aklogical.com/api/profileImage/'+Ads.profileimages[0].profileId+''+Ads.profileimages[0].mimeType+')'}">
+              <div class="adsOwner"><span>{{Ads.username}},</span><span class="age"> {{Ads.dob | age:Ads.dob}} |
+                </span><span class="gender">
+                  <i class="fa" aria-hidden="true"
+                    [ngClass]="{ 'fa-male': Ads.userGender === 'Male', 'fa-female':  Ads.userGender === 'Female'}"></i></span>
+              </div>
+
+              <div class="profilePicOwner" *ngIf="Ads.profileimages.length > 0"
+                [ngStyle]="{'background-image': 'url(https://aklogical.com/api/profileImage/'+Ads.profileimages[0].profileId+''+Ads.profileimages[0].mimeType+')'}">
                 <!-- <img src="../../../../assets/images/image3.jpg"> -->
                 <i class="fa fa-check-circle" aria-hidden="true"></i>
               </div>
-              <div class="profilePicOwner" *ngIf="Ads.profileimages.length == 0" [ngStyle]="{'background-image': 'url(../../../../assets/images/user.png)'}">
+              <div class="profilePicOwner" *ngIf="Ads.profileimages.length == 0"
+                [ngStyle]="{'background-image': 'url(../../../../assets/images/user.png)'}">
                 <!-- <img src="../../../../assets/images/image3.jpg"> -->
                 <i class="fa fa-check-circle" aria-hidden="true"></i>
               </div>
@@ -95,91 +101,93 @@
           </div>
           <div class="adsOverview">
             <div class="row no-margin">
-              <div class="col-12 overViewTitle" ><span>Facilities</span></div>
+              <div class="col-12 overViewTitle"><span>Facilities</span></div>
               <div class="col-12">
                 <div class="row no-margin serviceAme">
-                  <div class="col-6"><span class="serTitle">Bathroom</span><span class="serQty">{{Ads.bathroom}}</span></div>
-                  <div class="col-6"><span class="serTitle">Balcony</span><span class="serQty">{{Ads.balcony}}</span></div>
-                  <div class="col-6"><span class="serTitle">Cupboards</span><span class="serQty">{{Ads.cupboard}}</span></div>
-                  <div class="col-6"><span class="serTitle">Bathroom</span><span class="serQty">{{Ads.bathroom}}</span></div>
-                  <div class="col-6"><span class="serTitle">Non-Veg</span><span class="serQty">{{Ads.vegNonveg}}</span></div>
-                  <div class="col-6"><span class="serTitle">Cooking Facility</span><span class="serQty">{{Ads.cooking}}</span></div>
+                  <div class="col-6"><span class="serTitle">Bathroom</span><span class="serQty">{{Ads.bathroom}}</span>
+                  </div>
+                  <div class="col-6"><span class="serTitle">Balcony</span><span class="serQty">{{Ads.balcony}}</span>
+                  </div>
+                  <div class="col-6"><span class="serTitle">Cupboards</span><span class="serQty">{{Ads.cupboard}}</span>
+                  </div>
+                  <div class="col-6"><span class="serTitle">Bathroom</span><span class="serQty">{{Ads.bathroom}}</span>
+                  </div>
+                  <div class="col-6"><span class="serTitle">Non-Veg</span><span class="serQty">{{Ads.vegNonveg}}</span>
+                  </div>
+                  <div class="col-6"><span class="serTitle">Cooking Facility</span><span
+                      class="serQty">{{Ads.cooking}}</span></div>
                 </div>
               </div>
               <div class="col-12 overViewTitle"><span>Amenities</span></div>
               <div class="col-12">
                 <div class="row no-margin">
-                  <div class="col-4 amenities-list" *ngIf="Ads.powerBackup">
-                    <span><img src="../../../../assets/icon/battery.svg"/></span>
-                    <span>Power Backup</span>
+                  <div class="col-4 amenities-list" *ngIf="Ads.airConditioner">
+                    <span><img src="../../../../assets/icon/airConditioner.svg" /></span>
+                    <span>A/C</span>
                   </div>
-
-                  <div class="col-4 amenities-list">
+                  <div class="col-4 amenities-list" *ngIf="Ads.club">
                     <span><img src="../../../../assets/icon/club.svg"></span>
                     <span>Club</span>
                   </div>
-                  <div class="col-4 amenities-list"  *ngIf="Ads.gatedSecurity">
-                    <span><img src="../../../../assets/icon/gated.svg"></span>
-                    <span>Gated Socity</span>
+                  <div class="col-4 amenities-list" *ngIf="Ads.playground">
+                    <span><img src="../../../../assets/icon/playground.svg" /></span>
+                    <span>Playground</span>
                   </div>
-                  <div class="col-4 amenities-list">
-                    <span><img src="../../../../assets/icon/intercom.svg"></span>
-                    <span>Intercom</span>
-                  </div>
-                  <div class="col-4 amenities-list" *ngIf="Ads.liftService">
-                    <span><img src="../../../../assets/icon/lift.svg"></span>
-                    <span>Lift</span>
+                  <div class="col-4 amenities-list" *ngIf="Ads.gas">
+                    <span><img src="../../../../assets/icon/gas.svg" /></span>
+                    <span>Gas</span>
                   </div>
                   <div class="col-4 amenities-list" *ngIf="Ads.sewage">
-                    <span><img src="../../../../assets/icon/Sewage.svg"></span>
+                    <span><img src="../../../../assets/icon/sewage.svg"></span>
                     <span>Sewage</span>
                   </div>
-                  <div class="col-4 amenities-list" *ngIf="Ads.swimmingPool">
-                    <span><img src="../../../../assets/icon/swimming.svg"></span>
-                    <span>Swimming pool</span>
+
+                  <div class="col-4 amenities-list" *ngIf="Ads.powerBackup">
+                    <span><img src="../../../../assets/icon/powerBackup.svg" /></span>
+                    <span>Power Backup</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.liftService">
+                    <span><img src="../../../../assets/icon/liftService.svg"></span>
+                    <span>Lift Service</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.houseKeeper">
+                    <span><img src="../../../../assets/icon/houseKeeper.svg"></span>
+                    <span>House Keeper</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.security">
+                    <span><img src="../../../../assets/icon/security.svg"></span>
+                    <span>Security</span>
                   </div>
                   <div class="col-4 amenities-list" *ngIf="Ads.carParking">
-                    <span><img src="../../../../assets/icon/parking.svg"></span>
-                    <span>Yes</span>
+                    <span><img src="../../../../assets/icon/carParking.svg"></span>
+                    <span>Car Parking</span>
                   </div>
-                  <div class="col-4 amenities-list">
-                    <span><img src="../../../../assets/icon/battery.svg"></span>
-                    <span>Yes</span>
+                  <div class="col-4 amenities-list" *ngIf="Ads.twoWheelerParking">
+                    <span><img src="../../../../assets/icon/twoWheelerParking.svg"></span>
+                    <span>Two Wheeler Parking</span>
                   </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.swimmingPool">
+                    <span><img src="../../../../assets/icon/swimmingPool.svg"></span>
+                    <span>Swimming Pool</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.internetCom">
+                    <span><img src="../../../../assets/icon/internetCom.svg"></span>
+                    <span>Internet Com</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.gatedsocity">
+                    <span><img src="../../../../assets/icon/gatedsocity.svg"></span>
+                    <span>Gated Socity</span>
+                  </div>
+                  <div class="col-4 amenities-list" *ngIf="Ads.internetConnectivity">
+                    <span><img src="../../../../assets/icon/internetConnectivity.svg"></span>
+                    <span>Internet Connectivity</span>
+                  </div>
+
                 </div>
               </div>
-              <!-- <div class="col-12">
-
-                <ul style="padding: 10px; list-style: none;">
-                  
-                  <li>{{Ads.marital}}</li>
-                  <li>{{Ads.roomType}}</li>
-                  <li>{{Ads.apparttype}}</li>
-                  <li>{{Ads.bhkType}}</li>
-                  <li>Gated Security: -{{Ads.gatedSecurity}}</li>
-                  <li>Food: -{{Ads.vegNonveg}}</li>
-                  <li>No. of Bathroom: -{{Ads.bathroom}}</li>
-                  <li>No. of Balcony{{Ads.balcony}}</li>
-                  <li>No. of Cupboards{{Ads.cupboard}}</li>
-                  <li>Air Conditioner: -{{Ads.airConditioner}}</li>
-                  <li>Club: -{{Ads.club}}</li>
-                  <li>Playground: -{{Ads.playground}}</li>
-                  <li>Gas Connection: -{{Ads.gas}}</li>
-                  <li>Sewage: -{{Ads.sewage}}</li>
-                  <li>Power Backup: -{{Ads.powerBackup}}</li>
-                  <li>Lift Service: -{{Ads.liftService}}</li>
-                  <li>House Keeper: -{{Ads.houseKeeper}}</li>
-                  <li>Security: -{{Ads.security}}</li>
-                  <li>Car Parking: -{{Ads.carParking}}</li>
-                  <li>Two Wheeler Parking: -{{Ads.twoWheelerParking}}</li>
-                  <li>Swimming Pool: -{{Ads.swimmingPool}}</li>
-                  <li>Internet: -{{Ads.internetConnectivity}}</li>
-                  <li>Ads PostDate: -{{Ads.postdate}}</li>
-                </ul>
-              </div> -->
             </div>
           </div>
-         
+
         </div>
       </div>
     </div>

@@ -82,6 +82,7 @@ export class AdvertisementComponent implements OnInit {
     //   })
   }
   viewContact(adsDetails) {
+    debugger
     this._advertiseService.adsVisits(adsDetails.id, this.userData.phonenumber)
       .subscribe(
         (res: any) => {

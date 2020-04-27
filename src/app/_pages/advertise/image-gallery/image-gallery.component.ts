@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { ActionSheetController, ModalController, Platform, ToastController } from '@ionic/angular';
+import { ActionSheetController, ModalController, Platform, ToastController, AlertController } from '@ionic/angular';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Crop } from '@ionic-native/crop/ngx';
 import { ImagePreviewComponent } from '../image-preview/image-preview.component';
 import { advertiseService, LoginServiceService } from 'src/app/_service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { File } from '@ionic-native/file/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
@@ -35,6 +35,8 @@ export class ImageGalleryComponent implements OnInit {
     private filePath: FilePath,
     private transfer: FileTransfer,
     private loginServiceService: LoginServiceService,
+    public alertController: AlertController,
+    private router: Router,
 
   ) { }
   ngOnInit() {
@@ -254,6 +256,23 @@ export class ImageGalleryComponent implements OnInit {
         this.gallaryImages = res.images;
      
       })
+  }
+
+  async successAds() {
+    const alert = await this.alertController.create({
+      header: 'Advertise Upoaded !',
+      message: 'Your advertise added successfully. <br/> Advertise will verify & live with-in 24hrs. <br/> Thank You.',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.router.navigate(['/pages']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
   
 }

@@ -5,10 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { HomeComponent } from '.';
 import { SharedModule } from '../_shared/shared.module';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
     declarations:[
-        HomeComponent
+        HomeComponent,
+        LandingComponent
     ],
 
     imports:[

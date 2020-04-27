@@ -11,6 +11,9 @@ export class advertiseService {
   constructor(
     private http: HttpClient
   ) { }
+  getAppUpdateVersion(){
+    return this.http.get(`${SERVER_URL}/users/appversions`);
+  }
   getRoomMateAds() {
     return this.http.get(`${SERVER_URL}/postads`);
   }

@@ -108,7 +108,7 @@
                 </div>
                 <div *ngIf="f.bathroom.invalid && (f.bathroom.dirty ||f.bathroom.touched)">
                   <div class="validation" *ngIf="f.bathroom.errors?.min">Minimum required number is 0.</div>
-                  <div class="validation" *ngIf="f.bathroom.errors?.max">Minimum required number is 5.</div>
+                  <div class="validation" *ngIf="f.bathroom.errors?.max">Maximum required number is 5.</div>
                   <div class="validation" *ngIf="f.bathroom.errors?.required">No. of Bathroom is required</div>
                 </div>
               </div>
@@ -119,7 +119,7 @@
                 </div>
                 <div *ngIf="f.balcony.invalid && (f.balcony.dirty ||f.balcony.touched)">
                   <div class="validation" *ngIf="f.balcony.errors?.min">Minimum required number is 0.</div>
-                  <div class="validation" *ngIf="f.balcony.errors?.max">Minimum required number is 5.</div>
+                  <div class="validation" *ngIf="f.balcony.errors?.max">Maximum required number is 5.</div>
                   <div class="validation" *ngIf="f.balcony.errors?.required">No. of Balcony is required</div>
                 </div>
               </div>
@@ -130,7 +130,7 @@
                 </div>
                 <div *ngIf="f.cupboard.invalid && (f.cupboard.dirty ||f.cupboard.touched)">
                   <div class="validation" *ngIf="f.cupboard.errors?.min">Minimum required number is 0.</div>
-                  <div class="validation" *ngIf="f.cupboard.errors?.max">Minimum required number is 5.</div>
+                  <div class="validation" *ngIf="f.cupboard.errors?.max">Maximum required number is 5.</div>
                   <div class="validation" *ngIf="f.cupboard.errors?.required">No. of Cupboard is required</div>
                 </div>
               </div>

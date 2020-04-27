@@ -55,11 +55,7 @@
                 <ion-item>
                   <ion-label>Date</ion-label>
                   <ion-icon slot="end" name="calendar"></ion-icon>
-                  <ion-datetime formControlName="availableDate"
-                                 [min]="date"
-                                 [max]="next30days"
-                                name="availableDate"
-                                (click)="selectDate()"></ion-datetime>
+                  <ion-datetime formControlName="availableDate" [min]="date" [max]="next30days" name="availableDate"></ion-datetime>
                 </ion-item>
               </div>
             

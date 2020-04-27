@@ -22,6 +22,9 @@
 .titleGalary{
     margin-top: 12px;
     padding: 0;
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
     span{
         background: #0aa7ea;
     color: #fff;
@@ -54,4 +57,12 @@
     border-bottom: 10px solid #ac0a1a;
     color: #fff;
     font-size: 18px;
+}
+
+.done{
+    position: absolute;
+    right: 14px;
+    margin: 0;
+    --background: #ffc107 !important;
+    box-shadow: none;
 }

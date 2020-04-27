@@ -1,0 +1,1 @@
+export * from './search-roommate/search-roommate.component';

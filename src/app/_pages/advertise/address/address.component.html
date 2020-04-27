@@ -7,57 +7,102 @@
       <img class="rm_header_logo" src="../../../assets/images/roommate_logo.svg" />
       <span class="tab-title">Property Address</span>
     </ion-title>
-    
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="row no-margin main-container">
     <div class="col-12 container-padding">
-      <form  #f="ngForm" (ngSubmit)="onSubmit()">
+      <form #f="ngForm" (ngSubmit)="onSubmit()">
         <div class="card">
           <div class="card-body">
             <div class="form-group">
-              <label>Search address</label>
-              <div class="input-group mb-3">
-                <input type="search" class="form-control" (keydown.enter)="$event.preventDefault()"
-                  placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off"
-                  type="text" #search >
-                <div class="input-group-append currentLocation">
-                  <span class="input-group-text" (click)="currentLocation()">
-                    <i _ngcontent-bwu-c1="" aria-hidden="true" class="fa fa-crosshairs"></i>
-                  </span>
+              <div class="input-group location-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text" style=" font-size: 12px; padding: 9px 3px;"> <span>Enter City / District <span class="text-danger">*</span></span></div>
                 </div>
+                <input type="text" [(ngModel)]="city" name="city" class="form-control" placeholder="Enter City Name"
+                  required>
+                <i *ngIf="city !=''" _ngcontent-bwu-c1="" aria-hidden="true" class="fa fa-times-circle-o close-icon"
+                  (click)="city = ''"></i>
               </div>
+            </div>
 
+            <div class="form-group">
+              <div class="input-group location-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text" style=" font-size: 12px; padding: 9px 3px;"> <span>Enter Area /Taluka <span class="text-danger">*</span></span></div>
+                </div>
+                <input type="text" [(ngModel)]="area" name="area" class="form-control" placeholder="Enter Area Name"
+                  required>
+                <i *ngIf="area !=''" _ngcontent-bwu-c1="" aria-hidden="true" class="fa fa-times-circle-o close-icon"
+                  (click)="area = ''"></i>
+              </div>
+            </div>
+            <div class="form-group">
+              <h6>Property Address <span class="text-danger">*<span class="pincode" (ngModel)="addressEdit" (click)="addressEdit = !addressEdit">
+                <i class="fa fa-edit"></i> {{addressEdit ?'Done': 'Edit'}}</span></span></h6>
+              <div class="input-group mb-3" *ngIf="addressEdit">
+                <textarea [(ngModel)]="address" name="address" class="form-control" placeholder="Enter Property Address"
+                  required minlength="5"></textarea>
+              </div>
+              <div class="input-group mb-3" style="background: #eae8e8; padding: 6px;" *ngIf="!addressEdit">
+                {{address}}
+              
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group location-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text" style=" font-size: 12px; padding: 9px 3px;"> <span>Landmark <span class="text-danger">*</span></span></div>
+                </div>
+                <input type="text" [(ngModel)]="landmark" name="landmark" class="form-control" placeholder="Enter Landmark"
+                  required>
+                <i *ngIf="landmark !=''" _ngcontent-bwu-c1="" aria-hidden="true" class="fa fa-times-circle-o close-icon"
+                  (click)="landmark = ''"></i>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">PinCode</div>
+                </div>
+                <input type="text"  [(ngModel)]="pincode" name="pincode" class="form-control" id="inlineFormInputGroupUsername2" placeholder="PinCode">
+              </div>
+          </div>
+
+            <div class="form-group">
+              <label><b>Search address</b></label>
+              <div class="search-cnt">
+                <i _ngcontent-bwu-c1="" aria-hidden="true" class="fa fa-search search-icon"></i>
+                <input type="search" class="search-input" (keydown.enter)="$event.preventDefault()"
+                  placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off"
+                  type="text" #search>
+                <i *ngIf="search.value !=''" _ngcontent-bwu-c1="" aria-hidden="true"
+                  class="fa fa-times-circle-o close-icon" (click)="search.value = ''"></i>
+              </div>
+              <div class="input-group-append currentLocation">
+                <span class="" (click)="currentLocation()">
+                  <i _ngcontent-bwu-c1="" aria-hidden="true" class="fa fa-crosshairs"></i>
+                </span>
+              </div>
             </div>
 
             <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [mapDraggable]="true"
               (dragEnd)="mapDragEnd($event)">
-              <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+              <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" #mapMarker
                 (dragEnd)="markerDragEnd($event)"></agm-marker>
             </agm-map>
-            <span class="map-note"><span style="color: rgb(175, 17, 17);">Note: -</span>Drag a marker to set the location in Map</span>
+            <span class="map-note"><span>Note: -</span>Drag a marker to set the location in Map</span>
             <hr>
-            <div class="form-group">
-            
-            <h6>Address <span class="pincode">PinCode: {{pincode}}</span> </h6>
-              <div class="input-group mb-3 address">
-                {{address}}
-              </div>
-            </div>
-            <div class="form-group">
-              <h6>Enter Landmark <span class="text-danger">*</span></h6>
-              <div class="input-group mb-3">
-                <textarea [(ngModel)]="landmark" name="landmark" class="form-control" placeholder="Enter Place Landmark" required minlength="5"></textarea>
-              </div>
-            </div>
+
 
             <input type="submit" [disabled]="!f.valid" class="full-submit" value="Save Property Address" />
 
           </div>
         </div>
-     </form>
+      </form>
     </div>
   </div>
 

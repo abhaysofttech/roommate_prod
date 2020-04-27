@@ -50,7 +50,7 @@ export class ImageUploadComponent implements OnInit {
   async updatedsuccessAds() {
     const alert = await this.alertController.create({
       header: 'Advertise Upoaded !',
-      message: 'Your advertise added successfully',
+      message: 'Your advertise added successfully. <br/> Advertise will verify & live with-in 24hrs. <br/> Thank You.',
       buttons: [
         {
           text: 'OK',
